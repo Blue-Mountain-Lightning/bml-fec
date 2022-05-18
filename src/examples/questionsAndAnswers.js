@@ -1,4 +1,12 @@
 
+// GET /qa/questions/:question_id/answers
+module.exports.answers = {
+  "question": "40344",
+  "page": 1,
+  "count": 5,
+  "results": []
+}
+
 // GET /qa/questions
 module.exports.questions = {
   "product_id": "40344",
@@ -90,12 +98,4 @@ module.exports.questions = {
       }
     }
   ]
-}
-
-// GET /qa/questions/:question_id/answers
-module.exports.answers = {
-  "question": "40344",
-  "page": 1,
-  "count": 5,
-  "results": []
 }

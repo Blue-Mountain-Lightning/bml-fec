@@ -42,7 +42,7 @@ const endpoints = [
 console.log('Cleaning up examples directory...');
 
 endpoints.forEach(async endpoint => {
-  let file = path.join('examples', endpoint.category + '.js');
+  let file = path.join('src', 'examples', endpoint.category + '.js');
     try {
         await fs.promises.unlink(file);
     } catch (error) {
@@ -56,7 +56,7 @@ endpoints.forEach(async endpoint => {
     let url = BASE_URL + endpoint.endpoint;
     console.log(url);
 
-    let file = path.join('examples', endpoint.category + '.js');
+    let file = path.join('src', 'examples', endpoint.category + '.js');
     let varName = endpoint.name;
     let description = endpoint.description;
 
