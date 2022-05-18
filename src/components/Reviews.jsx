@@ -1,11 +1,32 @@
 import React from 'react';
 
-const Reviews = () => {
-  return (
-    <div>
-      <h2>ReviewshelloTEST random edit.</h2>
-    </div>
-  );
+class Reviews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: []
+    };
+  }
+
+
+
+  render() {
+
+    return (
+      <div>
+        <h1>Review</h1>
+
+        <AddReview/>
+
+        <Filter/>
+
+        <Review/>
+
+        <p>Showing: </p>
+      </div>
+
+    );
+  }
 }
 
-export default Reviews
+export default Reviews;
