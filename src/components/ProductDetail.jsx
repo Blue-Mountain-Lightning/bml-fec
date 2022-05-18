@@ -20,6 +20,9 @@ class ProductDetail extends React.Component {
         <RelatedProducts />
         <QuestionsAnswers />
         <Reviews />
+
+
+
       </div>
 
     )

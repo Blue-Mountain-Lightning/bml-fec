@@ -1,0 +1,12 @@
+.page-wrapper {}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: auto;
+}
+
+.page-padding {
+  padding-left: 32px;
+  padding-right: 32px;
+}
