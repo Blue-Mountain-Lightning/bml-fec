@@ -2,12 +2,12 @@ import React from 'react';
 
 import ProductCard from './ProductCard';
 
-const RelatedProducts = () => {
+const YourOutfit = () => {
   return (
     <div>
-      <h2>Related Products</h2>
+      <h2>Your Outfit</h2>
     </div>
   );
 }
 
-export default RelatedProducts;
+export default YourOutfit;
