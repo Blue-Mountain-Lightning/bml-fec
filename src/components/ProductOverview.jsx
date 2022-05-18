@@ -7,3 +7,5 @@ const ProductOverview = () => {
     </div>
   );
 }
+
+export default ProductOverview
