@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gen-examples": "node examples/generateExampleData.js"
+    "gen-examples": "node src/examples/generateExampleData.js"
   },
   "eslintConfig": {
     "extends": [
