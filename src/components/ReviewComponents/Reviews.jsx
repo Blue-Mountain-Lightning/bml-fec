@@ -1,5 +1,7 @@
 import React from 'react';
 import AddReview from './AddReview.jsx';
+import Filter from './Filter.jsx';
+import ReviewBlock from './OneReview.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -8,8 +10,6 @@ class Reviews extends React.Component {
       list: []
     };
   }
-
-
 
   render() {
 
@@ -21,7 +21,7 @@ class Reviews extends React.Component {
 
         <Filter/>
 
-        <OneReview/>
+        <ReviewBlock/>
 
         <p>Showing: </p>
       </div>
