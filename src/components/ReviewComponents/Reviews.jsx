@@ -10,6 +10,9 @@ class Reviews extends React.Component {
       list: []
     };
   }
+  handleAddReview() {
+    alert('you clicked the add review button');
+  }
 
   render() {
 
@@ -17,7 +20,7 @@ class Reviews extends React.Component {
       <div>
         <h1>Review</h1>
 
-        <AddReview/>
+        <button onclick={this.handleAddReview} className="addreviewbutton">Add Review</button>
 
         <Filter/>
 
