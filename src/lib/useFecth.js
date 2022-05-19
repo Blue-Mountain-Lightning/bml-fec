@@ -10,11 +10,9 @@ export const useFetch = (url) => {
   const [state, setState] = useState({data: null})
 
   useEffect(() => {
-    //setStyles((state) => ({ data: null }))
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN} })
       .then(response => response.text())
       .then(data => {
-        //console.log(data)
         setState({ data });
       })
   }, [url]) // url is dependency i.e. whenever url changes the useEffect will fire

@@ -10,3 +10,9 @@
   padding-left: 32px;
   padding-right: 32px;
 }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
