@@ -6,8 +6,6 @@ const ProductOverview = () => {
   // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles
   let styles  = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`)
   styles = JSON.parse(styles.data)
-  console.log(styles)
-  console.log('render')
 
   return (
 
@@ -24,6 +22,7 @@ const ProductOverview = () => {
 
 export default ProductOverview
 
+/*
 let product = {
   "id": 40344,
   "campus": "hr-rfp",
@@ -405,3 +404,4 @@ let styles = {
     }
   ]
 }
+*/

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
   return (
     <div>
-      This is a card for a single product.
+      <Link to={`/${product.id}`} key={product.id}>{product.name}</Link>
     </div>
   )
 }

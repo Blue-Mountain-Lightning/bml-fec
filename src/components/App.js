@@ -8,7 +8,6 @@ function App() {
     <div className="page-wrapper">
 
       <ProductList />
-      <Link to="/details">Product Details</Link>
     </div>
   );
 }
