@@ -15,7 +15,7 @@ const ProductDetail = () => {
   return (
     <div>
       <h1>This is the Product Detail Component with id: {params.productId}</h1>
-      <h2>Product name is {product.name}</h2>
+      <h2>Product name is to be determined</h2>
       <ProductOverview />
       <RelatedProducts />
       <QuestionsAnswers />
