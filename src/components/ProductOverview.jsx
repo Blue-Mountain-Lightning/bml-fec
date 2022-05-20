@@ -1,16 +1,19 @@
 import React from 'react';
-//import { useFetch } from '../../lib/useFecth.js';
+import { useFetch } from '../lib/useFecth.js';
 
 const ProductOverview = () => {
 
-  //const { styles } = useFecth(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`)
+  // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles
+  // let styles  = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`)
+  // styles = JSON.parse(styles.data)
 
   return (
+
     <div className="section">
       <div className="container">
         <div className="page-padding">
           <h2>Product Overview</h2>
-          <p>{styles.product_id}</p>
+          <p>yolo</p>
         </div>
       </div>
     </div>
@@ -19,6 +22,7 @@ const ProductOverview = () => {
 
 export default ProductOverview
 
+/*
 let product = {
   "id": 40344,
   "campus": "hr-rfp",
@@ -400,3 +404,4 @@ let styles = {
     }
   ]
 }
+*/

@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsAndAnswers from '../components/QAcomponents/QuestionsAndAnswers.jsx';
+import QuestionsAndAnswers from './QAcomponents/QuestionsAndAnswers.jsx';
 const QuestionsAnswers = () => {
   return (
     <div>

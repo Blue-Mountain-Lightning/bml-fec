@@ -12,9 +12,17 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        {/* TODO: Update this to route based on product id */}
-        <Route path="details" element={<ProductDetail />} />
+        <Route path="/" element={<App />}>
+          <Route path=":productId" element={<ProductDetail />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
 
