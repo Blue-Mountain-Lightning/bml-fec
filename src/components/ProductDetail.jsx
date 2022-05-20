@@ -11,22 +11,22 @@ const ProductDetail = (props) => {
   const [product, setProduct] = useState([])
 
   useEffect(() => {
-    fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${params.productId}`, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
+    let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+    fetch(`${process.env.REACT_APP_API}products/${params.productId}`, headers)
       .then(response => response.json())
       .then(data => {
         setProduct(data);
-        //
       })
   }, [params.productId])
 
   if (product) {
     return (
       <div>
-        <h1>This is the Product Detail Component with id: {params.productId}</h1>
+        {/* <h1>This is the Product Detail Component with id: {params.productId}</h1> */}
         <div data-testid={`product-item-test`}>
-          <h2>{product.name}</h2>
+          {/* <h2>{product.name}</h2> */}
         </div>
-        <ProductOverview />
+        <ProductOverview product={product} />
         <RelatedProducts product={product} />
         <QuestionsAnswers />
         <Reviews />
@@ -34,27 +34,5 @@ const ProductDetail = (props) => {
     )
   }
 }
-
-// class ProductDetail extends React.Component {
-//   constructor() {
-//     super();
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <h1>This is the Product Detail Component</h1>
-//         <ProductOverview />
-//         <RelatedProducts />
-//         <QuestionsAnswers />
-//         <Reviews />
-
-
-
-//       </div>
-
-//     )
-//   }
-// }
 
 export default ProductDetail;
