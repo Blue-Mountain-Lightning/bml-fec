@@ -1,0 +1,53 @@
+/* PRODUCT OVERVIEW */
+
+.product-overview-grid {
+  width: 100%;
+  min-height: 30rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.carousel-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-image {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+}
+
+.style-circle-grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1rem;
+}
+
+.style-circle {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: black;
+}
+
+.product-overview-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+/* PRODUCT SLOGAN */
+
+.slogan-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}

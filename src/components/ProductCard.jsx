@@ -26,6 +26,7 @@ const ProductCard = ({ product }) => {
     fetchProductStyles();
   }, [product.id]);
 
+
   const parsePrice = (productStyle) => {
     // Eventually this will become a separate component
     return `$${productStyle.original_price}`;
