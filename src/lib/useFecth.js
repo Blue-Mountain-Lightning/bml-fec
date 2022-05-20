@@ -11,7 +11,7 @@ export const useFetch = (url) => {
 
   useEffect(() => {
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN} })
-      .then(response => response.text())
+      .then(response => response.json())
       .then(data => {
         setState({ data });
       })
