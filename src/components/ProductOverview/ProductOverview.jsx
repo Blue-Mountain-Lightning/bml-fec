@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StyleCircle from './StyleCircle.jsx';
+import CarouselImage from "./CarouselImage";
 import './ProductOverview.css';
 
 
@@ -7,6 +8,7 @@ const ProductOverview = ({ product }) => {
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
   useEffect(() => {
     const fetchProductStyles = async () => {
@@ -36,12 +38,19 @@ const ProductOverview = ({ product }) => {
     return photos;
   }
 
+  const handleStylesClick = (index) => {
+    console.log(index)
+    setCurrentStyle(styles.results[index]);
+    setCurrentStyleIndex(index);
+  }
+
   if (loaded) {
     const selectedStyleId = currentStyle.style_id;
     //console.log(currentStyle)
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     //console.log(styles.results)
-    //console.log(stylesPhotos)
+    console.log('styles', styles)
+    console.log(stylesPhotosThumbnailUrls)
 
 
     return (
@@ -51,9 +60,9 @@ const ProductOverview = ({ product }) => {
             <div className="product-overview-grid">
               <div className="">
                 <div className="carousel-image-wrapper">
-                  {stylesPhotosThumbnailUrls.map((photoUrl) => {
-                    return <img className="carousel-image" src={photoUrl} alt={product.name} />
-                  })}
+                  {stylesPhotosThumbnailUrls.map((photoUrl, index) => {
+                    return <CarouselImage photoUrl={photoUrl} alt={product.name} index={index} currentStyleIndex={currentStyleIndex} />
+                  }).reverse()}
                 </div>
               </div>
               <div className="">
@@ -67,7 +76,12 @@ const ProductOverview = ({ product }) => {
                 </div>
                 <div className="style-circle-grid mb-1">
                   {stylesPhotosThumbnailUrls.map((url, index) => {
-                    return <StyleCircle key={url + index} url={url} index={index} />
+                    return <StyleCircle
+                      key={url + index}
+                      url={url}
+                      index={index}
+                      currentStyleIndex={currentStyleIndex}
+                      handleStylesClick={handleStylesClick} />
                   })}
                 </div>
                 <form name="product-overview-form" className="product-overview-form">
