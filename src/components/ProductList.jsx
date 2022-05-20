@@ -12,15 +12,9 @@ const ProductList = () => {
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setProducts(data);
       })
   }, [])
-
-  //let products = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`)
-  //products = JSON.parse(products.data) || []
-  //console.log(products);
-  console.log(products);
 
   return (
     <div className="page-padding">

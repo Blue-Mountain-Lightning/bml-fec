@@ -9,9 +9,7 @@ function App() {
     <div className="page-wrapper">
       <ProductList />
       <Outlet />
-
     </div>
-
   );
 }
 

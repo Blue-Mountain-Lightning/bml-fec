@@ -9,20 +9,15 @@ import { useFetch } from '../lib/useFecth.js';
 const ProductDetail = (props) => {
   let params = useParams();
   const [product, setProduct] = useState([])
-  console.log(params.productId)
 
   useEffect(() => {
     fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${params.productId}`, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setProduct(data);
         //
       })
-  }, params.productId)
-
-  //window.location.reload()
-  //console.log(product)
+  }, [params.productId])
 
   if (product) {
     return (
