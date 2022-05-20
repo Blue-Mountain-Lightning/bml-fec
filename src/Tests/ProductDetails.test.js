@@ -1,6 +1,6 @@
 import { render, screen, waitFor, getByText } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import ProductDetail from './components/ProductDetail';
+import ProductDetail from '../components/ProductDetail.jsx';
 
 const MockProductDetail = () => {
   return (
