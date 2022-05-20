@@ -30,8 +30,6 @@ const ProductCard = ({ product }) => {
     // Eventually this will become a separate component
     return `$${productStyle.original_price}`;
   }
-  console.log(styles)
-  console.log(currentStyle)
 
   if (loaded) {
     return (

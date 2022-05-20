@@ -2,10 +2,10 @@ import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
 const AnswerList = (props) => {
-  let orderedAnswers = Object.values(props.answers).sort((a,b) => {
+  let orderedAnswers = Object.values(props.answers).sort((a, b) => {
     if (b.helpfulness < a.helpfullness) {
       return -1;
-    } else if (a.helpfulness < b.helpfullness){
+    } else if (a.helpfulness < b.helpfullness) {
       return 1;
     } else {
       return 0;
@@ -13,7 +13,7 @@ const AnswerList = (props) => {
   });
   // let mostHelpful = orderedAnswers[0];
   // orderedAnswers.shift();
-  console.log('....', orderedAnswers);
+  //console.log('....', orderedAnswers);
   return (
     // <div>
     //   {Object.values(props.answers).map((answer, index) => {
@@ -26,9 +26,9 @@ const AnswerList = (props) => {
     <div>
       {orderedAnswers.slice(0, 2).map((answer, i) => {
         if (i >= 2) {
-          return <MoreAnswers answers ={orderedAnswers} key ={i} />
+          return <MoreAnswers answers={orderedAnswers} key={i} />
         }
-        return  <AnswerEntry answer ={answer} key ={i} />
+        return <AnswerEntry answer={answer} key={i} />
       })}
     </div>
   )
