@@ -16,13 +16,15 @@ const ProductList = () => {
   }, [])
 
   return (
-    <div className="page-padding">
-      <div className="container">
-        <h1>Product List</h1>
-        <div className="products-grid">
-          {products.map((product, index) => {
-            return <ProductCard key={product.id + index} product={product} />
-          })}
+    <div className="section">
+      <div className="container-large">
+        <div className="page-padding">
+          <h1>Product List</h1>
+          <div className="products-grid">
+            {products.map((product, index) => {
+              return <ProductCard key={product.id + index} product={product} />
+            })}
+          </div>
         </div>
       </div>
     </div>

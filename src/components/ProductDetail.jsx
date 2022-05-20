@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import NavBar from "./NavBar/NavBar.jsx";
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductSlogan from "./ProductOverview/ProductSlogan";
 import RelatedProducts from './RelatedProducts';
@@ -22,6 +23,7 @@ const ProductDetail = (props) => {
   if (product) {
     return (
       <div>
+        <NavBar />
         <ProductOverview product={product} />
         <ProductSlogan product={product} />
         <RelatedProducts product={product} />

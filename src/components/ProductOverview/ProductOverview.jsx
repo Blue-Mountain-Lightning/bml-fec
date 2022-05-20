@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StyleCircle from './StyleCircle.jsx';
-import './ProductOverview.css'
+import './ProductOverview.css';
 
 
 const ProductOverview = ({ product }) => {
