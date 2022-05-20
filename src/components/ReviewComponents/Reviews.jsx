@@ -20,7 +20,7 @@ class Reviews extends React.Component {
       <div>
         <h1>Review</h1>
 
-        <button onclick={this.handleAddReview} className="addreviewbutton">Add Review</button>
+        <button onClick={this.handleAddReview} className="addreviewbutton">Add Review</button>
 
         <Filter/>
 

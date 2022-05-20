@@ -13,7 +13,7 @@ const AnswerList = (props) => {
   });
   // let mostHelpful = orderedAnswers[0];
   // orderedAnswers.shift();
-  console.log('....', orderedAnswers);
+  // console.log('....', orderedAnswers);
   return (
     // <div>
     //   {Object.values(props.answers).map((answer, index) => {
