@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import OneReview from './OneReview.jsx';
 
-class ReviewBlock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: []
-    };
-  }
+function ReviewBlock(props) {
+  const [values, setValues] = useState({
+
+  })
 
 
+  //should take a list from props and use map to return each individual review.
+  const eachReview = props.list.map((review) => (
+    <li>
+      <OneReview thisReview={review} />
+    </li>
+  ));
 
-  render() {
-    return (
-    <h1>yolo</h1>
-    );
-  }
+  return eachReview;
 }
+
+
+
+
 export default ReviewBlock;

@@ -1,36 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AddReview from './AddReview.jsx';
 import Filter from './Filter.jsx';
 import ReviewBlock from './OneReview.jsx';
 
-class Reviews extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: []
-    };
-  }
-  handleAddReview() {
-    alert('you clicked the add review button');
+const Reviews = () => {
+  const [values, setValues] = useState({
+    searchText: ''
+  });
+
+  const addReview = () => {
+    console.log('add review button clicked.');
   }
 
-  render() {
-
-    return (
-      <div>
-        <h1>Review</h1>
-
-        <button onclick={this.handleAddReview} className="addreviewbutton">Add Review</button>
-
-        <Filter/>
-
-        <ReviewBlock/>
-
-        <p>Showing: </p>
-      </div>
-
-    );
+  const handleSearchTextChange = (event) => {
+    setValues({...values, searchText: event.target.value});
+    //add search functions later.
   }
+
+  //a function to get all reviews...initial planning
+
+
+  return (
+    <div>
+      <h1>Reviews</h1>
+
+      <button onClick={addReview}>Add Review</button>
+
+      <p>Showing: </p>
+
+      <form>
+        <label>
+          <input placeholder="search" type="text" value={values.searchText} onChange={handleSearchTextChange} />
+        </label>
+      </form>
+
+      <ReviewBlock />
+    </div>
+  );
 }
 
 export default Reviews;
