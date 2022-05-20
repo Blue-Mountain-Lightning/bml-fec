@@ -8,8 +8,6 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-const BASE_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
-
 class Endpoint {
   constructor(category, name, endpoint, description) {
     this.category = category;
@@ -53,7 +51,7 @@ endpoints.forEach(async endpoint => {
 console.log('Requesting data...')
 
 endpoints.forEach(async endpoint => {
-    let url = BASE_URL + endpoint.endpoint;
+    let url = process.env.REACT_APP_API + endpoint.endpoint;
     console.log(url);
 
     let file = path.join('src', 'examples', endpoint.category + '.js');
@@ -63,7 +61,7 @@ endpoints.forEach(async endpoint => {
     try {
       let response = await axios({
         url: url,
-        headers: {'Authorization': process.env.AUTH}
+        headers: {'Authorization': process.env.REACT_APP_TOKEN}
       });
 
       let contents = `\n// ${description}\nmodule.exports.${varName} = ${JSON.stringify(response.data, null, 2)}\n`

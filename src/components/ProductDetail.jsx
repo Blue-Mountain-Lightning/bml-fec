@@ -27,7 +27,7 @@ const ProductDetail = (props) => {
           <h2>{product.name}</h2>
         </div>
         <ProductOverview />
-        <RelatedProducts />
+        <RelatedProducts product={product} />
         <QuestionsAnswers />
         <Reviews />
       </div>
