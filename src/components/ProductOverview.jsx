@@ -4,8 +4,8 @@ import { useFetch } from '../lib/useFecth.js';
 const ProductOverview = () => {
 
   // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles
-  let styles  = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`)
-  styles = JSON.parse(styles.data)
+  // let styles  = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`)
+  // styles = JSON.parse(styles.data)
 
   return (
 

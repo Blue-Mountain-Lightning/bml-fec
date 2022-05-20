@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductOverview from './ProductOverview';
 import RelatedProducts from './RelatedProducts';
 import QuestionsAnswers from './QuestionsAnswers';
 import Reviews from './ReviewComponents/Reviews';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFetch } from '../lib/useFecth.js';
 
-const ProductDetail = () => {
+const ProductDetail = (props) => {
   let params = useParams();
-  let product  = useFetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${params.productId}`)
-  product = JSON.parse(product.data)
-  console.log(product)
+  const [product, setProduct] = useState([])
+  console.log(params.productId)
 
-  return (
-    <div>
-      <h1>This is the Product Detail Component with id: {params.productId}</h1>
-      <h2>Product name is to be determined</h2>
-      <ProductOverview />
-      <RelatedProducts />
-      <QuestionsAnswers />
-      <Reviews />
-    </div>
-  )
+  useEffect(() => {
+    fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${params.productId}`, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        setProduct(data);
+        //
+      })
+  }, params.productId)
+
+  //window.location.reload()
+  //console.log(product)
+
+  if (product) {
+    return (
+      <div>
+        <h1>This is the Product Detail Component with id: {params.productId}</h1>
+        <div data-testid={`product-item-test`}>
+          <h2>{product.name}</h2>
+        </div>
+        <ProductOverview />
+        <RelatedProducts />
+        <QuestionsAnswers />
+        <Reviews />
+      </div>
+    )
+  }
 }
 
 // class ProductDetail extends React.Component {
