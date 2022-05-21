@@ -25,8 +25,8 @@ const Carousel = ({ photoUrls }) => {
 
   return (
     <div>
-      <button className="prev-button" onClick={() => handleClick('prev')}>Prev</button>
-      <button className="next-button" onClick={() => handleClick('next')}>Next</button>
+      <button className="button prev" onClick={() => handleClick('prev')}>&#8249;</button>
+      <button className="button next" onClick={() => handleClick('next')}>&#8250;</button>
       {photoUrls.map((photoUrl, i) => {
         return <CarouselImage photoUrl={photoUrl} activeSlideIndex={activeSlideIndex} alt={`style-photo-${i}`} index={i} key={photoUrl + i} />
       }).reverse()}
