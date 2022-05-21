@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Carousel from './Carousel/Carousel.jsx';
 import StyleCircle from './StyleCircle.jsx';
-import CarouselImage from "./CarouselImage";
 import './ProductOverview.css';
 
 
@@ -38,8 +38,15 @@ const ProductOverview = ({ product }) => {
     return photos;
   }
 
+  const getPhotoUrlsForCurrentStyle = () => {
+    let photos = currentStyle.photos;
+    photos = photos.map((photo) => {
+      return photo.url
+    })
+    return photos;
+  }
+
   const handleStylesClick = (index) => {
-    console.log(index)
     setCurrentStyle(styles.results[index]);
     setCurrentStyleIndex(index);
   }
@@ -49,9 +56,10 @@ const ProductOverview = ({ product }) => {
     //console.log(currentStyle)
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     //console.log(styles.results)
-    console.log('styles', styles)
-    console.log(stylesPhotosThumbnailUrls)
-
+    //console.log('styles', styles)
+    //console.log('currentStyle', currentStyle)
+    //console.log('selectedStyle', styles.results[currentStyleIndex])
+    const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
 
     return (
       <div className="section">
@@ -60,9 +68,10 @@ const ProductOverview = ({ product }) => {
             <div className="product-overview-grid">
               <div className="">
                 <div className="carousel-image-wrapper">
-                  {stylesPhotosThumbnailUrls.map((photoUrl, index) => {
+                  <Carousel photoUrls={selectedStylePhotoUrls} />
+                  {/* {stylesPhotosThumbnailUrls.map((photoUrl, index) => {
                     return <CarouselImage photoUrl={photoUrl} alt={product.name} index={index} currentStyleIndex={currentStyleIndex} />
-                  }).reverse()}
+                  }).reverse()} */}
                 </div>
               </div>
               <div className="">
