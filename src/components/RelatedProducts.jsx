@@ -6,8 +6,7 @@ import ProductCard from './ProductCard';
 const HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
-  const IDCache = useRef({}); // cache of related id's for a particular product
-  const infoCache = useRef({}); // cache of product infos for previously seen products
+  const requestCache = useRef({}); //
   const relatedProductsCache = useRef({});  // this caches all products that have previous been a related product
 
   let [loaded, setLoaded] = useState(false);
@@ -19,28 +18,26 @@ const RelatedProducts = ({product}) => {
       if (!product.id) { return; };
       try {
         let productIDs;
-         if (IDCache.current[product.id]) {
-        // Check the IDCache to see if related ID's are stored for current product
-           productIDs = IDCache.current[product.id];
-         } else {
-          // Fetch array of product ID's which are related to the current product
-          const relatedProductsURL = `${process.env.REACT_APP_API}products/${product.id}/related`;
+        // Fetch array of product ID's which are related to the current product
+
+        const relatedProductsURL = `${process.env.REACT_APP_API}products/${product.id}/related`;
+        if (requestCache.current[relatedProductsURL]) {
+          productIDs = requestCache.current[relatedProductsURL];
+        } else {
           const IdsResponse = await fetch(relatedProductsURL, HEADERS)
           let parsedResponse = await IdsResponse.json();
           productIDs = Array.from(new Set(parsedResponse));
-          IDCache.current[product.id] = productIDs;
+          requestCache.current[relatedProductsURL] = productIDs;
         }
 
         // Fetch product information for each related product
         const productRequests = productIDs.map(id => {
-          if (infoCache.current[id]) {
-            return infoCache.current[id];
-          }
-
           const url = `${process.env.REACT_APP_API}products/${id}`;
-          return fetch(url, HEADERS);
+          if (requestCache.current[id]) { console.log('using cache') };
+          return (requestCache.current[id]) ? requestCache.current[id] : fetch(url, HEADERS);
         })
-        const productsResponse = await Promise.all(productRequests);
+        try {
+          const productsResponse = await Promise.all(productRequests);
         const responsePromises = productsResponse.map(response => {
           try {
             return response.json();
@@ -48,12 +45,17 @@ const RelatedProducts = ({product}) => {
             return response;
           }
         });
+
         const responsesData = await Promise.all(responsePromises);
-        responsesData.forEach(info => infoCache.current[info.id] = info);
+        responsesData.forEach(info => requestCache.current[info.id] = info);
 
         // Set related product array to products state
         setProducts(responsesData);
         setLoaded(true);
+                } catch (error) {
+          console.log(error);
+        }
+
       } catch (error) {
         console.log(error)
       }
