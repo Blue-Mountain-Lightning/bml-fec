@@ -1,8 +1,14 @@
 import React from "react";
 
-const StyleCircle = ({ url, index }) => {
+const StyleCircle = ({ url, index, handleStylesClick, currentStyleIndex }) => {
+
+  let className = "style-circle";
+  if (index === currentStyleIndex) {
+    className += " current";
+  }
+
   return (
-    <img className="style-circle" src={url} alt={`style ${index}`} />
+    <img className={className} onClick={() => handleStylesClick(index)} src={url} alt={`style ${index}`} />
   )
 }
 

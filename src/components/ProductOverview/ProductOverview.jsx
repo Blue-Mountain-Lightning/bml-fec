@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import StyleCircle from './ProductOverview/StyleCircle.jsx';
+import StyleCircle from './StyleCircle.jsx';
+import CarouselImage from "./CarouselImage";
+import './ProductOverview.css';
 
 
 const ProductOverview = ({ product }) => {
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
   useEffect(() => {
     const fetchProductStyles = async () => {
@@ -35,24 +38,31 @@ const ProductOverview = ({ product }) => {
     return photos;
   }
 
+  const handleStylesClick = (index) => {
+    console.log(index)
+    setCurrentStyle(styles.results[index]);
+    setCurrentStyleIndex(index);
+  }
+
   if (loaded) {
     const selectedStyleId = currentStyle.style_id;
     //console.log(currentStyle)
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     //console.log(styles.results)
-    //console.log(stylesPhotos)
+    console.log('styles', styles)
+    console.log(stylesPhotosThumbnailUrls)
 
 
     return (
       <div className="section">
-        <div className="container">
+        <div className="container-large">
           <div className="page-padding">
             <div className="product-overview-grid">
               <div className="">
                 <div className="carousel-image-wrapper">
-                  {stylesPhotosThumbnailUrls.map((photoUrl) => {
-                    return <img className="carousel-image" src={photoUrl} alt={product.name} />
-                  })}
+                  {stylesPhotosThumbnailUrls.map((photoUrl, index) => {
+                    return <CarouselImage photoUrl={photoUrl} alt={product.name} index={index} currentStyleIndex={currentStyleIndex} />
+                  }).reverse()}
                 </div>
               </div>
               <div className="">
@@ -64,11 +74,31 @@ const ProductOverview = ({ product }) => {
                   <p className="text-all-caps is-bold">Style > </p>
                   <p className="text-all-caps">{currentStyle.name}</p>
                 </div>
-                <div className="style-circle-grid">
+                <div className="style-circle-grid mb-1">
                   {stylesPhotosThumbnailUrls.map((url, index) => {
-                    return <StyleCircle key={url + index} url={url} index={index} />
+                    return <StyleCircle
+                      key={url + index}
+                      url={url}
+                      index={index}
+                      currentStyleIndex={currentStyleIndex}
+                      handleStylesClick={handleStylesClick} />
                   })}
                 </div>
+                <form name="product-overview-form" className="product-overview-form">
+                  <select name="size" id="size-select">
+                    <option value="">--Select Size--</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                  <select name="quantity" id="quantity-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <button>Add to bag</button>
+                  <button>♡</button>
+                </form>
               </div>
             </div>
           </div>
