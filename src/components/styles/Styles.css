@@ -149,7 +149,8 @@ h3 {
 }
 
 .center-heading {
-  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 /* PRICE */
