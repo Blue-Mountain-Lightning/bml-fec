@@ -80,7 +80,7 @@ const RelatedProducts = ({product}) => {
               {products.map((p, i) => {
                 if (i > 3) { return; } // DANGER: Remove before implementing scroll behavior
                 return (<ProductCard key={p.id} product={p} />)
-              })};
+              })}
             </div>
           </div>
         </div>
