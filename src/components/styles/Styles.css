@@ -23,6 +23,16 @@ h3 {
   margin: auto;
 }
 
+.container-wide {
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 .container {
   width: 100%;
   max-width: 1120px;
@@ -69,4 +79,88 @@ h3 {
 
 .mb-4 {
   margin-bottom: 4rem;
+}
+
+.style-circle {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: black;
+}
+
+
+/* PRODUCT CARD */
+.card-styles-parent {
+  position: relative;
+  transition: all 0.12s linear;
+}
+
+.card-styles-thumbnail {
+  position: relative;
+  height: 480px;
+  width: 360px;
+  object-fit: cover;
+}
+
+.card-style-circle {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid transparent;
+}
+
+.card-style-circle:hover {
+  border: 2px solid gray;
+  transition: all 0.12s linear;
+}
+
+.card-style-circle-selected {
+  border: 2px solid black;
+}
+
+.card-style-grid-overlay {
+  position: absolute;
+  display: flex;
+  bottom: 0px;
+  left: 0px;
+  height: 128px;
+  width: 100%;
+  background: white;
+  transition: opacity 0.4s;
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-style-grid-overlay.hide {
+  opacity: 0;
+}
+
+.card-style-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.center-heading {
+  margin: 0 auto;
+}
+
+/* PRICE */
+.sale-price {
+  color: red;
+}
+
+/* RELATED PRODOCUTS and YOUR OUTFIT */
+.product-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
 }
