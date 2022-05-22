@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Carousel from './Carousel/Carousel.jsx';
 import StyleCircle from './StyleCircle.jsx';
-import CarouselImage from "./CarouselImage";
+import SizeAndQtySelector from "./SizeAndQtySelector";
 import './ProductOverview.css';
 
 
@@ -38,20 +39,24 @@ const ProductOverview = ({ product }) => {
     return photos;
   }
 
+  const getPhotoUrlsForCurrentStyle = () => {
+    let photos = currentStyle.photos;
+    photos = photos.map((photo) => {
+      return photo.url
+    })
+    return photos;
+  }
+
   const handleStylesClick = (index) => {
-    console.log(index)
     setCurrentStyle(styles.results[index]);
     setCurrentStyleIndex(index);
   }
 
-  if (loaded) {
-    const selectedStyleId = currentStyle.style_id;
-    //console.log(currentStyle)
-    const stylesPhotosThumbnailUrls = getStylesPhotos();
-    //console.log(styles.results)
-    console.log('styles', styles)
-    console.log(stylesPhotosThumbnailUrls)
 
+  if (loaded) {
+    const stylesPhotosThumbnailUrls = getStylesPhotos();
+    const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
+    const skus = currentStyle.skus;
 
     return (
       <div className="section">
@@ -60,9 +65,7 @@ const ProductOverview = ({ product }) => {
             <div className="product-overview-grid">
               <div className="">
                 <div className="carousel-image-wrapper">
-                  {stylesPhotosThumbnailUrls.map((photoUrl, index) => {
-                    return <CarouselImage photoUrl={photoUrl} alt={product.name} index={index} currentStyleIndex={currentStyleIndex} />
-                  }).reverse()}
+                  <Carousel photoUrls={selectedStylePhotoUrls} />
                 </div>
               </div>
               <div className="">
@@ -84,21 +87,7 @@ const ProductOverview = ({ product }) => {
                       handleStylesClick={handleStylesClick} />
                   })}
                 </div>
-                <form name="product-overview-form" className="product-overview-form">
-                  <select name="size" id="size-select">
-                    <option value="">--Select Size--</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                  </select>
-                  <select name="quantity" id="quantity-select">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </select>
-                  <button>Add to bag</button>
-                  <button>♡</button>
-                </form>
+                <SizeAndQtySelector skus={skus} />
               </div>
             </div>
           </div>

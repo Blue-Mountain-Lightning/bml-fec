@@ -1,10 +1,9 @@
 import React from "react";
 
-const CarouselImage = ({ photoUrl, index, currentStyleIndex, alt }) => {
+const CarouselImage = ({ photoUrl, activeSlideIndex, index, alt }) => {
 
   let className = "carousel-image"
-
-  if (currentStyleIndex === index) {
+  if (activeSlideIndex === index) {
     className += " current";
   }
 
