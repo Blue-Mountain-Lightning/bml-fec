@@ -97,7 +97,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="text-all-caps">{product.category}</div>
           <b>{product.name}</b>
-          <Price style={currentStyle} />
+          <Price style={currentStyle} fontSize={"1rem"} />
         <div>Star rating component</div>
       </div>
     )
