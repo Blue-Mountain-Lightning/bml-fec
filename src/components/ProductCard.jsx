@@ -13,6 +13,12 @@ const ProductCard = ({ product }) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [styleSwitcherActive, setStyleSwitcherActive] = useState(false);
 
+  const parseFontSize = (size) => {
+    return `${size}rem`;
+  }
+
+  const fontSize = parseFontSize(1.5); // the fontsize in rem
+
   useEffect(() => {
     const fetchProductStyles = async () => {
       try {
@@ -84,6 +90,7 @@ const ProductCard = ({ product }) => {
 
     return (
       <div className='clickable'
+           style={{"fontSize": fontSize}}
            onClick={handleClick}
            onMouseEnter={handleImageEnter}
            onMouseLeave={handleImageLeave}
@@ -95,9 +102,9 @@ const ProductCard = ({ product }) => {
           />
           {styleSwitcherElement}
         </div>
-        <div className="text-all-caps">{product.category}</div>
+        <div className="text-all-caps" style={{"fontSize": parseFontSize(1.1)}}>{product.category}</div>
           <b>{product.name}</b>
-          <Price style={currentStyle} fontSize={"1rem"} />
+          <Price style={currentStyle} fontSize={fontSize} />
         <div>Star rating component</div>
       </div>
     )

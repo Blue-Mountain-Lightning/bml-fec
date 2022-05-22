@@ -99,8 +99,8 @@ h3 {
 
 .card-styles-thumbnail {
   position: relative;
-  height: 480px;
-  width: 360px;
+  height: 36rem;
+  width: 27rem;
   object-fit: cover;
 }
 

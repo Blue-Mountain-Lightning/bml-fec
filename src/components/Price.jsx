@@ -1,6 +1,6 @@
 
 // Props:
-// style: the inner result object of the select style
+// style: the inner result object of the selected style
 // fontSize: the font size to render
 const Price = ({style, fontSize}) => {
   let price = style["original_price"];
@@ -9,7 +9,7 @@ const Price = ({style, fontSize}) => {
 
   if (style['sale_price']!== null) {
     return (
-      <div className='text-all-caps' style={fontStyle}>
+      <div style={fontStyle}>
         <span style={fontStyle} className='sale-price'>${style['sale_price']} </span>
         <s style={fontStyle}>${style['original_price']}</s>
       </div>
@@ -17,7 +17,7 @@ const Price = ({style, fontSize}) => {
   }
 
   return (
-    <div className='text-all-caps' style={fontStyle}>${price}</div>
+    <div style={fontStyle}>${price}</div>
   )
 }
 
