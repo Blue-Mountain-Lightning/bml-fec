@@ -79,12 +79,15 @@
 }
 
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   border: none;
   background: rgba(0, 0, 0, 0.4);
   color: rgb(209, 209, 209);
   z-index: 99;
-  font-size: 6rem;
+  font-size: 3rem;
   backdrop-filter: blur(2px);
   cursor: pointer;
 
@@ -123,8 +126,7 @@
 
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   background: rgba(0, 0, 0, 0.2);
   color: rgb(238, 128, 55);
 }
