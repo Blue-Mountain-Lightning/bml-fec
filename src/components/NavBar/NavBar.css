@@ -19,9 +19,10 @@
 
 .logo-link {
   text-decoration: none;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 900;
   color: #1a1a1a;
+  letter-spacing: -0.05em;
 }
 
 .logo-link:hover {

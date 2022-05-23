@@ -10,7 +10,7 @@ const NavBar = () => {
         <div className="container-large">
           <div className="page-padding">
             <nav className="nav-wrapper">
-              <Link className="logo-link" to="/">👟 Thor Clothing ⚡️</Link>
+              <Link className="logo-link" to="/">⚡️ THOR THREADS 👟</Link>
             </nav>
           </div>
         </div>
