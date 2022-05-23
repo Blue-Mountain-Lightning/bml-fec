@@ -57,6 +57,7 @@ const ProductOverview = ({ product }) => {
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
     const skus = currentStyle.skus;
+    console.log(currentStyleIndex)
 
     return (
       <div className="section">
@@ -64,7 +65,7 @@ const ProductOverview = ({ product }) => {
           <div className="page-padding">
             <div className="product-overview-grid">
               <div className="">
-                <div className="carousel-image-wrapper">
+                <div>
                   <Carousel photoUrls={selectedStylePhotoUrls} />
                 </div>
               </div>

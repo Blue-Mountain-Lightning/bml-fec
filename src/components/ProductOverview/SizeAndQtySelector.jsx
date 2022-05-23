@@ -14,7 +14,7 @@ const SizeAndQtySelector = ({ skus }) => {
     setSelectedSku(event.target.value)
   }
 
-  const sizeOptions = () => {
+  const makeSizeOptions = () => {
     if (isOutOfStock) {
       return <option value="out of stock">OUT OF STOCK</option>
     } else {
@@ -27,31 +27,26 @@ const SizeAndQtySelector = ({ skus }) => {
     }
   }
 
-  const getQtySelect = () => {
-    if (isQtyDisabled) {
-      return <select name="quantity" id="quantity-select" disabled></select>
-    } else {
-      let options = []
-      const qtyAvailable = skus[selectedSku].quantity;
-      for (var i = 1; i < qtyAvailable + 1; i++) {
-        options.push(<option value={i}>{i}</option>)
-      }
+  const makeQtyoptions = () => {
+    let options = []
+    const qtyAvailable = skus[selectedSku]?.quantity;
 
-      return (
-        <select name="quantity" id="quantity-select">
-          {options}
-        </select>
-      )
+    for (var i = 1; i < qtyAvailable + 1; i++) {
+      options.push(<option value={i}>{i}</option>)
     }
+    return options
   }
+
 
   return (
     <form name="product-overview-form" className="product-overview-form">
 
       <select onChange={handleSizeChange} name="size" id="size-select">
-        {sizeOptions()}
+        {makeSizeOptions()}
       </select>
-      {getQtySelect()}
+      <select name="quantity" id="quantity-select" disabled={isQtyDisabled}>
+        {makeQtyoptions()}
+      </select>
       <button>Add to bag</button>
       <button>♡</button>
     </form>
