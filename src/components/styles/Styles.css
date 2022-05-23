@@ -1,4 +1,16 @@
-body {}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Work Sans, sans-serif;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
 
 .page-wrapper {}
 
@@ -15,6 +27,52 @@ h2 {
 h3 {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+select {
+  padding: 0.8rem;
+  width: 100%;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.button {
+  padding: 0.6rem;
+  width: 100%;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  font-size: 18px;
+  font-weight: bold;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ce4d12;
+}
+
+/* select-wrapper and select-arrow are used to
+overwrite broser default <select> styling */
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
 }
 
 .container-large {
@@ -79,6 +137,14 @@ h3 {
 
 .mb-4 {
   margin-bottom: 4rem;
+}
+
+.mr-pt5 {
+  margin-right: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
 }
 
 .style-circle {

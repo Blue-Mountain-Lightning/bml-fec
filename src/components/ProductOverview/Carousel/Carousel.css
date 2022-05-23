@@ -78,7 +78,7 @@
   transition-delay: 0ms;
 }
 
-.button {
+.carousel-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,40 +93,40 @@
 
 }
 
-.button.next {
+.carousel-button.next {
   right: 0;
   top: 0;
   bottom: 0;
 }
 
-.button.prev {
+.carousel-button.prev {
   left: 0;
   top: 0;
   bottom: 0;
 }
 
-.button.down {
+.carousel-button.down {
   bottom: 0;
   left: 0;
   right: 0;
   font-size: 2rem;
-  width: 16.5%;
+  width: 16.4%;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
-.button.up {
+.carousel-button.up {
   top: 0;
   left: 0;
   right: 0;
   font-size: 2rem;
-  width: 16.5%;
+  width: 16.4%;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 
 }
 
-.button:hover {
+.carousel-button:hover {
   background: rgba(0, 0, 0, 0.2);
   color: rgb(238, 128, 55);
 }
