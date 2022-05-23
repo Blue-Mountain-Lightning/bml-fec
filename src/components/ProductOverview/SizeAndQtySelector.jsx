@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
 const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
@@ -7,6 +7,12 @@ const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const isOutOfStock = skus.length === 0 ? true : false;
   const skusArray = Object.entries(skus)
+
+  useEffect(() => {
+    setIsFavorite(false);
+    setIsQtyDisabled(true);
+    setSelectedSku(null);
+  }, [skus])
 
   const handleSizeChange = (event) => {
     event.target.value === '' ? setIsQtyDisabled(true) : setIsQtyDisabled(false)
