@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { FaAngleDown, FaRegHeart, FaHeart } from 'react-icons/fa';
 
-const SizeAndQtySelector = ({ skus }) => {
+const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
   const [selectedSku, setSelectedSku] = useState(null)
   const [isQtyDisabled, setIsQtyDisabled] = useState(true)
+  const [isFavorite, setIsFavorite] = useState(false)
   const isOutOfStock = skus.length === 0 ? true : false;
   const skusArray = Object.entries(skus)
 
@@ -34,18 +36,37 @@ const SizeAndQtySelector = ({ skus }) => {
     return options
   }
 
+  const handleHeartClick = () => {
+    setIsFavorite(!isFavorite);
+  }
+
 
   return (
     <form name="product-overview-form" className="product-overview-form">
 
-      <select onChange={handleSizeChange} name="size" id="size-select">
-        {makeSizeOptions()}
-      </select>
-      <select name="quantity" id="quantity-select" disabled={isQtyDisabled}>
-        {makeQtyoptions()}
-      </select>
-      <button>Add to bag</button>
-      <button>♡</button>
+      <div className="select-wrapper">
+        <span className="select-arrow"><FaAngleDown /></span>
+        <select onChange={handleSizeChange} name="size" id="size-select">
+          {makeSizeOptions()}
+        </select>
+      </div>
+
+      <div className="select-wrapper">
+        <span className="select-arrow"><FaAngleDown /></span>
+
+        <select name="quantity" id="quantity-select" disabled={isQtyDisabled}>
+          {makeQtyoptions()}
+        </select>
+      </div>
+
+      <div className="add-to-bag-wrapper">
+        <button className="button" onClick={handleAddToBag}>Add to Bag</button>
+        <div className="heart-button" onClick={handleHeartClick}>{
+          isFavorite ? <FaHeart /> : <FaRegHeart />
+        }</div>
+      </div>
+
+
     </form>
   )
 }

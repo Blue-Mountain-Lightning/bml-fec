@@ -17,6 +17,50 @@ h3 {
   margin-bottom: 0;
 }
 
+select {
+  padding: 0.8rem;
+  width: 100%;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.button {
+  padding: 0.6rem;
+  width: 100%;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  font-size: 18px;
+  font-weight: bold;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ce4d12;
+}
+
+/* select-wrapper and select-arrow are used to
+overwrite broser default <select> styling */
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
 .container-large {
   width: 100%;
   max-width: 1240px;

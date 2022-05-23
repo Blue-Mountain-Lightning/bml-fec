@@ -21,6 +21,7 @@ const ProductOverview = ({ product }) => {
           const stylesArray = await response.json();
           setStyles(stylesArray);
           setCurrentStyle(stylesArray.results[0]);
+          setCurrentStyleIndex(0)
           setLoaded(true);
         } catch (error) {
           console.log(error);
@@ -29,7 +30,7 @@ const ProductOverview = ({ product }) => {
     }
 
     fetchProductStyles();
-  }, [product.id]);
+  }, [product]);
 
   const getStylesPhotos = () => {
     let photos = []
@@ -50,6 +51,11 @@ const ProductOverview = ({ product }) => {
   const handleStylesClick = (index) => {
     setCurrentStyle(styles.results[index]);
     setCurrentStyleIndex(index);
+  }
+
+  const handleAddToBag = (event) => {
+    event.preventDefault();
+    alert(`Chill Dude... it's just a demo, but those ${product.name} do look pretty fly.`)
   }
 
 
@@ -87,7 +93,7 @@ const ProductOverview = ({ product }) => {
                       handleStylesClick={handleStylesClick} />
                   })}
                 </div>
-                <SizeAndQtySelector skus={skus} />
+                <SizeAndQtySelector skus={skus} handleAddToBag={handleAddToBag} />
               </div>
             </div>
           </div>
