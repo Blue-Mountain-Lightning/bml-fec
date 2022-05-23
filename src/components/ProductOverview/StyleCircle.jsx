@@ -2,7 +2,7 @@ import React from "react";
 
 const StyleCircle = ({ url, index, handleStylesClick, currentStyleIndex }) => {
 
-  let className = "style-circle";
+  let className = "card-style-circle";
   if (index === currentStyleIndex) {
     className += " current";
   }
