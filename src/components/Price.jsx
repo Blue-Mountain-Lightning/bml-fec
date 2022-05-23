@@ -2,12 +2,12 @@
 // Props:
 // style: the inner result object of the selected style
 // fontSize: the font size to render
-const Price = ({style, fontSize}) => {
+const Price = ({ style, fontSize }) => {
   let price = style["original_price"];
-  let fontStyle = fontSize ? {"fontSize": fontSize} : {};
-  console.log(fontStyle);
+  let fontStyle = fontSize ? { "fontSize": fontSize } : {};
+  //console.log(fontStyle);
 
-  if (style['sale_price']!== null) {
+  if (style['sale_price'] !== null) {
     return (
       <div style={fontStyle}>
         <span style={fontStyle} className='sale-price'>${style['sale_price']} </span>

@@ -13,7 +13,11 @@ const Carousel = ({ photoUrls }) => {
     if (index < 0) {
       index = photoUrls.length - 1;
     }
+
+
+
     setActiveSlideIndex(index);
+
   }
 
   return (

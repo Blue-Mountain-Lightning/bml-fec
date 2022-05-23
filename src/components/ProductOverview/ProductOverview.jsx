@@ -57,7 +57,6 @@ const ProductOverview = ({ product }) => {
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
     const skus = currentStyle.skus;
-    console.log(currentStyleIndex)
 
     return (
       <div className="section">

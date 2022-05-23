@@ -6,9 +6,6 @@ const SizeAndQtySelector = ({ skus }) => {
   const isOutOfStock = skus.length === 0 ? true : false;
   const skusArray = Object.entries(skus)
 
-  console.log('skus', skus)
-  console.log('skus Array', skusArray)
-
   const handleSizeChange = (event) => {
     event.target.value === '' ? setIsQtyDisabled(true) : setIsQtyDisabled(false)
     setSelectedSku(event.target.value)
@@ -32,7 +29,7 @@ const SizeAndQtySelector = ({ skus }) => {
     const qtyAvailable = skus[selectedSku]?.quantity;
 
     for (var i = 1; i < qtyAvailable + 1; i++) {
-      options.push(<option value={i}>{i}</option>)
+      options.push(<option key={i} value={i}>{i}</option>)
     }
     return options
   }
