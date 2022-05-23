@@ -165,8 +165,8 @@ overwrite broser default <select> styling */
 
 .card-styles-thumbnail {
   position: relative;
-  height: 36rem;
-  width: 27rem;
+  height: 480px;
+  width: 360px;
   object-fit: cover;
 }
 
@@ -230,5 +230,24 @@ overwrite broser default <select> styling */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 3rem;
+  gap: 1rem;
 }
+
+.card-button {
+  font-size: 3rem;
+  background: white;
+  color: #888888;
+  border: none;
+}
+
+.card-icon {
+}
+
+.card-button.card-next {
+  margin-right: -1.5rem;
+}
+
+.card-button.card-prev {
+  margin-left: -1.5rem;
+}
+

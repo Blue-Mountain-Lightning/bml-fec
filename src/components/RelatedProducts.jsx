@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 import ProductCard from './ProductCard';
 
@@ -9,15 +10,40 @@ const RelatedProducts = ({product}) => {
   const cache = useRef({}); //
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [width, setWidth] = useState(0);
+
+  const numCardsToShow = () => {
+    let num = Math.floor(width / 480);
+    console.log(num);
+    return num > 0 ? num : 1;
+  }
+
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+
+  const handleResizeWindow = (e) => {
+    const {width} = getWindowDimensions();
+    setWidth(width);
+  }
 
   useEffect(() => {
+    handleResizeWindow();
+    window.addEventListener("resize", handleResizeWindow);
+
     const fetchRelatedProducts = async () => {
       if (!product.id) { return; };
 
       try {
         let relatedProductIDs;
         // Fetch related product IDs or load from cache
-        const relatedIDsEndpoint = `${process.env.REACT_APP_API}products/${product.id}/related`;
+        const relatedIDsEndpoint =
+          `${process.env.REACT_APP_API}products/${product.id}/related`;
+
         if (cache.current[relatedIDsEndpoint]) {
           relatedProductIDs = cache.current[relatedIDsEndpoint];
         } else {
@@ -68,6 +94,10 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
+  const handleButtonClick = (e) => {
+    console.log('click');
+  }
+
   if (loaded) {
     return (
       <div className="section">
@@ -76,11 +106,18 @@ const RelatedProducts = ({product}) => {
             <h1 className='center-heading'>You may also like</h1>
             {/* This is just a palceholder style for now */}
             <div className='product-row'>
-              {/* Some code here to get viewport width and adjust amount of shown elements to fit in that*/}
+              {/* Some code here to get viewport width and
+              adjust amount of shown elements to fit in that*/}
+              <button className='card-button card-next' onClick={handleButtonClick}>
+                <FaAngleLeft className='card-icon'/>
+              </button>
               {products.map((p, i) => {
-                if (i > 3) { return; } // DANGER: Remove before implementing scroll behavior
+                if (i > numCardsToShow() - 1) { return };
                 return (<ProductCard key={p.id} product={p} />)
               })}
+              <button className='card-button card-prev' onClick={handleButtonClick}>
+                <FaAngleRight className='card-icon'/>
+              </button>
             </div>
           </div>
         </div>
