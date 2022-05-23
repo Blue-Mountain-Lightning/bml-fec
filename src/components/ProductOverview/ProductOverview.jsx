@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from './Carousel/Carousel.jsx';
 import StyleCircle from './StyleCircle.jsx';
 import SizeAndQtySelector from "./SizeAndQtySelector";
+import Price from '../Price';
 import './ProductOverview.css';
 
 
@@ -63,6 +64,7 @@ const ProductOverview = ({ product }) => {
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
     const skus = currentStyle.skus;
+    console.log(styles)
 
     return (
       <div className="section">
@@ -77,10 +79,13 @@ const ProductOverview = ({ product }) => {
               <div className="">
                 <span>Star Component here</span>
                 <p className="text-all-caps">{product.category}</p>
-                <h2>{product.name}</h2>
-                <h3>{product.price}</h3>
+                <h1 className="product-title">{product.name}</h1>
+                <div className="product-price">
+                  <Price style={currentStyle} />
+                </div>
+
                 <div className="flex">
-                  <p className="text-all-caps is-bold">Style > </p>
+                  <p className="text-all-caps is-bold mr-pt5">Style ></p>
                   <p className="text-all-caps">{currentStyle.name}</p>
                 </div>
                 <div className="style-circle-grid mb-1">

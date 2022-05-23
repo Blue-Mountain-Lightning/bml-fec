@@ -36,6 +36,8 @@ const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
     let options = []
     const qtyAvailable = skus[selectedSku]?.quantity;
 
+    options.push((<option key="" value="">--QTY--</option>))
+
     for (var i = 1; i < qtyAvailable + 1; i++) {
       options.push(<option key={i} value={i}>{i}</option>)
     }
@@ -66,7 +68,7 @@ const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
       </div>
 
       <div className="add-to-bag-wrapper">
-        <button className="button" onClick={handleAddToBag}>Add to Bag</button>
+        <button className="button is-add-to-bag" onClick={handleAddToBag}>Add to Bag</button>
         <div className="heart-button" onClick={handleHeartClick}>{
           isFavorite ? <FaHeart /> : <FaRegHeart />
         }</div>
