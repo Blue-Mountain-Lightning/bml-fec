@@ -1,19 +1,28 @@
 import React from 'react';
 import AnswerPhotos from './AnswerPhotos.jsx';
+import AnswerHelpful from './AnswerHelpful.jsx';
 import moment from 'moment';
-const AnswerEntry = (props) => {
+const AnswerEntry = ({answer, answerId}) => {
   return (
     <div>
-      <span>A: {props.answer.body}</span>
+      <div><b>A:&nbsp;</b>{answer.body}</div>
       <div>
-        by {`${props.answer.answerer_name}`}, {`${moment.utc(props.answer.date).format('MMM Do, YYYY')} |`}
-        <div>
-          {props.answer.photos.length ? props.answer.photos.map((photo, id) =>
-             (<AnswerPhotos photo ={photo} key ={id}/>
-          )) : null}
-        </div>
+        {answer.photos.length ? answer.photos.map((photo, index) =>
+            (<AnswerPhotos photo ={photo} key ={index}/>
+        )) : null}
       </div>
-      <br/>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+            by {answer.answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : answer.answerer_name}, {`${moment.utc(answer.date).format('MMM D, YYYY')} |`}
+            </td>
+            <td>
+            <AnswerHelpful answerId ={answerId} answerHelpfulness={answer.helpfulness}/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }

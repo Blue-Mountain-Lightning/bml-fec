@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-const AnswerPhotos = (props) => {
+const AnswerPhotos = ({photo}) => {
   const [showPhoto, setShowPhoto] = useState(false);
   const handlePhotoClick = (event) => {
     setShowPhoto(!showPhoto);
   }
   const answerPhotoModal = (
     <div onClick={handlePhotoClick}>
-      <img src={props.photo}
+      <img src={photo.url}
       onClick={(event) => event.stopProgagation()}
       alt='photos'/>
     </div>
@@ -14,7 +14,7 @@ const AnswerPhotos = (props) => {
   return (
     <div>
       <div>
-        <img src={props.photo} alt='photos'/>
+        <img src={photo.url} className='a-photo' alt='photos'/>
         {showPhoto ? answerPhotoModal : null}
       </div>
     </div>
