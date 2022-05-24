@@ -2,34 +2,26 @@ import React, { useState, useEffect } from 'react';
 import OneReview from './OneReview.jsx';
 
 const ReviewBlock = (props) => {
-  const [num, setNum] = useState({
-    number: 0
-  });
+  const [num, setNum] = useState(0);
+  const [eachReview, setEach] = useState('');
 
-  useEffect(() => { //map the array of object datas, then have show more button, extendable.
+
+  useEffect(() => {
+    //map the array of object datas, then have show more button, extendable.
     //considering separating requests but probably not necessary.
-    console.log('hi');
+    setEach(props.data[num]);
   })
 
-  const showReviews = (event) => {
-    const reviewOne = props.data[num];
-    setNum(num + 1);
-    const reviewTwo = props.data[num];
-    setNum(num + 1);
+  //function to show two at a time.
 
-    return (
-      <div>
-        <OneReview data={props.data} currentNum={num}/>
-        <OneReview data={props.data} currentNum={num}/>
-      </div>
-
-    );
-  }
 
   return (
     <div>
-      {showReviews}
-      <button onClick={showReviews}>show more</button>
+      <p>-----------------------</p>
+      <OneReview data={eachReview}/>
+
+      <p>-----------------------</p>
+      <p>show more</p>
     </div>
   );
 }
