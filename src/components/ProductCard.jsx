@@ -1,13 +1,17 @@
 import React from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import Price from './Price';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 
+const stylesCache = {}; // stores previous style API requests
+
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const cache = useRef({});
+
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
@@ -17,16 +21,24 @@ const ProductCard = ({ product }) => {
     return `${size}rem`;
   }
 
-  const fontSize = parseFontSize(1.5); // the fontsize in rem
+  const fontSize = parseFontSize(1); // the fontsize in rem
+
+  // TODO: Handle image not available
+
 
   useEffect(() => {
+
     const fetchProductStyles = async () => {
       try {
-        // consider moving this fetch to RelatedProducts so it can also be cached
-        // or create a parent fetcher component so it can be cached on generic selector page too
+        let stylesArray;
         const stylesURL = `${process.env.REACT_APP_API}products/${product.id}/styles`;
-        const response = await fetch(stylesURL, HEADERS);
-        const stylesArray = await response.json();
+        if (stylesCache[stylesURL]) {
+          stylesArray = stylesCache[stylesURL];
+        } else {
+          const response = await fetch(stylesURL, HEADERS);
+          stylesArray = await response.json();
+          stylesCache[stylesURL] = stylesArray;
+        }
         setStyles(stylesArray);
         setCurrentStyle(stylesArray.results[0]);
         setLoaded(true);
@@ -66,7 +78,8 @@ const ProductCard = ({ product }) => {
               let clsName = (style === currentStyle) ?
                 'card-style-circle card-style-circle-selected' : 'card-style-circle';
               return (
-                // TODO: if related product is clicked, detail overview should start on the selected style
+                // TODO: if related product is clicked,
+                // detail overview should start on the selected style
                 <img className={clsName}
                      key={style.style_id}
                      name={style.style_id}
@@ -89,7 +102,7 @@ const ProductCard = ({ product }) => {
     }
 
     return (
-      <div className='clickable'
+      <div className='clickable product-card'
            style={{"fontSize": fontSize}}
            onClick={handleClick}
            onMouseEnter={handleImageEnter}
@@ -102,7 +115,7 @@ const ProductCard = ({ product }) => {
           />
           {styleSwitcherElement}
         </div>
-        <div className="text-all-caps" style={{"fontSize": parseFontSize(1.1)}}>{product.category}</div>
+        <div className="text-all-caps" style={{"fontSize": parseFontSize(1)}}>{product.category}</div>
           <b>{product.name}</b>
           <Price style={currentStyle} fontSize={fontSize} />
         <div>Star rating component</div>
