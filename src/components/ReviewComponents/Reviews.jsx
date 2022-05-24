@@ -37,17 +37,20 @@ const Reviews = () => {
 
   return (
     <div>
+      <p>------------------------------------------------------</p>
       <h1>Reviews</h1>
 
       <button onClick={handleClickAddReview}>Add Review</button>
-      <p>Showing: </p>
-      <ReviewBlock data={reviews}/>
-
       <form>
         <label>
           <input placeholder="search" type="text" value={searchText} onChange={handleSearchTextChange} />
         </label>
       </form>
+      <p>showing: </p>
+
+      <ReviewBlock data={reviews}/>
+
+
 
     </div>
   );

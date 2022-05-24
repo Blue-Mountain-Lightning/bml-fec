@@ -23,11 +23,23 @@ const ReviewBlock = (props) => {
 
   return (
     <div>
-      <p>-----------------------Review Block, renders multiple reviews.</p>
-      <OneReview data={eachReview}/>
-      <p>-----------------------</p>
+
+      <div>
+        {
+          props.data.map((review) => {
+            return (
+              <OneReview data={review}/>
+            );
+
+          })
+        }
+      </div>
+
       <button onClick={renderTwo}>show more</button>
+
     </div>
+
+
   );
 }
 export default ReviewBlock;
