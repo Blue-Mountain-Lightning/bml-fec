@@ -22,17 +22,17 @@ const Reviews = () => {
   //a function to get all reviews...initial planning
   useEffect(() => {
     // console.log('asdfghjk', Testing.reviews.results);
-    axios.get({
-      method: 'get',
-      url: process.env.REACT_APP_API,
-      headers: {
-         'Authorization': process.env.REACT_APP_TOKEN
-      }
-    })
-    .then((result) => {
-      console.log('req stuff api', result);
-      // setReviews(result);
-    })
+    // axios.get({
+    //   method: 'get',
+    //   url: process.env.REACT_APP_API,
+    //   headers: {
+    //      'Authorization': process.env.REACT_APP_TOKEN
+    //   }
+    // })
+    // .then((result) => {
+    //   console.log('req stuff api', result);
+    //   // setReviews(result);
+    // })
   });
 
   return (
