@@ -1,0 +1,30 @@
+.nav-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.message-wrapper {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.message-text {
+  text-align: center;
+  font-style: italic;
+}
+
+.background-color-grey {
+  background-color: #e7e7e7;
+}
+
+.logo-link {
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: -0.05em;
+}
+
+.logo-link:hover {
+  color: #32379a;
+}

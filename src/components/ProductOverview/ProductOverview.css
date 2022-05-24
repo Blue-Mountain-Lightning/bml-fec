@@ -1,0 +1,71 @@
+/* PRODUCT OVERVIEW */
+
+.product-overview-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.product-title {
+  margin-bottom: 1rem;
+  font-family: Montserrat;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.product-price {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 2rem;
+}
+
+.style-circle-grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1rem;
+}
+
+.card-style-circle.current {
+  border: 2px solid;
+  border-color: #ce4d12;
+}
+
+.product-overview-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.heart-button {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+  color: #ce4d12;
+  cursor: pointer;
+}
+
+.is-add-to-bag {
+  font-size: 24px
+}
+
+.add-to-bag-wrapper {
+  grid-column-start: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+/* PRODUCT SLOGAN */
+
+.slogan-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
