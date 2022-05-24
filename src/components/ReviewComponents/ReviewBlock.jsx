@@ -28,7 +28,7 @@ const ReviewBlock = (props) => {
         {
           props.data.map((review) => {
             return (
-              <OneReview data={review}/>
+              <OneReview key={review.review_id} data={review}/>
             );
 
           })
