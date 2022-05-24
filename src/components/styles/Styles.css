@@ -245,14 +245,19 @@ overwrite broser default <select> styling */
 .card-button {
   font-size: 3rem;
   background: white;
-  color: #888888;
   border: none;
+}
+.card-icon:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(238, 128, 55);
 }
 
 .card-icon {
   color: white;
   border-radius: 50%;
-  background-color: #d3d3d3;
+  background-color: gray;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgb(209, 209, 209);
 }
 
 .card-button.card-next {

@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 
+import imageNotAvailable from '../assets/image-not-available.png'
+
 import Price from './Price';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
@@ -69,7 +71,15 @@ const ProductCard = ({ product }) => {
     setStyleSwitcherActive(false);
   }
 
+  const imageExists = () => {
+    const attemptedURL = currentStyle.photos[0].thumbnail_url;
+    return (typeof attemptedURL === 'string')
+  }
+
   if (loaded) {
+    const imageIsProvided = imageExists();
+    const image = imageIsProvided ? currentStyle.photos[0].thumbnail_url : imageNotAvailable;
+
     let styleSwitcher = (
       <div className='card-style-grid-overlay'>
           <div className='card-style-grid'>
@@ -110,10 +120,10 @@ const ProductCard = ({ product }) => {
       >
         <div className='card-styles-parent'>
           <img className='card-styles-thumbnail'
-               src={currentStyle.photos[0].thumbnail_url}
+               src={image}
                alt=''
           />
-          {styleSwitcherElement}
+          {imageIsProvided ? styleSwitcherElement : <></>}
         </div>
         <div className="text-all-caps" style={{"fontSize": parseFontSize(1)}}>{product.category}</div>
           <b>{product.name}</b>
