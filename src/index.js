@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './components/QAcomponents/qa.css';
 import App from './components/App';
 import ProductList from './components/ProductList.jsx';
 import ProductDetail from './components/ProductDetail.jsx';

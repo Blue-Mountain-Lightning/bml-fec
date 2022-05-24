@@ -9,7 +9,7 @@ const Search = ({handleSearch}) => {
     handleSearch(event.target.value);
   }
   return (
-    <div className="search-bar">
+    <div >
       <form>
         <input className='qa-search' type='search' placeholder='Have a question? Search for answers...'
         onChange={handleOnChange}

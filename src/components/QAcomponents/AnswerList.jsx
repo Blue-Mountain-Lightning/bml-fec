@@ -3,7 +3,7 @@ import AnswerEntry from './AnswerEntry.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
 const AnswerList = ({questionId}) => {
   const [answers, setAnswers] = useState([])
-  let url = `${process.env.REACT_APP_API}qa/questions/${questionId}/answers`;
+  let url = `${process.env.REACT_APP_API}qa/questions/${questionId}/answers?count=20`;
   useEffect(() => {
     if (!questionId) {
       return;
@@ -21,12 +21,12 @@ if (!answers) {
   } else {
   return (
     <div>
-      {answers.slice(0, 3).map((answer, i) => {
-        if (i > 1) {
-          return <MoreAnswers answers ={answers} key ={i} />
-        }
-        return  <AnswerEntry answer ={answer} key ={i} answerId={answer.answer_id}/>
-      })}
+      {answers.slice(0, 3).map((answer, i) => (
+        i > 1
+        ? <MoreAnswers answers ={answers} key ={i} />
+
+        : <AnswerEntry answer ={answer} key ={i} answerId={answer.answer_id}/>
+      ))}
     </div>
 
   )
