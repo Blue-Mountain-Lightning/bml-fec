@@ -9,19 +9,24 @@ const ReviewBlock = (props) => {
   useEffect(() => {
     //map the array of object datas, then have show more button, extendable.
     //considering separating requests but probably not necessary.
-    setEach(props.data[num]);
+    // console.log(props.data);
+    renderTwo();
+    // renderTwo();
   })
 
   //function to show two at a time.
+  const renderTwo = (event) => {
 
+    setEach(props.data[num]);
+
+  }
 
   return (
     <div>
-      <p>-----------------------</p>
+      <p>-----------------------Review Block, renders multiple reviews.</p>
       <OneReview data={eachReview}/>
-
       <p>-----------------------</p>
-      <p>show more</p>
+      <button onClick={renderTwo}>show more</button>
     </div>
   );
 }

@@ -6,13 +6,17 @@ const OneReview = (props) => {
 
   useEffect(() => {
     setFullReview(props.data.body);
+    console.log(props.data);
   })
 
   return (
     <div>
-      <p>{fullReview}</p>
-      <p>{props.one}</p>
-
+      <p>One Review</p>
+      <b>{props.data.summary}</b>
+      <p>"{fullReview}"</p>
+      <p>{props.data.date}</p>
+      <p>stars: {props.data.rating}</p>
+      <p>By: {props.data.reviewer_name}</p>
     </div>
   );
 }
