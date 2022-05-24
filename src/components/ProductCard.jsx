@@ -6,6 +6,8 @@ import Price from './Price';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 
+const stylesCache = {}; // stores previous style API requests
+
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const cache = useRef({});
@@ -28,17 +30,14 @@ const ProductCard = ({ product }) => {
 
     const fetchProductStyles = async () => {
       try {
-        // consider moving this fetch to RelatedProducts so it can also be cached
-        // or create a parent fetcher component so it can be
-        // cached on generic selector page too
         let stylesArray;
         const stylesURL = `${process.env.REACT_APP_API}products/${product.id}/styles`;
-        if (cache.current.stylesURL) {
-          stylesArray = cache.current.stylesURL;
+        if (stylesCache[stylesURL]) {
+          stylesArray = stylesCache[stylesURL];
         } else {
           const response = await fetch(stylesURL, HEADERS);
           stylesArray = await response.json();
-          cache.current[stylesURL] = stylesArray;
+          stylesCache[stylesURL] = stylesArray;
         }
         setStyles(stylesArray);
         setCurrentStyle(stylesArray.results[0]);

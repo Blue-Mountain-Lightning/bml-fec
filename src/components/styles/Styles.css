@@ -161,12 +161,15 @@ overwrite broser default <select> styling */
 .card-styles-parent {
   position: relative;
   transition: all 0.12s linear;
+  height: 480px;
+  width: 360px;
+  min-width: 240px;
 }
 
 .card-styles-thumbnail {
-  position: relative;
-  height: 480px;
-  width: 360px;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 6 / 8;
   object-fit: cover;
 }
 
@@ -230,7 +233,9 @@ overwrite broser default <select> styling */
   display: flex;
   flex-direction: row;
   justify-content: center;
+  transition: all 0.12s linear;
   gap: 1rem;
+  opacity: 1;
 }
 
 .card-button {
@@ -241,13 +246,21 @@ overwrite broser default <select> styling */
 }
 
 .card-icon {
+  color: white;
+  border-radius: 50%;
+  background-color: #d3d3d3;
 }
 
 .card-button.card-next {
-  margin-right: -1.5rem;
+  margin-right: -.7rem;
 }
 
 .card-button.card-prev {
-  margin-left: -1.5rem;
+  margin-left: -.7rem;
 }
 
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

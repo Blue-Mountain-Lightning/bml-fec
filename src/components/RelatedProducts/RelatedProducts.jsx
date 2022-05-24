@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useState, useEffect, useRef } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-import ProductCard from './ProductCard';
+import ProductCard from '../ProductCard';
+import utilities from './utilities';
 
 const HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
@@ -11,23 +13,10 @@ const RelatedProducts = ({product}) => {
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
   const [width, setWidth] = useState(0);
-
-  const numCardsToShow = () => {
-    let num = Math.floor(width / 480);
-    console.log(num);
-    return num > 0 ? num : 1;
-  }
-
-  const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height
-    };
-  }
+  const [rowPosition, setRowPosition] = useState(0);
 
   const handleResizeWindow = (e) => {
-    const {width} = getWindowDimensions();
+    const {width} = utilities.getWindowDimensions();
     setWidth(width);
   }
 
@@ -94,8 +83,41 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
-  const handleButtonClick = (e) => {
-    console.log('click');
+  const handleButtonClick = (e, name) => {
+    const cardsThatFit = utilities.numCardsThatFit(width);
+    if (name === 'increment') {
+      if (rowPosition === products.length - 1) {
+        setRowPosition(0);
+        return;
+      }
+
+      setRowPosition(rowPosition + 1);
+    }
+    if (name === 'decriment') {
+      if (rowPosition === 0) {
+        setRowPosition(products.length - 1);
+        return;
+      }
+      setRowPosition(rowPosition - 1);
+    }
+  }
+
+  const renderProductRow = () => {
+    const cardsThatFit = utilities.numCardsThatFit(width);
+    let end = rowPosition + cardsThatFit;
+    let rowEntries;
+    if (end > products.length) {
+      let firstCut = products.slice(rowPosition, products.length);
+      let secondCut = products.slice(0, end - products.length);
+      rowEntries = firstCut.concat(secondCut);
+    } else {
+      rowEntries = products.slice(rowPosition, end);
+    }
+
+    return rowEntries.map((p, i) => {
+      if (i > utilities.numCardsThatFit(width) - 1) { return };
+      return (<ProductCard key={p.id} product={p} />)
+    })
   }
 
   if (loaded) {
@@ -108,14 +130,15 @@ const RelatedProducts = ({product}) => {
             <div className='product-row'>
               {/* Some code here to get viewport width and
               adjust amount of shown elements to fit in that*/}
-              <button className='card-button card-next' onClick={handleButtonClick}>
+              <button className='card-button card-next'
+                      onClick={(e) => handleButtonClick(e, 'decriment')}
+              >
                 <FaAngleLeft className='card-icon'/>
               </button>
-              {products.map((p, i) => {
-                if (i > numCardsToShow() - 1) { return };
-                return (<ProductCard key={p.id} product={p} />)
-              })}
-              <button className='card-button card-prev' onClick={handleButtonClick}>
+              {renderProductRow()}
+              <button className='card-button card-prev'
+                      onClick={(e) => handleButtonClick(e, 'increment')}
+              >
                 <FaAngleRight className='card-icon'/>
               </button>
             </div>

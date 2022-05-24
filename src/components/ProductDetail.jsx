@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from "./NavBar/NavBar.jsx";
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductSlogan from "./ProductOverview/ProductSlogan";
-import RelatedProducts from './RelatedProducts';
+import RelatedProducts from './RelatedProducts/RelatedProducts';
 import QuestionsAnswers from './QuestionsAnswers';
 import Reviews from './ReviewComponents/Reviews';
 import { useParams } from 'react-router-dom';
