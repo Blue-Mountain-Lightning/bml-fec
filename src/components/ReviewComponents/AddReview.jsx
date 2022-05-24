@@ -8,8 +8,6 @@ class AddReviews extends React.Component {
     };
   }
 
-
-
   render() {
     return (
     <h1>yolo</h1>

@@ -1,19 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import OneReview from './OneReview.jsx';
 
-class ReviewBlock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: []
-    };
+const ReviewBlock = (props) => {
+  const [num, setNum] = useState(0);
+  const [eachReview, setEach] = useState('');
+
+
+  useEffect(() => {
+    //map the array of object datas, then have show more button, extendable.
+    //considering separating requests but probably not necessary.
+    // console.log(props.data);
+    renderTwo();
+    // renderTwo();
+  })
+
+  //function to show two at a time.
+  const renderTwo = (event) => {
+
+    setEach(props.data[num]);
+
   }
 
+  return (
+    <div>
+      <b>-the review block-</b>
+      <div>
+        {
+          props.data.map((review) => {
+            return (
+              <OneReview data={review}/>
+            );
+
+          })
+        }
+      </div>
+
+      <button onClick={renderTwo}>show more</button>
+      <b>-end review block-</b>
+    </div>
 
 
-  render() {
-    return (
-    <h1>yolo</h1>
-    );
-  }
+  );
 }
 export default ReviewBlock;
