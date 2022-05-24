@@ -5,7 +5,10 @@ import ReviewBlock from './ReviewBlock.jsx';
 import Testing from './reviewsExamples.js';
 const axios = require('axios').default;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea24f3d021c13d7a2944a6a30e05bc29799c73d3
 const Reviews = () => {
   const [reviews, setReviews] = useState(Testing.reviews.results);
   const [searchText, setSearch] = useState('');
