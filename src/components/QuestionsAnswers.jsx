@@ -1,10 +1,10 @@
 import React from 'react';
 import QuestionsAndAnswers from './QAcomponents/QuestionsAndAnswers.jsx';
-const QuestionsAnswers = () => {
+const QuestionsAnswers = ({productId, product}) => {
   return (
-    <div>
+    <div className='container'>
       <h2>Questions and Answers</h2>
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers productId ={productId} product={product}/>
     </div>
   );
 }

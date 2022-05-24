@@ -27,7 +27,7 @@ const ProductDetail = (props) => {
         <ProductOverview product={product} />
         <ProductSlogan product={product} />
         <RelatedProducts product={product} />
-        <QuestionsAnswers />
+        <QuestionsAnswers productId ={params.productId} product={product}/>
         <Reviews />
         <div data-testid={`product-item-test`}></div>
       </div>
