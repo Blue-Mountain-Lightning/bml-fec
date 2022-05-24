@@ -23,20 +23,20 @@ const Reviews = () => {
 
   //a function to get all reviews...initial planning
   useEffect(() => {
-    axios.get({
-      method: 'get',
-      url: process.env.REACT_APP_API,
-      headers: {
-         'Authorization': process.env.REACT_APP_TOKEN
-      }
-    })
-    .then((result) => {
-      console.log('req stuff api', result);
-      // setReviews(result);
-    })
-    .catch((err) => {
-      console.log('ERRORRRRRR', err);
-    })
+    // axios.get({
+    //   method: 'get',
+    //   url: process.env.REACT_APP_API,
+    //   headers: {
+    //      'Authorization': process.env.REACT_APP_TOKEN
+    //   }
+    // })
+    // .then((result) => {
+    //   console.log('req stuff api', result);
+    //   // setReviews(result);
+    // })
+    // .catch((err) => {
+    //   console.log('ERRORRRRRR', err);
+    // })
   });
 
   return (
