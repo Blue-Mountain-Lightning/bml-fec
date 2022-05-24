@@ -10,11 +10,11 @@ const Reviews = () => {
   const [searchText, setSearch] = useState('');
   const [page, setPage] = useState('reviews');
 
-  const handleClickAddReview = () => {
+  const handleClickAddReview = () => { //add would need a request.
     console.log('add review button clicked.');
   }
 
-  const handleSearchTextChange = (event) => {
+  const handleSearchTextChange = (event) => { //search would need a request.
     setSearch({...searchText, searchText: event.target.value});
     //add search functions later.
   }

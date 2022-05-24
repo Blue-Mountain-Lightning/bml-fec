@@ -23,7 +23,7 @@ const ReviewBlock = (props) => {
 
   return (
     <div>
-
+      <b>-the review block-</b>
       <div>
         {
           props.data.map((review) => {
@@ -36,7 +36,7 @@ const ReviewBlock = (props) => {
       </div>
 
       <button onClick={renderTwo}>show more</button>
-
+      <b>-end review block-</b>
     </div>
 
 
