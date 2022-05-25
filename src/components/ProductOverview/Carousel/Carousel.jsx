@@ -7,17 +7,22 @@ import { FaAngleDown, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react-icons/f
 const Carousel = ({ photoUrls, productId }) => {
   let [activeSlideIndex, setActiveSlideIndex] = useState(0);
   let [isExpanded, setIsExpanded] = useState(false);
+  let numPhotos = photoUrls.length;
+
+  if (numPhotos <= activeSlideIndex) {
+    setActiveSlideIndex(0);
+  }
 
   useEffect(() => {
     setActiveSlideIndex(0)
   }, [productId])
 
   const handleClick = (index) => {
-    if (index === photoUrls.length) {
+    if (index === numPhotos) {
       index = 0;
     }
     if (index < 0) {
-      index = photoUrls.length - 1;
+      index = numPhotos - 1;
     }
     setActiveSlideIndex(index);
   }
