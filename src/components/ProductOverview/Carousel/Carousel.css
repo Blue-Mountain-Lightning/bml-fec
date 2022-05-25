@@ -68,8 +68,11 @@
   opacity: 0;
 }
 
-.carousel-image.is-expanded {
-  width: 100%;
+.carousel-image.current.is-expanded {}
+
+.carousel-image.current.is-expanded.is-zoomed {
+  transform: scale(250%);
+  transform-origin: 0% 0%;
   cursor: cell;
 }
 

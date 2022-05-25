@@ -9,9 +9,16 @@
 
 .overview-wrapper {
   overflow: hidden;
-  max-width: 22rem;
-  transition: width 400ms ease;
+  width: 22rem;
+  opacity: 1;
+  transition: all 400ms ease;
 }
+
+.overview-wrapper.is-collapsed {
+  opacity: 0;
+  width: 0rem;
+}
+
 
 .carousel-wrapper {
   flex-grow: 3;

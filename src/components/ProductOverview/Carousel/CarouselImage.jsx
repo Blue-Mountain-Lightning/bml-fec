@@ -7,21 +7,34 @@ const CarouselImage = ({ photoUrl, activeSlideIndex, index, alt }) => {
     className += " current";
   }
 
+  const mouseEnter = (event) => {
+    console.log(event);
+    event.target.classList.add('is-zoomed');
+  }
+
+  const mouseLeave = (event) => {
+    event.target.classList.remove('is-zoomed');
+  }
+
+  const mouseMoveZoom = (event) => {
+    if (!event.target.classList.contains('is-zoomed')) return;
+    const rect = event.target.getBoundingClientRect();
+    //TODO account for button widths
+    const left = (event.clientX - rect.x) / (rect.width) * 100;
+    const top = (event.clientY - rect.y) / (rect.height) * 100;
+    event.target.style.transformOrigin = `${left}% ${top}%`
+    event.target.style.objectPosition = `${left}% ${top}%`
+  }
+
   const openExapandedView = (event) => {
-    const carouselThumbnailGrid = document.querySelector('.carousel-thumbnail-grid')
-    const overviewContent = document.querySelector('.overview-wrapper')
-    const productOverviewGrid = document.querySelector('.product-overview-grid')
-    const carouselGrid = document.querySelector('.carousel-grid')
+    const overviewWrapper = document.querySelector('.overview-wrapper')
     //const carouselImage = document.querySelector('.carousel-image')
-    carouselThumbnailGrid.classList.toggle('display-none')
-    overviewContent.classList.toggle('display-none')
-    productOverviewGrid.classList.toggle('is-expanded')
-    carouselGrid.classList.toggle('is-expanded')
     event.target.classList.toggle('is-expanded')
+    overviewWrapper.classList.toggle('is-collapsed')
   }
 
   return (
-    <img onClick={openExapandedView} className={className} src={photoUrl} alt={alt} />
+    <img onClick={openExapandedView} onMouseLeave={mouseLeave} onMouseEnter={mouseEnter} onMouseMove={mouseMoveZoom} className={className} src={photoUrl} alt={alt} />
   )
 }
 

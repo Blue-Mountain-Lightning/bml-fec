@@ -32,7 +32,6 @@ const Carousel = ({ photoUrls, productId }) => {
           })}
         </div>
       </div>
-
       <div className="carousel-image-wrapper">
         <button className="carousel-button prev" onClick={() => handleClick(activeSlideIndex - 1)}><FaAngleLeft /></button>
         <button className="carousel-button next" onClick={() => handleClick(activeSlideIndex + 1)}><FaAngleRight /></button>
