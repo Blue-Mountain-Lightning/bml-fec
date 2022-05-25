@@ -1,3 +1,4 @@
+import './addReview.css';
 import React, { useState, useEffect } from 'react';
 import Stars from './Stars.jsx';
 import RadioButtons from './RadioButtons.jsx';
@@ -42,7 +43,7 @@ const AddReview = (props) => {
 
   if (props.show === true) { //testing conditional rendering, show form to add.
     return (
-      <div>
+      <div className="addReviewAll">
 
         <label>
 
@@ -79,7 +80,7 @@ const AddReview = (props) => {
       <br></br>
       <label>
         Review summary <br></br>
-        <textarea placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
+        <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
           setSummary(e.target.value);
         }} /><br></br>
       </label>
@@ -88,7 +89,7 @@ const AddReview = (props) => {
       <label>
         Why did you like the product or not?
         <br></br>
-        <textarea placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
+        <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
           setFullReview(e.target.value);
           setWordCount(fullReview.length);
         }} />
@@ -97,20 +98,20 @@ const AddReview = (props) => {
       </label>
       <br></br>
       Nickname: <br></br>
-      <textarea type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
+      <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
         setNickname(e.target.value);
       }} /><br></br>
       For privacy reasons, do not use your full name or email address” will appear.
       <br></br>
       <br></br>
       Email: <br></br>
-      <textarea type="text" placeholder="Example: jackson11@email.com" cols="50" onChange={(e) => {
+      <textarea className="email" type="text" placeholder="Example: jackson11@email.com" cols="50" onChange={(e) => {
         setEmail(e.target.value);
       }} /><br></br>
       For authentication reasons, you will not be emailed
       <br></br>
       <br></br>
-      <button onClick={submitEverything}>Submit</button>
+      <button className="submitAdd" onClick={submitEverything}>Submit</button>
       </div>
     );
   }

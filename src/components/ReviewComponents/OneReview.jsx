@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './Review.css';
 const OneReview = (props) => {
   const [fullReview, setFullReview] = useState('');
   const [summary, setSummary] = useState('hi');
@@ -23,18 +23,17 @@ const OneReview = (props) => {
 
 
   return (
-    <div>
-      <p>-------------------------------------------</p>
-      <b>{props.data.summary}</b>
-      <p>"{fullReview}"</p>
-      <p>{props.data.date}</p>
-      <button onClick={likeIt}>like</button>
-      <p>was this helpful?
-        <button onClick={helpful} value='yes'>Yes</button>
-        <button onClick={helpful}>No</button>
+    <div className="eachReview">
+      <b className="summ">{props.data.summary}</b>
+      <p className="full">"{fullReview}"</p>
+
+
+      <p><button className="button-like" onClick={likeIt}>like</button>helpful?
+        <button className="button-yes" onClick={helpful} value='yes'>Yes</button>
+        <button className="button-no" onClick={helpful}>No</button>
       </p>
       <p>stars: {props.data.rating} / 5</p>
-      <p>Reviewed by: {props.data.reviewer_name}</p>
+      <p>Reviewed by: {props.data.reviewer_name} date:{props.data.date}</p>
     </div>
   );
 }
