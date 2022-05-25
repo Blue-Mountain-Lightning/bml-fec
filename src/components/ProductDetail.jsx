@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from "./NavBar/NavBar.jsx";
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import ProductSlogan from "./ProductOverview/ProductSlogan";
-import RelatedProducts from './RelatedProducts';
+import RelatedProducts from './RelatedProducts/RelatedProducts';
 import QuestionsAnswers from './QuestionsAnswers';
 import Reviews from './ReviewComponents/Reviews';
 import { useParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ const ProductDetail = (props) => {
         <ProductSlogan product={product} />
         <RelatedProducts product={product} />
         <QuestionsAnswers productId ={params.productId} product={product}/>
-        <Reviews />
+        <Reviews id={params.productId}/>
         <div data-testid={`product-item-test`}></div>
       </div>
     )

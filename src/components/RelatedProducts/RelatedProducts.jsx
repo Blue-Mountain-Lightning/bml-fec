@@ -1,7 +1,10 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
 
-import ProductCard from './ProductCard';
+import { useState, useEffect, useRef } from 'react';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+
+import ProductCard from '../ProductCard';
+import utilities from './utilities';
 
 const HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
@@ -9,15 +12,27 @@ const RelatedProducts = ({product}) => {
   const cache = useRef({}); //
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [width, setWidth] = useState(0);
+  const [rowPosition, setRowPosition] = useState(0);
+
+  const handleResizeWindow = (e) => {
+    const {width} = utilities.getWindowDimensions();
+    setWidth(width);
+  }
 
   useEffect(() => {
+    handleResizeWindow();
+    window.addEventListener("resize", handleResizeWindow);
+
     const fetchRelatedProducts = async () => {
       if (!product.id) { return; };
 
       try {
         let relatedProductIDs;
         // Fetch related product IDs or load from cache
-        const relatedIDsEndpoint = `${process.env.REACT_APP_API}products/${product.id}/related`;
+        const relatedIDsEndpoint =
+          `${process.env.REACT_APP_API}products/${product.id}/related`;
+
         if (cache.current[relatedIDsEndpoint]) {
           relatedProductIDs = cache.current[relatedIDsEndpoint];
         } else {
@@ -68,6 +83,43 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
+  const handleButtonClick = (e, name) => {
+    const cardsThatFit = utilities.numCardsThatFit(width);
+    if (name === 'increment') {
+      if (rowPosition === products.length - 1) {
+        setRowPosition(0);
+        return;
+      }
+
+      setRowPosition(rowPosition + 1);
+    }
+    if (name === 'decriment') {
+      if (rowPosition === 0) {
+        setRowPosition(products.length - 1);
+        return;
+      }
+      setRowPosition(rowPosition - 1);
+    }
+  }
+
+  const renderProductRow = () => {
+    const cardsThatFit = utilities.numCardsThatFit(width);
+    let end = rowPosition + cardsThatFit;
+    let rowEntries;
+    if (end > products.length) {
+      let firstCut = products.slice(rowPosition, products.length);
+      let secondCut = products.slice(0, end - products.length);
+      rowEntries = firstCut.concat(secondCut);
+    } else {
+      rowEntries = products.slice(rowPosition, end);
+    }
+
+    return rowEntries.map((p, i) => {
+      if (i > utilities.numCardsThatFit(width) - 1) { return };
+      return (<ProductCard key={p.id} product={p} />)
+    })
+  }
+
   if (loaded) {
     return (
       <div className="section">
@@ -76,11 +128,19 @@ const RelatedProducts = ({product}) => {
             <h1 className='center-heading'>You may also like</h1>
             {/* This is just a palceholder style for now */}
             <div className='product-row'>
-              {/* Some code here to get viewport width and adjust amount of shown elements to fit in that*/}
-              {products.map((p, i) => {
-                if (i > 3) { return; } // DANGER: Remove before implementing scroll behavior
-                return (<ProductCard key={p.id} product={p} />)
-              })}
+              {/* Some code here to get viewport width and
+              adjust amount of shown elements to fit in that*/}
+              <button className='card-button card-next'
+                      onClick={(e) => handleButtonClick(e, 'decriment')}
+              >
+                <FaAngleLeft className='card-icon'/>
+              </button>
+              {renderProductRow()}
+              <button className='card-button card-prev'
+                      onClick={(e) => handleButtonClick(e, 'increment')}
+              >
+                <FaAngleRight className='card-icon'/>
+              </button>
             </div>
           </div>
         </div>

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import OneReview from './OneReview.jsx';
 
 const ReviewBlock = (props) => {
+  if (props.data === undefined) {
+    return;
+  }
+
 
   return (
     <div>

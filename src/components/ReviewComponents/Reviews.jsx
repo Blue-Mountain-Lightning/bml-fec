@@ -5,36 +5,37 @@ import ReviewBlock from './ReviewBlock.jsx';
 import Testing from './reviewsExamples.js';
 const axios = require('axios').default;
 
-const Reviews = () => {
-  const [reviews, setReviews] = useState(Testing.reviews.results);
+const Reviews = (props) => {
+  console.log(props.id);
+  const [reviews, setReviews] = useState(undefined);
   const [searchText, setSearch] = useState('');
   const [page, setPage] = useState('reviews');
   const [showAdd, setShow] = useState(false);
-  //keeping track of number of reviews showing.
   const [currentNum, setCurrentNum] = useState(2);
-  const [showing, setShowing] = useState(Testing.reviews.results.slice(0,2));
+  const [showing, setShowing] = useState([]);
+  const [state, setState] = useState(2);
 
-  let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews'
-
+  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}`
   useEffect(() => {
-    // fetch(url, {
-    //   method: 'GET',
-    //   headers: { 'Authorization': process.env.REACT_APP_TOKEN }
-    // })
-    //   .then(response => console.log(response))
-    //   .then(data => {
-    //     console.log(data)
-    //   })
-  });
+      axios({
+        method: 'GET',
+        url: url,
+        headers: {authorization : process.env.REACT_APP_TOKEN},
+      })
+      .then((results) => {setReviews(results.data.results);})
 
+  }, [url]);
 
+  const searchButton = () => {
+    alert(searchText);
+
+  }
   const handleClickAddReview = () => { //add would need a request.
-    console.log('add review button clicked.');
     setShow(true);
   }
 
   const handleSearchTextChange = (event) => { //search would need a request.
-    setSearch({...searchText, searchText: event.target.value});
+    setSearch(event.target.value);
     //add search functions later.
   }
 
@@ -46,33 +47,13 @@ const Reviews = () => {
 
     setCurrentNum(currentNum + 2);
 
-    setShowing(Testing.reviews.results.slice(0, currentNum));
+    setShowing(reviews.slice(0, currentNum));
   }
 
   const displayData = () => {
     // console.log('current', currentNum);
     // console.log(showing);
   }
-
-  //a function to get all reviews...initial planning
-  useEffect(() => {
-    // axios.get({
-    //   method: 'get',
-    //   url: process.env.REACT_APP_API,
-    //   headers: {
-    //      'Authorization': process.env.REACT_APP_TOKEN
-    //   }
-    // })
-    // .then((result) => {
-    //   console.log('req stuff api', result);
-    //   // setReviews(result);
-    // })
-    // .catch((err) => {
-    //   console.log('ERRORRRRRR', err);
-    // })
-
-    // console.log('showing', showing);
-  });
 
   return (
     <div>
@@ -81,14 +62,15 @@ const Reviews = () => {
 
       <button onClick={handleClickAddReview}>Add Review</button>
 
-      <form>
+      <form onSubmit={searchButton}>
         <label>
           <input placeholder="search" type="text" value={searchText} onChange={handleSearchTextChange} />
         </label>
+        <input type="submit" value="Search" />
       </form>
       {showAdd !== false ? <button onClick={handleCloseAdd}>Go back</button> : <p></p>}
       {showAdd === false ? <p>showing: </p> : <p></p>}
-      {showAdd === false ? <ReviewBlock data={showing} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd}/>}
+      {showAdd === false ? <ReviewBlock data={reviews} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd} id={props.id}/>}
       {showAdd === false ? <button onClick={() => {showMore(); displayData();}} >show more</button> : <p></p>}
 
     </div>

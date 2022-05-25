@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Stars from './Stars.jsx';
 import RadioButtons from './RadioButtons.jsx';
+const axios = require('axios').default;
 //NEED TO WORK ON STARS
 //maybe tune wordcount...
 //upload photo function?
 const AddReview = (props) => {
+
   const [numStars, setNumStars] = useState(0);
   const [recommend, setRecommend] = useState('');
   const [summary, setSummary] = useState('');
@@ -19,32 +21,23 @@ const AddReview = (props) => {
   const [length, setLength] = useState(6);
   const [fit, setFit] = useState(6);
 
-
-
-  // useEffect(() => {
-  // })
-
-
   const handleYesNo = (event) => {
     setRecommend(event.target.value);
   }
 
   const submitEverything = () => { //fetch post request using state as data.
     const allData = { //states.
+      product_id: props.id,
       rating: numStars,
       summary: summary,
-      recommend: recommend,
       body: fullReview,
-      size: size,
-      width: width,
-      comfort: comfort,
-      quality: quality,
-      length: length,
-      fit: fit,
-      nickname: nickname,
-      email: email
+      recommend: recommend,
+      name: nickname,
+      email: email,
+      characteristics: {"3": 2}
     }
-    console.log('all input', allData);
+    let url = `${process.env.REACT_APP_API}reviews`;
+    //post request to api.
   }
 
   if (props.show === true) { //testing conditional rendering, show form to add.
