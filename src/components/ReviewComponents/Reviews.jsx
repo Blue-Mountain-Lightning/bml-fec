@@ -77,7 +77,7 @@ const Reviews = () => {
   return (
     <div>
       <p>------------------------------------------------------</p>
-      <h1>Reviews</h1>
+      <h1 >Reviews</h1>
 
       <button onClick={handleClickAddReview}>Add Review</button>
 
@@ -89,8 +89,8 @@ const Reviews = () => {
       {showAdd !== false ? <button onClick={handleCloseAdd}>Go back</button> : <p></p>}
       {showAdd === false ? <p>showing: </p> : <p></p>}
       {showAdd === false ? <ReviewBlock data={showing} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd}/>}
+      {showAdd === false ? <button onClick={() => {showMore(); displayData();}} >show more</button> : <p></p>}
 
-      <button onClick={() => {showMore(); displayData();}} >show more</button>
     </div>
   );
 }
