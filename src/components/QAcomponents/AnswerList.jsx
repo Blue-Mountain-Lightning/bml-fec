@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
-const AnswerList = ({questionId}) => {
+const AnswerList = ({questionId, product}) => {
   const [answers, setAnswers] = useState([])
   let url = `${process.env.REACT_APP_API}qa/questions/${questionId}/answers?count=20`;
   useEffect(() => {
