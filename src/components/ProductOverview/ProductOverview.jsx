@@ -73,7 +73,7 @@ const ProductOverview = ({ product }) => {
             <div className="product-overview-grid">
               <div className="">
                 <div>
-                  <Carousel photoUrls={selectedStylePhotoUrls} />
+                  <Carousel photoUrls={selectedStylePhotoUrls} productId={product.id} />
                 </div>
               </div>
               <div className="">

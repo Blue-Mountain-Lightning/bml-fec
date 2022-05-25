@@ -4,12 +4,12 @@ import CarouselImage from "./CarouselImage";
 import CarouselThumbnailImage from "./CarouselThumbnailImage";
 import { FaAngleDown, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 
-const Carousel = ({ photoUrls }) => {
+const Carousel = ({ photoUrls, productId }) => {
   let [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   useEffect(() => {
     setActiveSlideIndex(0)
-  }, [photoUrls])
+  }, [productId])
 
   const handleClick = (index) => {
     if (index === photoUrls.length) {

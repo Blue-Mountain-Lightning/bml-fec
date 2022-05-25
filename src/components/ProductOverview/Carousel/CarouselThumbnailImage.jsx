@@ -16,7 +16,9 @@ const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, handleClick, index
     const selectedThumbRect = thumbnailRef.current.getBoundingClientRect();
     const thumbDivRect = thumbDiv.getBoundingClientRect();
 
-    thumbDiv.scrollTo({ left: 0, top: selectedThumbRect.y - selectedThumbRect.height, behavior: 'smooth' })
+    thumbnailRef.current.scrollIntoView({ behavior: `smooth`, block: `nearest` });
+
+    // thumbDiv.scrollTo({ left: 0, top: selectedThumbRect.y - selectedThumbRect.height, behavior: 'smooth' })
 
   })
 
