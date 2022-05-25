@@ -70,13 +70,13 @@ const ProductOverview = ({ product }) => {
       <div className="section">
         <div className="container-large">
           <div className="page-padding">
-            <div className="product-overview-grid">
-              <div className="">
+            <div className="product-overview-layout">
+              <div className="carousel-wrapper">
                 <div>
                   <Carousel photoUrls={selectedStylePhotoUrls} productId={product.id} />
                 </div>
               </div>
-              <div className="">
+              <div className="overview-wrapper">
                 <span>Star Component here</span>
                 <p className="text-all-caps">{product.category}</p>
                 <h1 className="product-title">{product.name}</h1>

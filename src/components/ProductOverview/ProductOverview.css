@@ -1,10 +1,20 @@
 /* PRODUCT OVERVIEW */
 
-.product-overview-grid {
+.product-overview-layout {
   width: 100%;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
   gap: 2rem;
+  max-height: 40rem;
+}
+
+.overview-wrapper {
+  overflow: hidden;
+  max-width: 22rem;
+  transition: width 400ms ease;
+}
+
+.carousel-wrapper {
+  flex-grow: 3;
 }
 
 .product-title {
