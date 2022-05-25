@@ -4,25 +4,24 @@ import AnswerHelpful from './AnswerHelpful.jsx';
 import moment from 'moment';
 const AnswerEntry = ({answer, answerId}) => {
   return (
-    <div>
-      <div><b>A:&nbsp;</b>{answer.body}</div>
+    <div className='answer-container'>
+      <div>
+        <span className='answer-A'>A:</span>
+        <span className='answer-body'>{answer.body}&nbsp;</span>
+      </div>
       <div>
         {answer.photos.length ? answer.photos.map((photo, index) =>
-            (<AnswerPhotos photo ={photo} key ={index}/>
+          (<AnswerPhotos photo ={photo} key ={index}/>
         )) : null}
+        </div>
+      <div className='answer-footer'>
+        <div>
+          by {answer.answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : answer.answerer_name}, {`${moment.utc(answer.date).format('MMM D, YYYY')}`} &nbsp;|
+          <span>
+         <AnswerHelpful answerId ={answerId} answerHelpfulness={answer.helpfulness}/>
+        </span>
+        </div>
       </div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-            by {answer.answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : answer.answerer_name}, {`${moment.utc(answer.date).format('MMM D, YYYY')} |`}
-            </td>
-            <td>
-            <AnswerHelpful answerId ={answerId} answerHelpfulness={answer.helpfulness}/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   )
 }

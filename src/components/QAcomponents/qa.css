@@ -19,15 +19,9 @@
   padding: 12px 20px 12px 40px;
 }
 .qa-underline {
-      text-decoration: 'underline';
-      cursor:'pointer'
+  text-decoration: underline;
+  cursor: pointer
   }
-.qa-question{
-  display: 'inline-flex';
-  flex-direction: 'row';
-  font-size: 19px;
-  justify-content: 'space-between';
-}
 .a-photo {
   display: flex;
   align-items: center;
@@ -36,3 +30,99 @@
   width: 100px;
   object-fit: cover;
 }
+.question-container {
+  margin-bottom: 12px!important;
+  display: flex;
+  justify-content: space-between
+}
+.question {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.question-Q {
+  padding-top: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 17px;
+  overflow-wrap: normal;
+}
+.question-body {
+  padding-top: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 17px;
+  overflow-wrap: normal;
+}
+.question-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  font-weight: 300;
+  font-size: 14px;
+}
+.question-helpful-continer {
+  display: flex;
+  justify-content: flex-end;
+}
+.question-helpful {
+  display: inline-block;
+  justify-content: space-between;
+}
+.answer {
+line-height: 10px;
+}
+.answer-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.answer-A {
+  font-weight: bold;
+  font-size: 17px;
+  overflow-wrap: normal;
+}
+.answer-body {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: 420;
+  font-size: 17px;
+  overflow-wrap: normal;
+}
+.answer-footer {
+  display: flexi;
+  justify-content: flex-start;
+  margin-top: 5px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 14px;
+}
+.answer-helpfulness {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top:10px;
+  margin-left: 10px;
+  margin-bottom: 10;
+  font-size: 16px;
+  justify-content: space-around;
+}
+.more-answers {
+  color: purple;
+  font-size: 15px;
+  font-weight: normal;
+  margin-left: 50px;
+}
+.add-question,
+.more-questions {
+  font-size: medium;
+  height: 60px;
+  width: 235px;
+  padding: 10px;
+  margin: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+  float: left;
+}
+
+
