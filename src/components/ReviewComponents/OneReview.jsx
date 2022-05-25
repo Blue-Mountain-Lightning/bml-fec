@@ -8,15 +8,16 @@ const OneReview = (props) => {
     setFullReview(props.data.body);
   })
 
-  const likeIt = () => {
+  const sendReq = (req) => {
 
   }
 
-  const helpYes = () => {
+  const likeIt = () => { //these should pass a req to sendReq.
 
   }
 
-  const helpNo = () => {
+  const helpful = (event) => {
+    //post request with yes/no.
 
   }
 
@@ -29,8 +30,8 @@ const OneReview = (props) => {
       <p>{props.data.date}</p>
       <button onClick={likeIt}>like</button>
       <p>was this helpful?
-        <button onClick={helpYes}>Yes</button>
-        <button onClick={helpNo}>No</button>
+        <button onClick={helpful} value='yes'>Yes</button>
+        <button onClick={helpful}>No</button>
       </p>
       <p>stars: {props.data.rating} / 5</p>
       <p>Reviewed by: {props.data.reviewer_name}</p>
