@@ -30,7 +30,7 @@
     font-size: 16px;
     margin-bottom: 10px;
     order: 2;
-    margin-right: 20px;
+    margin-right: 0px;
     margin-left: 1000px;
     margin-top: 20px;
 }
@@ -99,9 +99,11 @@
   border-radius: 5px;
   background-color: white;
   margin-top: 20px;
+  padding-top: 10px;
 }
 
 .summ {
+
   margin-left: 30px;
 }
 

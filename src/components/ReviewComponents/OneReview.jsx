@@ -33,7 +33,8 @@ const OneReview = (props) => {
         <button className="button-no" onClick={helpful}>No</button>
       </p>
       <p>stars: {props.data.rating} / 5</p>
-      <p>Reviewed by: {props.data.reviewer_name} date:{props.data.date}</p>
+      <p>Reviewed by: {props.data.reviewer_name} </p>
+      <p >date: {props.data.date.substring(0, 10)}</p>
     </div>
   );
 }

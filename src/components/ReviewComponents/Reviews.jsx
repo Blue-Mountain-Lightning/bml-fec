@@ -21,7 +21,8 @@ const Reviews = (props) => {
         headers: {authorization : process.env.REACT_APP_TOKEN},
       })
       .then((results) => {setReviews(results.data.results);})
-
+      .catch((err) => {
+        console.log(err)});
   }, [url]);
 
   const searchButton = () => {
