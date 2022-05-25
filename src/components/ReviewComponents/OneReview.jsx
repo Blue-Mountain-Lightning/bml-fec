@@ -17,7 +17,6 @@ const OneReview = (props) => {
   }
 
   const helpful = (event) => {
-    console.log(event.target.value);
     //post request with yes/no.
 
   }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Stars from './Stars.jsx';
 import RadioButtons from './RadioButtons.jsx';
 //NEED TO WORK ON STARS
-//NEED TO IMPLEMENT COUNTER LATER!!!!!!!!!!!!!!!!!!
-//NEED ATO IMPLEMENT UPLOAD PHOTO
+//maybe tune wordcount...
+//upload photo function?
 const AddReview = (props) => {
   const [numStars, setNumStars] = useState(0);
   const [recommend, setRecommend] = useState('');
@@ -11,13 +11,13 @@ const AddReview = (props) => {
   const [fullReview, setFullReview] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
-
+  const [wordCount, setWordCount] = useState('');
   const [size, setSize] = useState(6);
   const [width, setWidth] = useState(6);
   const [comfort, setComfort] = useState(6);
   const [quality, setQuality] = useState(6);
   const [length, setLength] = useState(6);
-  const [Fit, setFit] = useState(6);
+  const [fit, setFit] = useState(6);
 
 
 
@@ -30,8 +30,21 @@ const AddReview = (props) => {
   }
 
   const submitEverything = () => { //fetch post request using state as data.
-    console.log(summary);
-    console.log(fullReview);
+    const allData = { //states.
+      rating: numStars,
+      summary: summary,
+      recommend: recommend,
+      body: fullReview,
+      size: size,
+      width: width,
+      comfort: comfort,
+      quality: quality,
+      length: length,
+      fit: fit,
+      nickname: nickname,
+      email: email
+    }
+    console.log('all input', allData);
   }
 
   if (props.show === true) { //testing conditional rendering, show form to add.
@@ -84,7 +97,10 @@ const AddReview = (props) => {
         <br></br>
         <textarea placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
           setFullReview(e.target.value);
-        }} /><br></br>
+          setWordCount(fullReview.length);
+        }} />
+        <p>Minimum required characters left: {50 - wordCount} </p>
+
       </label>
       <br></br>
       Nickname: <br></br>
