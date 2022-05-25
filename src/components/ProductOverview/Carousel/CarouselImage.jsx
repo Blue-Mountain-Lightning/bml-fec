@@ -8,7 +8,6 @@ const CarouselImage = ({ photoUrl, activeSlideIndex, index, alt }) => {
   }
 
   const mouseEnter = (event) => {
-    console.log(event);
     event.target.classList.add('is-zoomed');
   }
 
