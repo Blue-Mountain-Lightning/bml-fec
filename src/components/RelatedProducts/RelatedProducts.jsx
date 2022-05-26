@@ -1,19 +1,21 @@
 import React from 'react';
-
 import { useState, useEffect, useRef } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-import ProductCard from '../ProductCard';
 import utilities from './utilities';
+import ProductCard from '../ProductCard';
 
-const HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
+const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
-  const cache = useRef({}); //
+  const cache = useRef({});
+  const rowElementRef = useRef([]);
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
   const [width, setWidth] = useState(0);
   const [rowPosition, setRowPosition] = useState(0);
+  // TODO IMPLEMENT THIS
+  const [slideBoundary, setSlideBoundary] = useState({});
 
   const handleResizeWindow = (e) => {
     const {width} = utilities.getWindowDimensions();
@@ -22,6 +24,7 @@ const RelatedProducts = ({product}) => {
 
   useEffect(() => {
     handleResizeWindow();
+
     window.addEventListener("resize", handleResizeWindow);
 
     const fetchRelatedProducts = async () => {
@@ -36,7 +39,7 @@ const RelatedProducts = ({product}) => {
         if (cache.current[relatedIDsEndpoint]) {
           relatedProductIDs = cache.current[relatedIDsEndpoint];
         } else {
-          const IdsResponse = await fetch(relatedIDsEndpoint, HEADERS)
+          const IdsResponse = await fetch(relatedIDsEndpoint, REQUEST_HEADERS)
           let parsedResponse = await IdsResponse.json();
 
           // Remove any duplicate IDs
@@ -53,7 +56,7 @@ const RelatedProducts = ({product}) => {
         // Fetch information about related products or load from cache
         const productRequests = relatedProductIDs.map(id => {
           const url = `${process.env.REACT_APP_API}products/${id}`;
-          return (cache.current[id]) ? cache.current[id] : fetch(url, HEADERS);
+          return (cache.current[id]) ? cache.current[id] : fetch(url, REQUEST_HEADERS);
         })
 
         try {
@@ -83,9 +86,36 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
-  const handleButtonClick = (e, name) => {
-    const cardsThatFit = utilities.numCardsThatFit(width);
-    if (name === 'increment') {
+  const handleButtonClick = (event, direction) => {
+    const offsetVar = '--related-products-shift-offset';
+    const currentCSSValue = getComputedStyle(document.documentElement)
+      .getPropertyValue(offsetVar);
+    let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
+
+    let boundary = (utilities.getTotalCardsWidth(width, products.length) -
+      utilities.getCardsWidth(width, products.length)) / 2;
+    if (CSSValueInteger >= boundary && direction === 'right') {
+      console.log('At end of scroll view on right');
+      return;
+    }
+
+    if (CSSValueInteger <= -boundary && direction === 'left') {
+      console.log('At end of scroll view on left');
+      return;
+    }
+
+    const element = rowElementRef.current;
+    const cssVarName = '--related-products-shift-offset';
+    // TODO: Can the width to be shifted be found programatically?
+    const offset = (direction === 'right') ? 376 : -376;
+
+    utilities.animatedHorizontalShift(
+      element,
+      cssVarName,
+      offset
+    );
+
+    if (direction === 'increment') {
       if (rowPosition === products.length - 1) {
         setRowPosition(0);
         return;
@@ -93,7 +123,7 @@ const RelatedProducts = ({product}) => {
 
       setRowPosition(rowPosition + 1);
     }
-    if (name === 'decriment') {
+    if (direction === 'decriment') {
       if (rowPosition === 0) {
         setRowPosition(products.length - 1);
         return;
@@ -103,48 +133,67 @@ const RelatedProducts = ({product}) => {
   }
 
   const renderProductRow = () => {
-    const cardsThatFit = utilities.numCardsThatFit(width);
-    let end = rowPosition + cardsThatFit;
-    let rowEntries;
-    if (end > products.length) {
-      let firstCut = products.slice(rowPosition, products.length);
-      let secondCut = products.slice(0, end - products.length);
-      rowEntries = firstCut.concat(secondCut);
-    } else {
-      rowEntries = products.slice(rowPosition, end);
-    }
+    const cardsThatFit = utilities.numCardsThatFit(width, products.length);
+     let end = rowPosition + cardsThatFit;
+     let rowEntries;
+     if (end > products.length) {
+       let firstCut = products.slice(rowPosition, products.length);
+       let secondCut = products.slice(0, end - products.length);
+       rowEntries = firstCut.concat(secondCut);
+     } else {
+       rowEntries = products.slice(rowPosition, end);
+     }
 
-    return rowEntries.map((p, i) => {
-      if (i > utilities.numCardsThatFit(width) - 1) { return };
-      return (<ProductCard key={p.id} product={p} />)
+    rowEntries = products.map((p, i) => {
+      // if (i > utilities.numCardsThatFit(width) - 1) { return };
+      let element = <ProductCard key={p.id} product={p} />;
+      return element;
     })
+    return rowEntries;
   }
 
+
   if (loaded) {
+    const marginWidth = utilities.getMarginWidth(width, products.length);
+    const numCards = utilities.numCardsThatFit(width, products.length);
+
+    // TODO Clean up/refactor this section or put it somewhere else
+    // It tries to ensure that the slider view always lines up on a whole card
+    const offsetVar = '--related-products-shift-offset';
+    const currentCSSValue = getComputedStyle(document.documentElement)
+      .getPropertyValue(offsetVar);
+    let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
+    if (products.length % 2 !== numCards % 2) {
+      CSSValueInteger = 188;
+    } else {
+      CSSValueInteger = 0;
+    }
+
+    document.documentElement.style.setProperty(offsetVar, `${CSSValueInteger}px`);
+
     return (
-      <div className="section">
-        <div className="container-large">
-          <div className="page-padding">
-            <h1 className='center-heading'>You may also like</h1>
-            {/* This is just a palceholder style for now */}
-            <div className='product-row'>
-              {/* Some code here to get viewport width and
-              adjust amount of shown elements to fit in that*/}
-              <button className='card-button card-next'
-                      onClick={(e) => handleButtonClick(e, 'decriment')}
-              >
+      <>
+        <h1 className='center-heading'>You may also like</h1>
+          <div className='product-row'>
+            <div className='blank-side blank-left'
+                 style={{'width': `${marginWidth}px`}}
+                 onClick={(e) => handleButtonClick(e, 'left')}>
+              <button className='card-button card-next'>
                 <FaAngleLeft className='card-icon'/>
               </button>
-              {renderProductRow()}
-              <button className='card-button card-prev'
-                      onClick={(e) => handleButtonClick(e, 'increment')}
-              >
-                <FaAngleRight className='card-icon'/>
-              </button>
-            </div>
+            </div >
+          <div className='products-list horizontal-shifter' ref={rowElementRef}>
+            {renderProductRow()}
+          </div>
+          <div className='blank-side blank-right'
+               style={{'width': `${marginWidth}px`}}
+               onClick={(e) => handleButtonClick(e, 'right')}>
+            <button className='card-button card-prev'>
+              <FaAngleRight className='card-icon'/>
+            </button>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
