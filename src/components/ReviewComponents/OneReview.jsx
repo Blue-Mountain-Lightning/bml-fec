@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Review.css';
+import Stars from './Stars.jsx';
 const OneReview = (props) => {
   const [fullReview, setFullReview] = useState('');
   const [summary, setSummary] = useState('hi');
+  const [ratings, setRatings] = useState(0);
 
   useEffect(() => {
     setFullReview(props.data.body);
@@ -21,7 +23,6 @@ const OneReview = (props) => {
 
   }
 
-
   return (
     <div className="eachReview">
       <b className="summ">{props.data.summary}</b>
@@ -32,7 +33,7 @@ const OneReview = (props) => {
         <button className="button-yes" onClick={helpful} value='yes'>Yes</button>
         <button className="button-no" onClick={helpful}>No</button>
       </p>
-      <p>stars: {props.data.rating} / 5</p>
+      <Stars setRating={setRatings} rating={ratings} />
       <p>Reviewed by: {props.data.reviewer_name} </p>
       <p >date: {props.data.date.substring(0, 10)}</p>
     </div>
