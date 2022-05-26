@@ -34,11 +34,13 @@ const SizeAndQtySelector = ({ skus, handleAddToBag }) => {
 
   const makeQtyoptions = () => {
     let options = []
+    const MAX_ALLOWED = 15;
     const qtyAvailable = skus[selectedSku]?.quantity;
+    const qtyDropdownNum = Math.min(qtyAvailable, MAX_ALLOWED);
 
     options.push((<option key="" value="">--QTY--</option>))
 
-    for (var i = 1; i < qtyAvailable + 1; i++) {
+    for (var i = 1; i < qtyDropdownNum + 1; i++) {
       options.push(<option key={i} value={i}>{i}</option>)
     }
     return options

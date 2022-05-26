@@ -3,31 +3,31 @@ import AnswerList from './AnswerList.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
 import AddAnswer from './AddAnswer.jsx';
 const QuestionsEntry = ({question, questionId, product}) => {
-  return (
-  <div className='qa-question'>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-          <b>Q:&nbsp; {question.question_body}</b>
-          </td>
-          <td>
-          <QuestionHelpful
-            helpfulness ={question.question_helpfulness}
-            questionId={questionId}
-            />
-          </td>
-          <td>
-          <AddAnswer questionBody={question.question_body}
-            questionId={questionId}
-            product={product}/>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-    <AnswerList questionId ={questionId}/>
+  return(
+    <div className='question'>
+      <div className='question-container'>
+        <div>
+          <span className='question-Q'>Q:</span>
+          <span className='question-body'>{question.question_body}</span>
+        </div>
+        <div className='question-footer'>
+          <div>
+            <QuestionHelpful
+              helpfulness ={question.question_helpfulness}
+              questionId={questionId}/>
+          </div>
+          <div>
+            <AddAnswer
+              questionBody={question.question_body}
+              questionId={questionId}
+              product={product}/>
+          </div>
+        </div>
+      </div>
+      <div className='answer'>
+      <AnswerList questionId ={questionId} product={product}/>
+      </div>
     </div>
-  </div>)
+  )
 }
 export default QuestionsEntry;

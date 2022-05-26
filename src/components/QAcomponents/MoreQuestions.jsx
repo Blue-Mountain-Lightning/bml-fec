@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import QuestionsEntry from './QuestionsEntry';
-const MoreQuestions = ({questions}) => {
+const MoreQuestions = ({questions, product}) => {
   const [collapseQuestins, setCollapseQuestions] = useState(true);
   return (
     <div>
       {collapseQuestins ?
       <>
-      <button onClick ={() =>
+      <button className='more-questions'
+      onClick ={() =>
         setCollapseQuestions(!collapseQuestins)}>
           MORE QUESTIONS
           </button>
@@ -14,7 +15,7 @@ const MoreQuestions = ({questions}) => {
         : <>
         {(questions && questions.length > 4 ) && questions.slice(4).map(question => {
           return (
-            <QuestionsEntry question={question} key ={question.question_id}/>
+            <QuestionsEntry question={question} key ={question.question_id}  questionId = {question.question_id} product={product}/>
           )
         })}
         <>
