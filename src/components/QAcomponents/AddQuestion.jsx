@@ -50,33 +50,22 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
     handleClose();
   }
   const QuestionForm = (
-    <div onClick={(event => handleSelect(event))}>
-      <div onClick={(event => event.stopPropagation())}>
-      <h3>Ask Your Question</h3>
-        <h4>About the {product.name} Here </h4>
-      <span
-          onClick={event => handleSelect(event)}
-        >&times;</span>
-        <form onSubmit={handleSubmit}>
-          <label>Your Question*
-            <input name ='questionAsk'
-              placeholder='Ask your question here...'
-              type='text'
-              value={add.questionAsk}
-              maxLength='1000'
-              onChange={handleOnChange}/>
-          </label>
-          <label>What is your nickname*
-            <input name ='nickname'
-              placeholder='Examples: jackson11!'
-              type ='text'
-              value={add.nickname}
-              maxLength='60'
-              onChange={handleOnChange}/>
-            </label>
-            <p>For privacy reasons, do not use your full name or email address</p>
-            <label>Your email*
-              <input name ='email'
+    <div className='question-form-popup'
+      onClick={(event => handleSelect(event))}>
+      <div className='question-form-container'
+        onClick={(event => event.stopPropagation())}>
+          <div className='answer-header'>
+            <h3>Ask Your Question</h3>
+              <h4>About the {product.name} Here </h4>
+              <button className='question-modal-close-x'
+                onClick={event => handleSelect(event)}
+                >x</button>
+          </div>
+        <form className='question-form'
+          onSubmit={handleSubmit}>
+          <label className='modal-label'>Your email*
+              <input className='question-email'
+                name ='email'
                 type='text'
                 value={add.email}
                 maxLength='60'
@@ -84,7 +73,26 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
                 onChange={handleOnChange}/>
             </label>
             <p>For authentication reasons, you will not be emailed</p>
-            <input type='submit' value='Submit question'/>
+            <label className='modal-label'>What is your nickname*
+            <input className='question-name'
+              name ='nickname'
+              placeholder='Examples: jackson11!'
+              type ='text'
+              value={add.nickname}
+              maxLength='60'
+              onChange={handleOnChange}/>
+            </label>
+            <p>For privacy reasons, do not use your full name or email address</p>
+           <label className='modal-label'>Your Question*
+             <input className='question-textarea'
+              name ='questionAsk'
+              placeholder='Ask your question here...'
+              type='text'
+              value={add.questionAsk}
+              maxLength='1000'
+              onChange={handleOnChange}/>
+           </label>
+            <input className='submit-question-button' type='submit' value='Submit question'/>
         </form>
       </div>
     </div>

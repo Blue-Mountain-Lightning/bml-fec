@@ -7,17 +7,17 @@
 }
 
 .overview-wrapper {
-  overflow: hidden;
+  overflow: scroll;
   width: 22rem;
   opacity: 1;
-  transition: all 400ms ease;
+  max-height: 41rem;
+  transition: all 200ms ease-in-out;
 }
 
 .overview-wrapper.is-collapsed {
   opacity: 0;
   width: 0rem;
 }
-
 
 .carousel-wrapper {
   flex-grow: 3;

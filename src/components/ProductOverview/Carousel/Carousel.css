@@ -48,7 +48,20 @@
 
 .carousel-thumbnail-image.current {
   border-color: rgb(238, 128, 55);
-  ;
+}
+
+.thumbnail-dot {
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.thumbnail-dot:hover,
+.thumbnail-dot:focus {
+  color: rgba(255, 255, 255, 0.4)
+}
+
+.thumbnail-dot.current {
+  color: rgb(238, 128, 55)
 }
 
 .carousel-image-wrapper {
