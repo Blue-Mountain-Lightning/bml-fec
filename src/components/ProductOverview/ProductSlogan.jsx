@@ -1,6 +1,7 @@
 import React from "react";
 
 const ProductSlogan = ({ product }) => {
+  //if (!product.features) return <></>;
   return (
     <div className="section">
       <div className="container">
@@ -12,13 +13,11 @@ const ProductSlogan = ({ product }) => {
             </div>
             <div>
               <ul>
-                {product.features.map((feature) => {
+                {product.features && product.features.map((feature) => {
                   return <li>{feature.feature} : {feature.value}</li>
                 })}
-
               </ul>
             </div>
-
           </div>
         </div>
       </div>
