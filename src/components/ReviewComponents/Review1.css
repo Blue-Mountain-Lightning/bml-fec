@@ -4,6 +4,7 @@
   margin-top: 200px;
   margin-left: 500px;
   margin-bottom: 100px;
+  height: 1200px;
 }
 
 .leftSide {
@@ -94,6 +95,8 @@
   margin-left: 50px;
   margin-right: 50px;
   width: 1000px;
+  height: 1000px;
+  overflow-y: auto;
 }
 
 .searchFilter {
@@ -179,7 +182,7 @@
 }
 
 .showMore {
-  background-color: #f1c8ba;
+  background-color: #f0bfae;
   border: none;
   color: grey;
   padding: 16px 32px;
