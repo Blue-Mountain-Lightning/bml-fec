@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import OneReview from './OneReview.jsx';
-import './Review.css';
+import './Review1.css';
 const ReviewBlock = (props) => {
   if (props.data === undefined) {
     return;

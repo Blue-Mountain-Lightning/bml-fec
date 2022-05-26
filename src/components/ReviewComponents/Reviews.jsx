@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddReview from './AddReview.jsx';
 import Filter from './Filter.jsx';
 import ReviewBlock from './ReviewBlock.jsx';
-import './Review.css';
+import './Review1.css';
 const axios = require('axios').default;
 
 const Reviews = (props) => {

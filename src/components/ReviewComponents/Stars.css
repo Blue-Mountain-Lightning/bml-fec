@@ -5,8 +5,17 @@ button {
   cursor: pointer;
 }
 .on {
-  color: rgb(199, 221, 4);
+  color: rgb(0, 0, 0);
 }
 .off {
   color: #ccc;
+}
+
+.star-rating {
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+.fa-star {
+  color: grey
 }

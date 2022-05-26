@@ -17,7 +17,8 @@ const Stars = (props) => {
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(props.rating)}
           >
-            <span className="star" >&#9734;</span>
+
+            <i class="fa-solid fa-star"></i>
           </button>
         );
       })}
