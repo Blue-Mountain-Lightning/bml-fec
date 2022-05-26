@@ -3,7 +3,6 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import imageNotAvailable from '../assets/image-not-available.png'
-
 import Price from './Price';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
@@ -11,22 +10,17 @@ const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 const stylesCache = {}; // stores previous style API requests
 
 const ProductCard = ({ product }) => {
-  const cache = useRef({});
   const navigate = useNavigate();
   const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
   const [styleSwitcherActive, setStyleSwitcherActive] = useState(false);
 
-
   const parseFontSize = (size) => {
     return `${size}rem`;
   }
 
   const fontSize = parseFontSize(1); // the fontsize in rem
-
-  // TODO: Handle image not available
-
 
   useEffect(() => {
     const fetchProductStyles = async () => {
@@ -102,7 +96,8 @@ const ProductCard = ({ product }) => {
       </div>
     )
 
-    // style switch is pre-loaded but don't activate it unless mouse is over the picture
+    // style switch is pre-loaded but don't activate it unless mouse is over
+    // the picture
     let styleSwitcherElement;
     if (styleSwitcherActive) {
       styleSwitcherElement = styleSwitcher;
@@ -124,10 +119,15 @@ const ProductCard = ({ product }) => {
           />
           {imageIsProvided ? styleSwitcherElement : <></>}
         </div>
-        <div className="text-all-caps" style={{"fontSize": parseFontSize(1)}}>{product.category}</div>
-          <b>{product.name}</b>
-          <Price style={currentStyle} fontSize={fontSize} />
-        <div>Star rating component</div>
+        <div className="text-all-caps"
+             style={{"fontSize": parseFontSize(1)}}>
+          {product.category}
+        </div>
+        <b>{product.name}</b>
+        <Price style={currentStyle} fontSize={fontSize} />
+        <div>
+          Star rating component
+        </div>
       </div>
     )
   }

@@ -197,9 +197,9 @@ overwrite broser default <select> styling */
   position: absolute;
   display: flex;
   bottom: 0px;
-  left: 0px;
+  left: -2px;
   height: 7rem;
-  width: 100%;
+  width: 364px; /* why????? */
   background: white;
   transition: opacity 0.4s;
   opacity: 1;
@@ -256,9 +256,11 @@ overwrite broser default <select> styling */
 .card-icon {
   color: white;
   border-radius: 50%;
-  background-color: gray;
   background: rgba(0, 0, 0, 0.4);
-  color: rgb(209, 209, 209);
+}
+
+.card-icon-inactive {
+  background: rgba(0, 0, 0, 0.1) !important;
 }
 
 .card-button.card-next {
@@ -280,10 +282,8 @@ overwrite broser default <select> styling */
 }
 
 .blank-side {
-  background-color: white;
   background: white -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 1)));
-  z-index: 3;
-  transform: none !important;
+  z-index: 1;
 }
 
 .blank-left {
