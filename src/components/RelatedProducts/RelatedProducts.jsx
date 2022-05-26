@@ -4,17 +4,25 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 import utilities from './utilities';
 import ProductCard from '../ProductCard';
+import {IMAGE_WIDTH, IMAGE_GAP} from './utilities.js';
 
 const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
+const OFFSET_VAR = '--related-products-shift-offset';
+const CARD_WIDTH = IMAGE_WIDTH + IMAGE_GAP;
 
 const RelatedProducts = ({product}) => {
+  // refs
   const cache = useRef({});
   const rowElementRef = useRef([]);
+
+  // state
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
   const [width, setWidth] = useState(0);
-  const [rowPosition, setRowPosition] = useState(0);
-  const [slideBoundary, setSlideBoundary] = useState({});
+
+  // other assignments
+  const marginWidth = utilities.getMarginWidth(width, products.length);
+  const numCards = utilities.numCardsThatFit(width, products.length);
 
   const handleResizeWindow = (e) => {
     const {width} = utilities.getWindowDimensions();
@@ -86,13 +94,10 @@ const RelatedProducts = ({product}) => {
   }, [product])
 
   const handleButtonClick = (event, direction) => {
-    const offsetVar = '--related-products-shift-offset';
-    const currentCSSValue = getComputedStyle(document.documentElement)
-      .getPropertyValue(offsetVar);
-    let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
 
-    let boundary = (utilities.getTotalCardsWidth(width, products.length) -
-      utilities.getCardsWidth(width, products.length)) / 2;
+    let {CSSValueInteger, boundary}
+      = utilities.scrollStatus(width, OFFSET_VAR, products.length);
+
     if (CSSValueInteger >= boundary && direction === 'left') {
       console.log('At end of scroll view on right');
       return;
@@ -105,69 +110,30 @@ const RelatedProducts = ({product}) => {
 
     const element = rowElementRef.current;
     // TODO: Can the width to be shifted be found programatically?
-    const offset = (direction === 'left') ? 376 : -376;
+    const offset = (direction === 'left') ? CARD_WIDTH : -CARD_WIDTH;
 
     utilities.animatedHorizontalShift(
       element,
-      offsetVar,
+      OFFSET_VAR,
       offset
     );
-
-    if (direction === 'increment') {
-      if (rowPosition === products.length - 1) {
-        setRowPosition(0);
-        return;
-      }
-
-      setRowPosition(rowPosition + 1);
-    }
-    if (direction === 'decriment') {
-      if (rowPosition === 0) {
-        setRowPosition(products.length - 1);
-        return;
-      }
-      setRowPosition(rowPosition - 1);
-    }
   }
 
   const renderProductRow = () => {
-    const cardsThatFit = utilities.numCardsThatFit(width, products.length);
-     let end = rowPosition + cardsThatFit;
-     let rowEntries;
-     if (end > products.length) {
-       let firstCut = products.slice(rowPosition, products.length);
-       let secondCut = products.slice(0, end - products.length);
-       rowEntries = firstCut.concat(secondCut);
-     } else {
-       rowEntries = products.slice(rowPosition, end);
-     }
-
-    rowEntries = products.map((p, i) => {
-      // if (i > utilities.numCardsThatFit(width) - 1) { return };
+    let rowEntries = products.map((p, i) => {
       let element = <ProductCard key={p.id} product={p} />;
       return element;
     })
     return rowEntries;
   }
 
+  const setInitialOffset = (marginWidth, offsetVar, numCards) => {
+    let {boundary} = utilities.scrollStatus(width, OFFSET_VAR, products.length);
+    document.documentElement.style.setProperty(offsetVar, `${boundary}px`);
+  }
 
   if (loaded) {
-    const marginWidth = utilities.getMarginWidth(width, products.length);
-    const numCards = utilities.numCardsThatFit(width, products.length);
-
-    // TODO Clean up/refactor this section or put it somewhere else
-    // It tries to ensure that the slider view always lines up on a whole card
-    const offsetVar = '--related-products-shift-offset';
-    const currentCSSValue = getComputedStyle(document.documentElement)
-      .getPropertyValue(offsetVar);
-    let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
-    if (products.length % 2 !== numCards % 2) {
-      CSSValueInteger = 188;
-    } else {
-      CSSValueInteger = 0;
-    }
-
-    document.documentElement.style.setProperty(offsetVar, `${CSSValueInteger}px`);
+    setInitialOffset(marginWidth, OFFSET_VAR, numCards);
 
     return (
       <>
