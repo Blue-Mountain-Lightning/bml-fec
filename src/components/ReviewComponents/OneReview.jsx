@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Stars from './Stars.jsx';
+import {FcLikePlaceholder, FcLike} from 'react-icons/fc';
 const OneReview = (props) => {
   const [fullReview, setFullReview] = useState('');
   const [summary, setSummary] = useState('hi');
@@ -14,7 +15,12 @@ const OneReview = (props) => {
   }
 
   const likeIt = (event) => { //these should pass a req to sendReq.
-    alert('liked!');
+    if (liked) {
+      setLiked(false);
+    } else {
+      setLiked(true);
+    }
+
 
   }
 
@@ -34,7 +40,7 @@ const OneReview = (props) => {
 
       <div className="eachReviewComponents">
         <p>
-          <i class="fa-solid fa-heart" onClick={likeIt} ></i> &nbsp;
+          {liked ? <FcLike className="unlikeButton" onClick={likeIt} /> : <FcLikePlaceholder className="likeButton" onClick={likeIt}/>} &nbsp;
           Helpful? &nbsp;<button className="button-yes" onClick={helpful} value='yes'>Yes</button>
           <button className="button-no" onClick={helpful} value='no'>No</button>
         </p>

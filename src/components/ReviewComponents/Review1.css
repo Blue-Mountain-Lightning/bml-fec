@@ -3,20 +3,21 @@
   flex-direction: row;
   margin-top: 200px;
   margin-left: 500px;
+  margin-bottom: 100px;
 }
 
 .leftSide {
   order: 1;
   flex-direction: row;
   width: 300px;
-  border-width: 5px;
-  border:solid;
-  border-color: black;
+  background-color: rgb(242, 241, 241);
+  border-radius: 10px;
 }
 
 .reviewText {
   order:1;
-  margin-left: 70px;
+  margin-left: 80px;
+  margin-right: 80px;
   margin-top: 35px;
   margin-bottom: 70px;
 }
@@ -54,7 +55,8 @@
   background-color: white;
   font-size: 16px;
   border-radius: 5px;
-  margin-left: 50px;
+  margin-left: 65px;
+  margin-right: 65px;
 }
 
 
@@ -70,7 +72,8 @@
   font-size: 16px;
   margin-bottom: 10px;
   margin-top: 10px;
-  margin-left: 75px;
+  margin-left: 85px;
+  margin-right: 85px;
 }
 
 .searchButton:hover {
@@ -88,9 +91,6 @@
 }
 
 .reviewBlock {
-  border: solid;
-  border-color: black;
-  border-width: 5px;
   margin-left: 50px;
   margin-right: 50px;
   width: 1000px;
@@ -118,17 +118,20 @@
   margin-left: 15px;
 }
 
-.button-like {
-  background-color: black; /* Green */
-  color: white;
-  border-color: black;
-  border-radius: 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 10px;
-  margin-right: 10px;
+.likeButton {
+  margin-left: 15px;
+}
+
+.likeButton:hover {
+  cursor: pointer;
+}
+
+.unlikeButton {
+  margin-left: 15px;
+}
+
+.unlikeButton:hover {
+  cursor: pointer;
 }
 
 .button-like:hover {

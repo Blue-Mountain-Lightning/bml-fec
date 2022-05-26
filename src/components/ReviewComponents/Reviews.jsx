@@ -54,7 +54,7 @@ const Reviews = (props) => {
         <div className="searchFilter">
           <form onSubmit={searchButton}>
             <label>
-              <input className="searchBar" placeholder="search" type="text" value={searchText} onChange={handleSearchTextChange} />
+              <input className="searchBar" placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
             </label>
             <input className="searchButton" type="submit" value="Search" />
           </form>
