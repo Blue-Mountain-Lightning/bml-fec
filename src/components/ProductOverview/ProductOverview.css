@@ -1,10 +1,26 @@
 /* PRODUCT OVERVIEW */
 
-.product-overview-grid {
+.product-overview-layout {
   width: 100%;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
   gap: 2rem;
+}
+
+.overview-wrapper {
+  overflow: hidden;
+  width: 22rem;
+  opacity: 1;
+  transition: all 400ms ease;
+}
+
+.overview-wrapper.is-collapsed {
+  opacity: 0;
+  width: 0rem;
+}
+
+
+.carousel-wrapper {
+  flex-grow: 3;
 }
 
 .product-title {

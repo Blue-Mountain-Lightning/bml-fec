@@ -147,6 +147,10 @@ overwrite broser default <select> styling */
   margin-right: 1rem;
 }
 
+.display-none {
+  display: none !important;
+}
+
 .style-circle {
   width: 4rem;
   height: 4rem;

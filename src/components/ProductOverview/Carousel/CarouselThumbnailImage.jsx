@@ -12,12 +12,7 @@ const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, handleClick, index
     if (!thumbnailRef.current.classList.contains('current')) return
     const thumbDiv = document.querySelector('.carousel-thumbnail-grid');
     if (!thumbDiv) return;
-
-    const selectedThumbRect = thumbnailRef.current.getBoundingClientRect();
-    const thumbDivRect = thumbDiv.getBoundingClientRect();
-
-    thumbDiv.scrollTo({ left: 0, top: selectedThumbRect.y - selectedThumbRect.height, behavior: 'smooth' })
-
+    thumbnailRef.current.scrollIntoView({ behavior: `smooth`, block: `nearest` });
   })
 
 
