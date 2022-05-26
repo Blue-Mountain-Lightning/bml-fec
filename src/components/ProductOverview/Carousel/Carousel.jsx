@@ -30,13 +30,16 @@ const Carousel = ({ photoUrls, productId }) => {
   const toggleExpandedMode = (event) => {
     const overviewWrapper = document.querySelector('.overview-wrapper')
     const carouselImageWrapper = document.querySelector('.carousel-image-wrapper')
+    const thumbnailGrid = document.querySelector('.carousel-thumbnail-grid')
     if (!isExpanded) {
       overviewWrapper.classList.toggle('is-collapsed')
       carouselImageWrapper.style.cursor = 'zoom-out'
+      thumbnailGrid.style.borderRadius = '0';
       setIsExpanded(true);
     } else {
       overviewWrapper.classList.toggle('is-collapsed')
       carouselImageWrapper.style.cursor = 'zoom-in'
+      thumbnailGrid.style.borderRadius = '20px';
       setIsExpanded(false);
     }
   }
@@ -45,10 +48,10 @@ const Carousel = ({ photoUrls, productId }) => {
     <div className="carousel-layout">
       <div className="carousel-thumbnail-wrapper">
         <div className="carousel-thumbnail-grid">
-          <button className="carousel-button up" onClick={() => handleClick(activeSlideIndex - 1)}><FaAngleUp /></button>
-          <button className="carousel-button down" onClick={() => handleClick(activeSlideIndex + 1)}><FaAngleDown /></button>
+          {!isExpanded && <button className="carousel-button up" onClick={() => handleClick(activeSlideIndex - 1)}><FaAngleUp /></button>}
+          {!isExpanded && <button className="carousel-button down" onClick={() => handleClick(activeSlideIndex + 1)}><FaAngleDown /></button>}
           {photoUrls.map((photoUrl, i) => {
-            return <CarouselThumbnailImage photoUrl={photoUrl} activeSlideIndex={activeSlideIndex} handleClick={handleClick} alt={`thumbnail-photo-${i}`} index={i} key={photoUrl + i} />
+            return <CarouselThumbnailImage photoUrl={photoUrl} activeSlideIndex={activeSlideIndex} isExpanded={isExpanded} handleClick={handleClick} alt={`thumbnail-photo-${i}`} index={i} key={photoUrl + i} />
           })}
         </div>
       </div>

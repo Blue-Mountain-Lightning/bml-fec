@@ -12,6 +12,8 @@ const ProductOverview = ({ product }) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
+  console.log(product)
+
   useEffect(() => {
     const fetchProductStyles = async () => {
       if (product.id) {
@@ -58,7 +60,6 @@ const ProductOverview = ({ product }) => {
     event.preventDefault();
     alert(`Chill Dude... it's just a demo, but those ${product.name} do look pretty fly.`)
   }
-
 
   if (loaded) {
     const stylesPhotosThumbnailUrls = getStylesPhotos();

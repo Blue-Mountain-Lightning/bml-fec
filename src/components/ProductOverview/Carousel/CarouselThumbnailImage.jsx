@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
+import { FaDotCircle } from 'react-icons/fa';
 
-const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, handleClick, index, alt }) => {
+const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, isExpanded, handleClick, index, alt }) => {
 
   const thumbnailRef = useRef();
-  let className = "carousel-thumbnail-image"
+
+  let className = !isExpanded ? "carousel-thumbnail-image" : "thumbnail-dot"
   if (activeSlideIndex === index) {
     className += " current";
   }
@@ -15,10 +17,19 @@ const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, handleClick, index
     thumbnailRef.current.scrollIntoView({ behavior: `smooth`, block: `nearest` });
   })
 
-
+  const displayThumbnail = () => {
+    if (!isExpanded) {
+      return <img ref={thumbnailRef} className={className} src={photoUrl} alt={alt} onClick={() => handleClick(index)} />
+    } else {
+      return <div ref={thumbnailRef} className={className} onClick={() => handleClick(index)}><FaDotCircle /></div>
+    }
+  }
 
   return (
-    <img ref={thumbnailRef} className={className} src={photoUrl} alt={alt} onClick={() => handleClick(index)} />
+    <>
+      {displayThumbnail()}
+    </>
+
   )
 }
 
