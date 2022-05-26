@@ -5,7 +5,7 @@ button {
   cursor: pointer;
 }
 .on {
-  color: rgb(0, 0, 0);
+  color: yellow
 }
 .off {
   color: #ccc;
@@ -16,6 +16,3 @@ button {
   margin-left: 30px;
 }
 
-.fa-star {
-  color: grey
-}

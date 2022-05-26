@@ -12,7 +12,7 @@ const Reviews = (props) => {
   const [showAdd, setShow] = useState(false);
   const [currentNum, setCurrentNum] = useState(2);
   const [state, setState] = useState(2);
-
+  const [more, setMore] = useState(true);
   const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}`
   useEffect(() => {
     const fetchReviews = async () => {
@@ -50,7 +50,7 @@ const Reviews = (props) => {
 
   const showMore = () => {
     setCurrentNum(currentNum + 2);
-    //if no more,
+    (currentNum + 2) > reviews.results.length ? setMore(false) : console.log('got more');
   }
 
   return (
@@ -74,7 +74,7 @@ const Reviews = (props) => {
           {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}
           {showAdd === false ? <p className="showingText">showing: </p> : <p></p>}
           {showAdd === false ? <ReviewBlock className="reviewBlock" data={reviews} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd} id={props.id}/>}
-          {showAdd === false ? <button className="showMore" onClick={() => { showMore();}} >show more</button> : <p></p>}
+          {( more === true) ? <button className="showMore" onClick={() => { showMore();}} >show more</button> : <p></p>}
         </div>
 
       </div>

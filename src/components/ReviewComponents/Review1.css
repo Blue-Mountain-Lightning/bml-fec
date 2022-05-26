@@ -101,10 +101,10 @@
 }
 
 .eachReview {
-  border-color: rgb(225, 223, 223);
+  border-color: rgb(245, 245, 245);
   border-style: solid;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(236, 234, 234);
   margin-top: 20px;
   padding-top: 10px;
 }
