@@ -8,7 +8,7 @@
 }
 .qa-search {
   width: 100%;
-  margin: 12px;
+  margin-top: 12px;
   font-size: 18px;
   outline: none;
   box-sizing: border-box;
@@ -69,6 +69,64 @@
   display: inline-block;
   justify-content: space-between;
 }
+.question-form-popup {
+  top: 0;
+  left: 0;
+  z-index: 150;
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  padding-top: 250px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.question-form-container {
+  width: 70%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid black;
+}
+.question-modal-close-x {
+  float: right;
+  right: 5px;
+  height: 20px;
+  width: 40px;
+  display: block;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 18px;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  line-height: 0;
+}
+.question-textarea {
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  cursor: text;
+  padding: 5px;
+  width: 400px;
+  height: 50px;
+}
+.submit-question-button {
+  height:30px;
+  width: 120px;
+  border-radius: 8px;
+  background: rgb(255, 216,20);
+  box-shadow: none;
+  align-items: center;
+  display: block;
+}
 .answer {
 line-height: 10px;
 }
@@ -125,4 +183,83 @@ line-height: 10px;
   float: left;
 }
 
-
+.answer-form-popup {
+  top: 0;
+  left: 0;
+  z-index: 300;
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  padding-top: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.answer-form-container {
+  width: 60%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid black;
+}
+.modal-label {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+.answer-modal-close-x {
+  float: right;
+  right: 5px;
+  height: 20px;
+  width: 40px;
+  display: block;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 18px;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  line-height: 0;
+}
+.question-email,
+.question-name,
+.answer-email,
+.answer-name {
+  padding: 10px;
+  width: 200px;
+}
+.question-form ,
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 10px;
+}
+.answer-body {
+  padding: 5px;
+  width: 400px;
+  height: 50px;
+}
+.question-header,
+.answer-header {
+  background-color: #F0F2F2;
+  border-radius: 16px 16px 0 0;
+  padding: 0 10px;
+}
+.submit-answer-button {
+  height:30px;
+  width: 100px;
+  border-radius: 8px;
+  background: rgb(255, 216,20);
+  box-shadow: none;
+  float: right;
+  display: block;
+}
+/* .scrollbar {
+  height: 100px;
+  overflow: auto;
+} */
