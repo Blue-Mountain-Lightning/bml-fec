@@ -11,13 +11,13 @@ const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 const stylesCache = {}; // stores previous style API requests
 
 const ProductCard = ({ product }) => {
-  const navigate = useNavigate();
   const cache = useRef({});
-
+  const navigate = useNavigate();
+  const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
-  const [currentStyle, setCurrentStyle] = useState({});
   const [styleSwitcherActive, setStyleSwitcherActive] = useState(false);
+
 
   const parseFontSize = (size) => {
     return `${size}rem`;
@@ -29,7 +29,6 @@ const ProductCard = ({ product }) => {
 
 
   useEffect(() => {
-
     const fetchProductStyles = async () => {
       try {
         let stylesArray;
