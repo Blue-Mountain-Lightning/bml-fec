@@ -19,6 +19,7 @@ const utilities = {
    * Returns the number of cards to be shown in a product-row.
    * @function numCardsThatFit
    * @param {[int]} width  The width of the viewport.
+   * @param {[int]} numProducts The total number of products.
    */
   numCardsThatFit: (width, numProducts) => {
     let factor = Math.floor(width / 408);
@@ -44,17 +45,19 @@ const utilities = {
    * Returns the width of the margin of a 'product-row' element.
    * @function getMarginWidth
    * @param {[int]} width  The width of the viewport.
+   * @param {[int]} numProducts The total number of products.
    */
   getMarginWidth: (width, numProducts) => {
     let cardsWidth = utilities.getCardsWidth(width, numProducts);
-    let marginWidth = (width - cardsWidth) / 2 - 8;
+    let marginWidth = (width - cardsWidth) / 2 + 2;
     return String(marginWidth);
   },
 
   /**
-   * Returns the width of all the product cards lined up.
+   * Returns the total width of all cards that are viewable.
    * @function getCardsWidth
    * @param {[int]} width  The width of the viewport.
+   * @param {[int]} numProducts The total number of products.
    */
   getCardsWidth: (width, numProducts) => {
     let numCards = utilities.numCardsThatFit(width, numProducts);
@@ -64,8 +67,8 @@ const utilities = {
 
 
   /**
-   * Returns the width required to display all products at once.
-   * @function getCardsWidth
+   * Returns the total width of all cards.
+   * @function getTotalCardsWidth
    * @param {[int]} numProducts The total number of products.
    */
   getTotalCardsWidth: (width, numProducts) => {
@@ -78,7 +81,7 @@ const utilities = {
    * @function animatedHorizontalShift
    * @param {[HTML Entity]} element The element to be shifted.
    * @param {[String]} cssVar The css variable assigned to the transform.
-   * @param {[Number]} shiftAmount The css variable assigned to the transform.
+   * @param {[Number]} shiftAmount The number of pixels to shift by (positive or negative).
    */
   animatedHorizontalShift: (element, offsetVar, shiftAmount) => {
     // Measure initial position of element
@@ -89,12 +92,14 @@ const utilities = {
     const currentCSSValue = getComputedStyle(document.documentElement)
       .getPropertyValue(offsetVar);
 
-    let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
+    let CSSValueInteger =
+      Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
 
     CSSValueInteger += shiftAmount;
     console.log(CSSValueInteger);
 
-    document.documentElement.style.setProperty(offsetVar, `${CSSValueInteger}px`);
+    document.documentElement.style
+      .setProperty(offsetVar, `${CSSValueInteger}px`);
 
     // Measure the position of the element after the move
     const last = element.getBoundingClientRect();
@@ -107,12 +112,6 @@ const utilities = {
 
     // Animate the element back to the new position
     element.style.transform = '';
-
-    setTimeout(() => {
-      const p = element.removeChild(element.children[0]);
-      element.prepend(p);
-    }, 600);
-
 
     // TODO Loop the scroll back to the beginning
   }

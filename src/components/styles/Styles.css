@@ -164,15 +164,12 @@ overwrite broser default <select> styling */
 /* PRODUCT CARD */
 .card-styles-parent {
   position: relative;
-  transition: all 0.12s linear;
   height: 480px;
   width: 360px;
-  min-width: 240px;
 }
 
 .card-styles-thumbnail {
   height: 100%;
-  width: auto;
   aspect-ratio: 6 / 8;
   object-fit: cover;
 }
@@ -225,6 +222,7 @@ overwrite broser default <select> styling */
 .center-heading {
   text-align: center;
   padding-bottom: 2rem;
+  font-size: 2.4rem;
 }
 
 /* PRICE */
@@ -236,10 +234,13 @@ overwrite broser default <select> styling */
 .product-row {
   display: flex;
   flex-direction: row;
+  position: relative;
+  margin: 0 auto;
   justify-content: center;
   transition: all 0.12s linear;
-  gap: 1rem;
+  gap: 16px;
   opacity: 1;
+  overflow: hidden;
 }
 
 .card-button {
@@ -261,15 +262,56 @@ overwrite broser default <select> styling */
 }
 
 .card-button.card-next {
-  margin-right: -.7rem;
+  position: absolute;
+  right: 8px;
+  top: 260px;
 }
 
 .card-button.card-prev {
-  margin-left: -.7rem;
+  position: absolute;
+  left: 8px;
+  top: 260px;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.blank-side {
+  background-color: white;
+  background: white -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 1)));
+  z-index: 3;
+  transform: none !important;
+}
+
+.blank-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.blank-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+:root {
+  --related-products-shift-offset: 0px;
+  --your-outfit-shift-offset: 0px;
+}
+
+.horizontal-shifter {
+  transform: translateX(var(--related-products-shift-offset));
+}
+.products-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  transition: all 244ms;
+  transition-timing-function: ease;
 }
