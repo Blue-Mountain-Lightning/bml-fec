@@ -46,8 +46,6 @@
   transition: border 0.12s linear;
 }
 
-
-
 .carousel-thumbnail-image.current {
   border-color: rgb(238, 128, 55);
 }
