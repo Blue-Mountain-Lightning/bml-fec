@@ -1,0 +1,18 @@
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: yellow
+}
+.off {
+  color: #ccc;
+}
+
+.star-rating {
+  margin-top: 15px;
+  margin-left: 30px;
+}
+

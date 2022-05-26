@@ -6,7 +6,7 @@ import { act } from "react-dom/test-utils";
 //most basic
 test('loads and displays greeting', () => {
   render(<Reviews />);
-  screen.debug();
+
 });
 
 // test('test events', () => {
