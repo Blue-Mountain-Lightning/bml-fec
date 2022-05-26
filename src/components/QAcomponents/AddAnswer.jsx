@@ -57,33 +57,20 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
     setAddAnswerModal(false);
   }
   const AnswerForm = (
-    <div onClick={(event => handleClose(event))}>
-      <div onClick={(event => event.stopPropagation())}>
-        <h3>Submit your Answer</h3>
-        <h4>{product && product.name} : {questionBody}</h4>
-      <span
+    <div className ='answer-form-popup' onClick={(event => handleClose(event))}>
+      <div className='answer-form-container ' onClick={(event => event.stopPropagation())}>
+        <div className='answer-header'>
+        <h3 >Submit your Answer</h3>
+        <h4 >{product && product.name} : {questionBody}</h4>
+        <button className='answer-modal-close-x'
           onClick={event => handleClose(event)}
-        >&times;</span>
-        <form onSubmit={handleAddAnswer}>
-        <label>Your Answer*
-            <input name ='answerAdd'
-              placeholder='Add your answer here...'
-              type='text'
-              maxLength='1000'
-              value={addAnswer.answerAdd}
-              onChange={handleOnChange}/>
-          </label>
-          <label>What is your nickname*
-            <input name ='nickname'
-              placeholder='Example: jack543!'
-              type ='text'
-              value={addAnswer.nickname}
-              maxLength='60'
-              onChange={handleOnChange}/>
-            </label>
-            <p>For privacy reasons, do not use your full name or email address</p>
-            <label>Your eamil*
-              <input name ='email'
+        >X</button>
+        </div>
+        <form className='answer-form'
+          onSubmit={handleAddAnswer} >
+           <label className='modal-label'>Your eamil*
+              <input className='answer-email'
+                name ='email'
                 type='text'
                 value={addAnswer.email}
                 maxLength='60'
@@ -91,15 +78,34 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
                 onChange={handleOnChange}/>
             </label>
             <p>For authentication reasons, you will not be emailed</p>
-            <div>
-              {images.length < 5 ? <input name ='images'
-                type='file'
-                accept='image/*'
-                value={images}
-                placeholder='images...'
-                onChange={handleAddImages}/> : null}
+            <label className='modal-label'>What is your nickname*
+              <input className='answer-name'
+                name ='nickname'
+                placeholder='Example: jack543!'
+                type ='text'
+                value={addAnswer.nickname}
+                maxLength='60'
+                onChange={handleOnChange}/>
+            </label>
+            <p>For privacy reasons, do not use your full name or email address</p>
+           <label className='modal-label'>Your Answer*
+            <input className='answer-body'
+              name ='answerAdd'
+              placeholder='Add your answer here...'
+              type='text'
+              maxLength='1000'
+              value={addAnswer.answerAdd}
+              onChange={handleOnChange}/>
+          </label>
+          <div className='modal-label'>
+            {images.length < 5 ? <input name ='images'
+              type='file'
+              accept='image/*'
+              value={images}
+              placeholder='images...'
+              onChange={handleAddImages}/> : null}
            </div>
-            <input type='submit' value='Submit answer'/>
+            <input className='submit-answer-button' type='submit' value='Submit answer'/>
         </form>
       </div>
     </div>
@@ -107,10 +113,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
   return (
     <div >
       <div onClick={() => setAddAnswerModal(true)}
-       style={{
-        textDecoration: 'underline',
-        cursor: 'pointer',
-      }}>
+      className='qa-underline'>
         Add Answer
       </div>
       <div> {addAnswerModal ? AnswerForm : null}</div>
