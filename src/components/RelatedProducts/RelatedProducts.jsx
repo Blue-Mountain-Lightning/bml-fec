@@ -93,19 +93,19 @@ const RelatedProducts = ({product}) => {
 
     let boundary = (utilities.getTotalCardsWidth(width, products.length) -
       utilities.getCardsWidth(width, products.length)) / 2;
-    if (CSSValueInteger >= boundary && direction === 'right') {
+    if (CSSValueInteger >= boundary && direction === 'left') {
       console.log('At end of scroll view on right');
       return;
     }
 
-    if (CSSValueInteger <= -boundary && direction === 'left') {
+    if (CSSValueInteger <= -boundary && direction === 'right') {
       console.log('At end of scroll view on left');
       return;
     }
 
     const element = rowElementRef.current;
     // TODO: Can the width to be shifted be found programatically?
-    const offset = (direction === 'right') ? 376 : -376;
+    const offset = (direction === 'left') ? 376 : -376;
 
     utilities.animatedHorizontalShift(
       element,
