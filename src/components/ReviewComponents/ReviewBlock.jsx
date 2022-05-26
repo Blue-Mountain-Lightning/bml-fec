@@ -5,8 +5,8 @@ const ReviewBlock = (props) => {
   if (props.data === undefined) {
     return;
   }
-
-  const newArr = props.data.slice(0, props.num);
+  console.log('reviewblock', props.data.results);
+  const newArr = props.data.results.slice(0, props.num);
 
   return (
     <div className="reviewBlock">

@@ -15,15 +15,21 @@ const Reviews = (props) => {
 
   const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}`
   useEffect(() => {
-      axios({
-        method: 'GET',
-        url: url,
-        headers: {authorization : process.env.REACT_APP_TOKEN},
-      })
-      .then((results) => {setReviews(results.data.results);})
-      .catch((err) => {
-        console.log(err)});
-  }, [url]);
+    const fetchReviews = async () => {
+      if (props.id) {
+        try {
+          let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+          const response = await fetch(url, headers);
+          const reviews99 = await response.json();
+          setReviews(reviews99);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+
+    fetchReviews();
+  }, [props.id]);
 
   const searchButton = () => {
     alert(searchText);
