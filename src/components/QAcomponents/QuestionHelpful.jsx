@@ -29,31 +29,22 @@ const QuestionHelpful = ({helpfulness, questionId}) => {
       .catch(err => alert('Cannot report this question'))
   }
     return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-            &nbsp;Helpful?&nbsp;
-     {!helpfulQuestion ? <span onClick={() => handleHelpfulQuestion()}
-       style ={{
-        textDecoration: 'underline',
-        cursor:'pointer'
-        }} >&nbsp;Yes</span> : 'Yes'}
-       ({helpfulQuestion? helpfulness + 1: helpfulness}) | &nbsp;
-            </td>
-            <td name = 'report'
+    <div className='question-helpful-continer'>
+      <div >
+        <span>&nbsp;Helpful?&nbsp;</span>
+      </div>
+      <div className='question-helpful'>
+        {!helpfulQuestion ?
+        <span onClick={() => handleHelpfulQuestion()}
+          className='qa-underline' >&nbsp;Yes</span> : 'Yes'}
+          ({helpfulQuestion? helpfulness + 1: helpfulness}) | &nbsp;
+        <span
           onClick={(event) => handleReport(event)}
-          style ={{
-            textDecoration: 'underline',
-            cursor:'pointer'
-          }}>
+          className='qa-underline'>
           {reportToggle ? 'Reported' : "Report"}
-          </td>
-          <td>&nbsp;|&nbsp;</td>
-          </tr>
-        </tbody>
-      </table>
+        </span>
+        <span> &nbsp;| &nbsp;</span>
+      </div>
     </div>
   )
 

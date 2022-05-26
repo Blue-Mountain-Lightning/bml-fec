@@ -31,32 +31,21 @@ const AnswerHelpful = ({answerHelpfulness, answerId}) => {
       .catch(err => alert('Cannot report this question'))
   }
     return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              &nbsp;Helpful?&nbsp;
-              {!helpfulAnswer ? <span onClick={() => handleHelpfulAnswers()}
-                style ={{
-                  textDecoration: 'underline',
-                  cursor:'pointer'
-                  }} >&nbsp;Yes</span> : 'Yes'}
-                 ({helpfulAnswer? answerHelpfulness + 1: answerHelpfulness}) | &nbsp;
-            </td>
-            <td name = 'report'
-              onClick={(event) => handleReport(event)}
-              style ={{
-              textDecoration: 'underline',
-              cursor:'pointer'
-              }}>
-             {reportToggle ? 'Reported' : "Report"}
-          </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className='answer-helpfulness'>
+        <span>Helpful?&nbsp;</span>
+        {!helpfulAnswer
+        ?
+        <span onClick={() => handleHelpfulAnswers()}
+        className='qa-underline' >&nbsp;Yes </span>
+        : 'Yes'}
+        ({helpfulAnswer? answerHelpfulness + 1: answerHelpfulness})
+        <span> &nbsp;| &nbsp;</span>
+        <span
+          onClick={(event) => handleReport(event)}
+          className='qa-underline'>
+          {reportToggle ? 'Reported' : "Report"}
+        </span>
     </div>
   )
-
 }
 export default AnswerHelpful;

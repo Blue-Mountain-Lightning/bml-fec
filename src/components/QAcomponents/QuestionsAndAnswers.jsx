@@ -33,7 +33,7 @@ const QuestionsAndAnswers = ({productId, product}) => {
       {questions.length !== 0 ?
       <QuestionList searchInput={searchInput} questions={questions} product={product}/>
     : null}
-    <button onClick={handleOpen}>ADD A QUESTION +</button>
+    <button className='add-question'onClick={handleOpen}>ADD A QUESTION +</button>
    <AddQuestion handleClose={handleClose} openAdd={openAdd} productId={productId} product={product}/>
     </div>
   )

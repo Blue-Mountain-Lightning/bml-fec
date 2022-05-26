@@ -26,7 +26,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
     setImages(photos);
   }
   const validatedEmail = (emailAddress) => {
-    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
     if (emailAddress.match(regexEmail)) {
       return true;
     } else {
@@ -65,7 +65,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
           onClick={event => handleClose(event)}
         >&times;</span>
         <form onSubmit={handleAddAnswer}>
-        <label>Your Answer(mandatory)
+        <label>Your Answer*
             <input name ='answerAdd'
               placeholder='Add your answer here...'
               type='text'
@@ -73,7 +73,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
               value={addAnswer.answerAdd}
               onChange={handleOnChange}/>
           </label>
-          <label>What is your nickname(mandatory)
+          <label>What is your nickname*
             <input name ='nickname'
               placeholder='Example: jack543!'
               type ='text'
@@ -82,7 +82,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
               onChange={handleOnChange}/>
             </label>
             <p>For privacy reasons, do not use your full name or email address</p>
-            <label>Your eamil (mandatory)
+            <label>Your eamil*
               <input name ='email'
                 type='text'
                 value={addAnswer.email}

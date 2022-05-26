@@ -7,23 +7,25 @@ const MoreAnswers = ({answers}) => {
     <div>
       {collapseAnswers ?
       <>
-      <button onClick ={() =>
+      <span className='more-answers'
+        onClick ={() =>
         setCollapseAnswers(!collapseAnswers)}>
           MORE ANSWERS
-          </button>
+          </span>
           </>
         : <>
         {(answers && answers.length >=3 ) && answers.slice(2).map(answer => {
           return (
-            <AnswerEntry answer={answer} key={answer.answer_id}/>
+            <AnswerEntry answer={answer} key={answer.answer_id} answerId={answer.answer_id}/>
           )
         })}
         <>
-          <button onClick={() => {
+          <span className='more-answers'
+          onClick={() => {
             setCollapseAnswers(!collapseAnswers)
           }}>
             Collapse Answers
-          </button>
+          </span>
         </>
         </>
     }
