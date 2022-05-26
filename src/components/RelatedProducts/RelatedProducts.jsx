@@ -14,7 +14,6 @@ const RelatedProducts = ({product}) => {
   const [products, setProducts] = useState([]);
   const [width, setWidth] = useState(0);
   const [rowPosition, setRowPosition] = useState(0);
-  // TODO IMPLEMENT THIS
   const [slideBoundary, setSlideBoundary] = useState({});
 
   const handleResizeWindow = (e) => {
@@ -105,13 +104,12 @@ const RelatedProducts = ({product}) => {
     }
 
     const element = rowElementRef.current;
-    const cssVarName = '--related-products-shift-offset';
     // TODO: Can the width to be shifted be found programatically?
     const offset = (direction === 'right') ? 376 : -376;
 
     utilities.animatedHorizontalShift(
       element,
-      cssVarName,
+      offsetVar,
       offset
     );
 
