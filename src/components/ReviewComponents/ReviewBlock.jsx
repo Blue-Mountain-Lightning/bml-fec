@@ -6,14 +6,13 @@ const ReviewBlock = (props) => {
     return;
   }
   const newArr = props.data.results.slice(0, props.num);
-
   return (
     <div className="reviewBlock">
       <div>
         {
           newArr.map((review) => {
             return (
-              <OneReview className="eachReview" key={review.review_id} data={review}/>
+              <OneReview key={review.review_id} className="eachReview" key={review.review_id} data={review}/>
             );
 
           })

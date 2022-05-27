@@ -27,6 +27,7 @@ const Reviews = (props) => {
           let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
           const response = await fetch(url, headers);
           const reviews99 = await response.json();
+          console.log(reviews99);
           setReviews(reviews99);
         } catch (err) {
           console.log(err);
@@ -38,7 +39,15 @@ const Reviews = (props) => {
   }, [props.id]);
 
   const searchButton = () => {
-    alert(searchText);
+    let newArr = [];
+    for (let i = 0; i < reviews.length; i ++) {
+      if (reviews[i].body.includes(searchText)) {
+        newArr.push(reviews[i]);
+      } else if (reviews[i].summary.includes(searchText)) {
+        newArr.push(reviews[i]);
+      }
+    }
+    console.log(newArr);
   }
 
   const handleClickAddReview = () => { //add would need a request.
@@ -59,15 +68,31 @@ const Reviews = (props) => {
     (currentNum + 2) > reviews.results.length ? setMore(false) : console.log('got more');
   }
 
-  const sortBy = () => {
+  const sortBy = (event) => {
+    console.log(event.target.value);
+    console.log(reviews);
+    if (event.target.value === 'newest') {
+      let newArr = reviews.results.slice();
 
+      newArr.sort((a, b) => {
+        const date1 = new Date(a.date);
+        const date2 = new Date(b.date);
+        if (date1.getTime() > date2.getTime()) {
+          return a.date - b.date;
+        }
+      });
+      console.log(newArr);
+    }
+
+    if (event.target.value === 'helpful') {
+      let newArr = reviews.results.slice();
+
+      newArr.sort((a, b) => {
+        return b.helpfulness -a.helpfulness;
+      });
+      setReviews(newArr);
+    }
   }
-
-  const handleSort = () => {
-
-  }
-
-
 
   return (
     <div className="reviewsMain">
@@ -96,13 +121,11 @@ const Reviews = (props) => {
             <p className="showingText">showing: </p>
               <form>
                 <label>
-                  <select value={selectSort} onChange={setSelectSort}>
-                    <option value="grapefruit">Sort By</option>
-                    <option value="lime">Relevant</option>
-                    <option value="coconut">Newest</option>
-                    <option value="mango">Helpful</option>
-                    <option value="mango">Highest rated</option>
-                    <option value="mango">Lowest rated</option>
+                  <select value={selectSort} onChange={sortBy}>
+                    <option value="none">Sort By</option>
+                    <option value="helpful">Helpful</option>
+                    <option value="newest">Newest</option>
+                    <option value="relevant">Relevant</option>
                   </select>
                 </label>
         </form>
