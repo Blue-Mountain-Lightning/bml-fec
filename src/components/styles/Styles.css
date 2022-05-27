@@ -308,8 +308,10 @@ overwrite broser default <select> styling */
 }
 
 .horizontal-shifter {
-  transform: translateX(var(--related-products-shift-offset));
+  position: relative;
+  left: var(--related-products-shift-offset);
 }
+
 .products-list {
   display: flex;
   flex-direction: row;
