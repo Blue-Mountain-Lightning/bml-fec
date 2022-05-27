@@ -1,29 +1,20 @@
 import React from 'react';
-
 import { useState, useEffect, useRef } from 'react';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-import ProductCard from '../ProductCard';
-import utilities from './utilities';
+import ProductRow from './ProductRow';
 
-const HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
+const OFFSET_VAR = '--related-products-shift-offset';
+const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
-  const cache = useRef({}); //
+  // refs
+  const cache = useRef({});
+
+  // state
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
-  const [width, setWidth] = useState(0);
-  const [rowPosition, setRowPosition] = useState(0);
-
-  const handleResizeWindow = (e) => {
-    const {width} = utilities.getWindowDimensions();
-    setWidth(width);
-  }
 
   useEffect(() => {
-    handleResizeWindow();
-    window.addEventListener("resize", handleResizeWindow);
-
     const fetchRelatedProducts = async () => {
       if (!product.id) { return; };
 
@@ -36,7 +27,7 @@ const RelatedProducts = ({product}) => {
         if (cache.current[relatedIDsEndpoint]) {
           relatedProductIDs = cache.current[relatedIDsEndpoint];
         } else {
-          const IdsResponse = await fetch(relatedIDsEndpoint, HEADERS)
+          const IdsResponse = await fetch(relatedIDsEndpoint, REQUEST_HEADERS)
           let parsedResponse = await IdsResponse.json();
 
           // Remove any duplicate IDs
@@ -53,7 +44,7 @@ const RelatedProducts = ({product}) => {
         // Fetch information about related products or load from cache
         const productRequests = relatedProductIDs.map(id => {
           const url = `${process.env.REACT_APP_API}products/${id}`;
-          return (cache.current[id]) ? cache.current[id] : fetch(url, HEADERS);
+          return (cache.current[id]) ? cache.current[id] : fetch(url, REQUEST_HEADERS);
         })
 
         try {
@@ -83,68 +74,14 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
-  const handleButtonClick = (e, name) => {
-    const cardsThatFit = utilities.numCardsThatFit(width);
-    if (name === 'increment') {
-      if (rowPosition === products.length - 1) {
-        setRowPosition(0);
-        return;
-      }
-
-      setRowPosition(rowPosition + 1);
-    }
-    if (name === 'decriment') {
-      if (rowPosition === 0) {
-        setRowPosition(products.length - 1);
-        return;
-      }
-      setRowPosition(rowPosition - 1);
-    }
-  }
-
-  const renderProductRow = () => {
-    const cardsThatFit = utilities.numCardsThatFit(width);
-    let end = rowPosition + cardsThatFit;
-    let rowEntries;
-    if (end > products.length) {
-      let firstCut = products.slice(rowPosition, products.length);
-      let secondCut = products.slice(0, end - products.length);
-      rowEntries = firstCut.concat(secondCut);
-    } else {
-      rowEntries = products.slice(rowPosition, end);
-    }
-
-    return rowEntries.map((p, i) => {
-      if (i > utilities.numCardsThatFit(width) - 1) { return };
-      return (<ProductCard key={p.id} product={p} />)
-    })
-  }
 
   if (loaded) {
+    if (products.length === 0) { return <></> };
     return (
-      <div className="section">
-        <div className="container-large">
-          <div className="page-padding">
-            <h1 className='center-heading'>You may also like</h1>
-            {/* This is just a palceholder style for now */}
-            <div className='product-row'>
-              {/* Some code here to get viewport width and
-              adjust amount of shown elements to fit in that*/}
-              <button className='card-button card-next'
-                      onClick={(e) => handleButtonClick(e, 'decriment')}
-              >
-                <FaAngleLeft className='card-icon'/>
-              </button>
-              {renderProductRow()}
-              <button className='card-button card-prev'
-                      onClick={(e) => handleButtonClick(e, 'increment')}
-              >
-                <FaAngleRight className='card-icon'/>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <>
+        <h1 className='center-heading'>You may also like</h1>
+        <ProductRow products={products} offsetVar={OFFSET_VAR} />
+      </>
     );
   }
 }
