@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
 import ProductCard from '../ProductCard';
+import RowNav from './RowNav';
 import ScrollButton from './ScrollButton';
 
 const CARD_WIDTH = 376;
@@ -36,8 +37,10 @@ const ProductRow = ({products, offsetVar}) => {
     const { innerWidth } = window;
 
     let numProducts = products.length;
-    let numCards = Math.floor(innerWidth / 408);
+    let numCards = Math.floor(innerWidth / (CARD_WIDTH));
 
+
+    // Set the number of cards that will fit on the screen at a given time
     if (numCards > numProducts) {
       numCards = numProducts;
     }
@@ -54,7 +57,7 @@ const ProductRow = ({products, offsetVar}) => {
     setOffset(newMaxOffset);
     setMargin((innerWidth - cardRowWidth) / 2);
     setMaxOffset(newMaxOffset);
-    setButtonState(newMaxOffset);
+    setPrevButton(false);
   }
 
 
@@ -105,23 +108,30 @@ const ProductRow = ({products, offsetVar}) => {
   }, [products]);
 
   return (
-    <div className='product-row'>
-      <div className='blank-side blank-left'
-           style={{'width': `${margin}px`}}
-           onClick={(e) => handleButtonClick(e, 'previous')}>
-        <ScrollButton direction={'previous'} active={prevButton}/>
-      </div >
-      <div className='products-list horizontal-shifter' ref={rowRef}>
-        {products.map(product => (
-           <ProductCard key={product.id} product={product} />
-        ))}
+    <>
+      <div className='product-row'>
+        <div className='blank-side blank-left'
+             style={{'width': `${margin}px`}}
+             onClick={(e) => handleButtonClick(e, 'previous')}>
+          <ScrollButton direction={'previous'} active={prevButton}/>
+        </div >
+        <div className='products-list horizontal-shifter' ref={rowRef}>
+          {products.map(product => (
+             <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+        <div className='blank-side blank-right'
+             style={{'width': `${margin}px`}}
+             onClick={(e) => handleButtonClick(e, 'next')}>
+          <ScrollButton direction={'next'} active={nextButton}/>
+        </div>
       </div>
-      <div className='blank-side blank-right'
-           style={{'width': `${margin}px`}}
-           onClick={(e) => handleButtonClick(e, 'next')}>
-        <ScrollButton direction={'next'} active={nextButton}/>
+      {/*
+      <div className='product-navdots'>
+        <RowNav numProducts={products.length} offset={offset} />
       </div>
-    </div>
+      */}
+    </>
   )
 }
 
