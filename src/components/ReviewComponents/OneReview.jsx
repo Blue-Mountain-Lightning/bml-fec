@@ -21,6 +21,11 @@ const OneReview = (props) => {
 
 
   const helpful = () => {
+    if (liked === true) {
+      setNum(num - 1);
+      setLiked(!liked);
+      return;
+    }
     setLiked(!liked);
     //post request with yes/no.
     if (disliked) {

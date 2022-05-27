@@ -4,7 +4,7 @@
   margin-top: 200px;
   margin-left: 500px;
   margin-bottom: 100px;
-  height: 700px;
+  height: 1000px;
 }
 
 .leftSide {
@@ -13,7 +13,7 @@
   width: 300px;
   background-color: rgb(242, 241, 241);
   border-radius: 10px;
-  height: 800px;
+  height: 1380px;
 }
 
 .showRatings {
@@ -102,7 +102,7 @@
   margin-left: 50px;
   margin-right: 50px;
   width: 1000px;
-  height: 600px;
+  height: 1200px;
   overflow-y: auto;
 }
 

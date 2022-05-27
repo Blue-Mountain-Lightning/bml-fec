@@ -3,7 +3,6 @@ import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
 import './Review1.css';
 
 const ShowStars = (props) => {
-  const [num, setNum] = useState(0);
   if (props.data === undefined) {
     return;
   }
@@ -14,7 +13,6 @@ const ShowStars = (props) => {
     avg = arr[i].rating + avg;
   }
   avg = avg / props.data.results.length;
-
 
   return (
     <div className="showRatings">

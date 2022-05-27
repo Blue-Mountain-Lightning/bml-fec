@@ -9,6 +9,7 @@ import { IoChevronDownOutline } from "react-icons/io5";
 
 
 const Reviews = (props) => {
+
   const [reviews, setReviews] = useState(undefined);
   const [searchText, setSearch] = useState('');
   const [page, setPage] = useState('reviews');
@@ -19,8 +20,12 @@ const Reviews = (props) => {
   const [selectSort, setSelectSort] = useState('');
   const [ratingsNumber, setRatingsNumber] = useState(0);
 
-  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}`
+  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=20`
+
   useEffect(() => {
+    if (reviews !== undefined) {
+      return;
+    }
     const fetchReviews = async () => {
       if (props.id) {
         try {
@@ -68,31 +73,71 @@ const Reviews = (props) => {
     (currentNum + 2) > reviews.results.length ? setMore(false) : console.log('got more');
   }
 
-  const sortBy = (event) => {
-    console.log(event.target.value);
-    console.log(reviews);
+  const getSorted = (event) => {
+
     if (event.target.value === 'newest') {
-      let newArr = reviews.results.slice();
-
-      newArr.sort((a, b) => {
-        const date1 = new Date(a.date);
-        const date2 = new Date(b.date);
-        if (date1.getTime() > date2.getTime()) {
-          return a.date - b.date;
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=newest&count=20`
+      const fetchReviews = async () => {
+        if (props.id) {
+          try {
+            let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+            const response = await fetch(url, headers);
+            const reviews99 = await response.json();
+            console.log(reviews99);
+            setReviews(reviews99);
+          } catch (err) {
+            console.log(err);
+          }
         }
-      });
-      console.log(newArr);
+      }
+      fetchReviews();
     }
 
-    if (event.target.value === 'helpful') {
-      let newArr = reviews.results.slice();
-
-      newArr.sort((a, b) => {
-        return b.helpfulness -a.helpfulness;
-      });
-      setReviews(newArr);
+    if(event.target.value === 'helpful') {
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=helpful&count=20`
+      const fetchReviews = async () => {
+        if (props.id) {
+          try {
+            let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+            const response = await fetch(url, headers);
+            const reviews99 = await response.json();
+            console.log(reviews99);
+            setReviews(reviews99);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+      fetchReviews();
     }
+
+    if(event.target.value === 'relevant') {
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=relevant&count=20`
+      const fetchReviews = async () => {
+        if (props.id) {
+          try {
+            let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+            const response = await fetch(url, headers);
+            const reviews99 = await response.json();
+            console.log(reviews99);
+            setReviews(reviews99);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+      fetchReviews();
+    }
+
+   }
+
+
+  if (reviews === undefined) {
+    return;
   }
+
+  // console.log(reviews.results);
+
 
   return (
     <div className="reviewsMain">
@@ -121,7 +166,7 @@ const Reviews = (props) => {
             <p className="showingText">showing: </p>
               <form>
                 <label>
-                  <select value={selectSort} onChange={sortBy}>
+                  <select value={selectSort} onChange={getSorted} >
                     <option value="none">Sort By</option>
                     <option value="helpful">Helpful</option>
                     <option value="newest">Newest</option>
