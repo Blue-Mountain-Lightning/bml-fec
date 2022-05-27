@@ -1,6 +1,6 @@
 import { MdNavigateBefore, MdNavigateNext} from 'react-icons/md';
 
-const ScrollButton = ({direction, isActive}) => {
+const ScrollButton = ({direction, active}) => {
   let IconComponent;
   let classes = 'card-button';
 
@@ -14,13 +14,11 @@ const ScrollButton = ({direction, isActive}) => {
     IconComponent = MdNavigateNext;
   }
 
-  if (!isActive) {
-    classes += ' hidden-button';
-  }
+  let style = active ? {} : {'opacity': '0.4'};
 
   return (
     <button className={classes}>
-      <IconComponent className='card-icon' />
+      <IconComponent className='card-icon' style={style} />
     </button>
   )
 }
