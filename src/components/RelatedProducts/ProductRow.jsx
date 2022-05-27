@@ -126,9 +126,11 @@ const ProductRow = ({products, offsetVar}) => {
           <ScrollButton direction={'next'} active={nextButton}/>
         </div>
       </div>
+      {/*
       <div className='product-navdots'>
         <RowNav numProducts={products.length} offset={offset} />
       </div>
+      */}
     </>
   )
 }
