@@ -4,7 +4,7 @@
   margin-top: 200px;
   margin-left: 500px;
   margin-bottom: 100px;
-  height: 1200px;
+  height: 700px;
 }
 
 .leftSide {
@@ -13,14 +13,21 @@
   width: 300px;
   background-color: rgb(242, 241, 241);
   border-radius: 10px;
+  height: 800px;
+}
+
+.showRatings {
+  flex-direction: row;
+  margin-left: 100px;
 }
 
 .reviewText {
   order:1;
-  margin-left: 80px;
   margin-right: 80px;
   margin-top: 35px;
   margin-bottom: 70px;
+  width: 300px;
+  margin-left: 5px;
 }
 
 .addReviewButton {
@@ -36,7 +43,7 @@
   margin-bottom: 10px;
   order: 2;
   margin-right: 0px;
-  margin-left: 800px;
+  margin-left: 50px;
   margin-top: 20px;
 }
 
@@ -95,7 +102,7 @@
   margin-left: 50px;
   margin-right: 50px;
   width: 1000px;
-  height: 1000px;
+  height: 600px;
   overflow-y: auto;
 }
 
@@ -242,4 +249,9 @@
 
 .fa-heart:hover {
   color: #f42731
+}
+
+.selectOptions {
+  width: 150px;
+  margin-left: 800px;
 }

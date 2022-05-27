@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Stars.css';
 import { BsStar, BsStarFill } from "react-icons/bs";
+
 const Stars = (props) => {
 
   const [rating, setRating] = useState(0);
