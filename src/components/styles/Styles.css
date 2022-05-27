@@ -319,3 +319,12 @@ overwrite broser default <select> styling */
   transition: all 244ms;
   transition-timing-function: ease;
 }
+
+/* RowNav */
+.row-dots {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  font-size: .50rem;
+}
