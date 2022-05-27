@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Stars from './Stars.jsx';
 import {FcLikePlaceholder, FcLike} from 'react-icons/fc';
+
 const OneReview = (props) => {
   const [fullReview, setFullReview] = useState('');
   const [summary, setSummary] = useState('hi');
@@ -26,6 +27,7 @@ const OneReview = (props) => {
 
   const helpful = (event) => {
     console.log(event.target.value);
+    alert(event.target.value);
     //post request with yes/no.
 
   }

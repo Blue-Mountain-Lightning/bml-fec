@@ -3,7 +3,10 @@ import AddReview from './AddReview.jsx';
 import Filter from './Filter.jsx';
 import ReviewBlock from './ReviewBlock.jsx';
 import './Review1.css';
-const axios = require('axios').default;
+import ShowStars from './ShowStars.jsx';
+
+import { IoChevronDownOutline } from "react-icons/io5";
+
 
 const Reviews = (props) => {
   const [reviews, setReviews] = useState(undefined);
@@ -13,6 +16,9 @@ const Reviews = (props) => {
   const [currentNum, setCurrentNum] = useState(2);
   const [state, setState] = useState(2);
   const [more, setMore] = useState(true);
+  const [selectSort, setSelectSort] = useState('');
+  const [ratingsNumber, setRatingsNumber] = useState(0);
+
   const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}`
   useEffect(() => {
     const fetchReviews = async () => {
@@ -53,10 +59,23 @@ const Reviews = (props) => {
     (currentNum + 2) > reviews.results.length ? setMore(false) : console.log('got more');
   }
 
+  const sortBy = () => {
+
+  }
+
+  const handleSort = () => {
+
+  }
+
+
+
   return (
     <div className="reviewsMain">
       <div className="leftSide">
-        <h1 className="reviewText">Reviews</h1>
+        <h1 className="reviewText">Ratings &#38; Reviews</h1>
+
+        <ShowStars data={reviews}/>
+
         <div className="searchFilter">
           <form onSubmit={searchButton}>
             <label>
@@ -68,11 +87,27 @@ const Reviews = (props) => {
       </div>
 
       <div className="rightSide">
-        <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button>
+        {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
 
         <div className="reviewShowing">
           {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}
-          {showAdd === false ? <p className="showingText">showing: </p> : <p></p>}
+          {showAdd === false ?
+          <div>
+            <p className="showingText">showing: </p>
+              <form>
+                <label>
+                  <select value={selectSort} onChange={setSelectSort}>
+                    <option value="grapefruit">Sort By</option>
+                    <option value="lime">Relevant</option>
+                    <option value="coconut">Newest</option>
+                    <option value="mango">Helpful</option>
+                    <option value="mango">Highest rated</option>
+                    <option value="mango">Lowest rated</option>
+                  </select>
+                </label>
+        </form>
+          </div>
+          : <p></p>}
           {showAdd === false ? <ReviewBlock className="reviewBlock" data={reviews} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd} id={props.id}/>}
           {( more === true) ? <button className="showMore" onClick={() => { showMore();}} >show more</button> : <p></p>}
         </div>
