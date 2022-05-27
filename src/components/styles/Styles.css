@@ -164,15 +164,12 @@ overwrite broser default <select> styling */
 /* PRODUCT CARD */
 .card-styles-parent {
   position: relative;
-  transition: all 0.12s linear;
   height: 480px;
   width: 360px;
-  min-width: 240px;
 }
 
 .card-styles-thumbnail {
   height: 100%;
-  width: auto;
   aspect-ratio: 6 / 8;
   object-fit: cover;
 }
@@ -194,15 +191,16 @@ overwrite broser default <select> styling */
 
 .card-style-circle-selected {
   border: 2px solid black !important;
+  border: 2px solid #ce4d12 !important;
 }
 
 .card-style-grid-overlay {
   position: absolute;
   display: flex;
   bottom: 0px;
-  left: 0px;
+  left: -2px;
   height: 7rem;
-  width: 100%;
+  width: 364px; /* why????? */
   background: white;
   transition: opacity 0.4s;
   opacity: 1;
@@ -225,6 +223,7 @@ overwrite broser default <select> styling */
 .center-heading {
   text-align: center;
   padding-bottom: 2rem;
+  font-size: 2.4rem;
 }
 
 /* PRICE */
@@ -236,35 +235,96 @@ overwrite broser default <select> styling */
 .product-row {
   display: flex;
   flex-direction: row;
+  position: relative;
+  margin: 0 auto;
   justify-content: center;
   transition: all 0.12s linear;
-  gap: 1rem;
+  gap: 16px;
   opacity: 1;
+  overflow: hidden;
 }
 
-.card-button {
-  font-size: 3rem;
-  background: white;
-  color: #888888;
-  border: none;
+.card-icon:hover {
+  color: rgb(238, 128, 55);
 }
 
 .card-icon {
-  color: white;
-  border-radius: 50%;
-  background-color: #d3d3d3;
+  color: black;
+  border-radius: 10%;
+  background: white;
 }
 
-.card-button.card-next {
-  margin-right: -.7rem;
+.card-icon-inactive {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-button {
+  font-size: 3.5rem;
+  background: white;
+  border: none;
+  position: absolute;
 }
 
 .card-button.card-prev {
-  margin-left: -.7rem;
+  right: -90px;
+  background: none;
+  top: 220px;
+}
+
+.card-button.card-next {
+  left: -90px;
+  background: none;
+  top: 220px;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.blank-side {
+  background: white -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 1)));
+  z-index: 1;
+}
+
+.blank-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.blank-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+:root {
+  --related-products-shift-offset: 0px;
+  --your-outfit-shift-offset: 0px;
+}
+
+.horizontal-shifter {
+  position: relative;
+  left: var(--related-products-shift-offset);
+}
+
+.products-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  transition: all 244ms;
+  transition-timing-function: ease;
+}
+
+/* RowNav */
+.row-dots {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  font-size: .50rem;
 }

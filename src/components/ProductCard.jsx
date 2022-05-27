@@ -1,7 +1,8 @@
 import React from 'react';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 
+import imageNotAvailable from '../assets/image-not-available.png'
 import Price from './Price';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
@@ -10,11 +11,9 @@ const stylesCache = {}; // stores previous style API requests
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const cache = useRef({});
-
+  const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
-  const [currentStyle, setCurrentStyle] = useState({});
   const [styleSwitcherActive, setStyleSwitcherActive] = useState(false);
 
   const parseFontSize = (size) => {
@@ -23,11 +22,7 @@ const ProductCard = ({ product }) => {
 
   const fontSize = parseFontSize(1); // the fontsize in rem
 
-  // TODO: Handle image not available
-
-
   useEffect(() => {
-
     const fetchProductStyles = async () => {
       try {
         let stylesArray;
@@ -69,11 +64,20 @@ const ProductCard = ({ product }) => {
     setStyleSwitcherActive(false);
   }
 
+  const imageExists = () => {
+    const attemptedURL = currentStyle.photos[0].thumbnail_url;
+    return (typeof attemptedURL === 'string')
+  }
+
   if (loaded) {
+    const imageIsProvided = imageExists();
+    const image = imageIsProvided ? currentStyle.photos[0].thumbnail_url : imageNotAvailable;
+
     let styleSwitcher = (
       <div className='card-style-grid-overlay'>
           <div className='card-style-grid'>
             {styles.results.map((style, index) => {
+              {/* TODO: Implement a carousel for the pics */}
               if (index > 3) { return }; // DANGER: Remove this when implementing scroll
               let clsName = (style === currentStyle) ?
                 'card-style-circle card-style-circle-selected' : 'card-style-circle';
@@ -83,7 +87,7 @@ const ProductCard = ({ product }) => {
                 <img className={clsName}
                      key={style.style_id}
                      name={style.style_id}
-                     onClick={handleStyleClick}
+                     onMouseEnter={handleStyleClick}
                      src={style.photos[0].thumbnail_url}
                      alt=''
                 />
@@ -93,7 +97,8 @@ const ProductCard = ({ product }) => {
       </div>
     )
 
-    // style switch is pre-loaded but don't activate it unless mouse is over the picture
+    // style switch is pre-loaded but don't activate it unless mouse is over
+    // the picture
     let styleSwitcherElement;
     if (styleSwitcherActive) {
       styleSwitcherElement = styleSwitcher;
@@ -110,15 +115,20 @@ const ProductCard = ({ product }) => {
       >
         <div className='card-styles-parent'>
           <img className='card-styles-thumbnail'
-               src={currentStyle.photos[0].thumbnail_url}
+               src={image}
                alt=''
           />
-          {styleSwitcherElement}
+          {imageIsProvided ? styleSwitcherElement : <></>}
         </div>
-        <div className="text-all-caps" style={{"fontSize": parseFontSize(1)}}>{product.category}</div>
-          <b>{product.name}</b>
-          <Price style={currentStyle} fontSize={fontSize} />
-        <div>Star rating component</div>
+        <div className="text-all-caps"
+             style={{"fontSize": parseFontSize(1)}}>
+          {product.category}
+        </div>
+        <b>{product.name}</b>
+        <Price style={currentStyle} fontSize={fontSize} />
+        <div>
+          Star rating component
+        </div>
       </div>
     )
   }

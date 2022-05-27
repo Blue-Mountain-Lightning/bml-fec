@@ -5,7 +5,6 @@
 const Price = ({ style, fontSize }) => {
   let price = style["original_price"];
   let fontStyle = fontSize ? { "fontSize": fontSize } : {};
-  //console.log(fontStyle);
 
   if (style['sale_price'] !== null) {
     return (
