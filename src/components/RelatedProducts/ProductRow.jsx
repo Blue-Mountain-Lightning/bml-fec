@@ -1,15 +1,14 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
-import ProductCard from '../ProductCard';
-import RowNav from './RowNav';
+import ProductCard from '../ProductCard/ProductCard';
+// import RowNav from './RowNav';
 import ScrollButton from './ScrollButton';
 
-const CARD_WIDTH = 376;
-
+const CARD_WIDTH_REM = 20; // width of a Product Card in REM
 /*
 This components handles the UI/X of Related Items rows.
 */
-const ProductRow = ({products, offsetVar}) => {
+const ProductRow = ({products, offsetVar, buttonIcon, handleButtonIconClick}) => {
   const rowRef = useRef();
 
   const [offset, setOffset] = useState(0);
@@ -17,6 +16,7 @@ const ProductRow = ({products, offsetVar}) => {
   const [maxOffset, setMaxOffset] = useState(0);
   const [prevButton, setPrevButton] = useState(false);
   const [nextButton, setNextButton] = useState(false);
+  const [cardWidth, setCardWidth] = useState(false);
 
   const setButtonState = (newOffset) => {
     newOffset = newOffset || offset;
@@ -33,12 +33,16 @@ const ProductRow = ({products, offsetVar}) => {
     }
   }
 
+  const convertRemToPixels = (rem) => {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  }
+
   const handleResizeWindow = () => {
+    const cardWidth = convertRemToPixels(CARD_WIDTH_REM);
     const { innerWidth } = window;
 
     let numProducts = products.length;
-    let numCards = Math.floor(innerWidth / (CARD_WIDTH));
-
+    let numCards = Math.floor(innerWidth / (cardWidth));
 
     // Set the number of cards that will fit on the screen at a given time
     if (numCards > numProducts) {
@@ -51,15 +55,16 @@ const ProductRow = ({products, offsetVar}) => {
       numCards = 1;
     }
 
-    const cardRowWidth = (numCards * CARD_WIDTH);
-    const newMaxOffset = (products.length - numCards) * CARD_WIDTH / 2;
+    const cardRowWidth = (numCards * cardWidth);
+    const newMaxOffset = (products.length - numCards) * cardWidth / 2;
+    let newMargin = (innerWidth - cardRowWidth) / 2;
 
+    setCardWidth(cardWidth);
     setOffset(newMaxOffset);
-    setMargin((innerWidth - cardRowWidth) / 2);
+    setMargin(newMargin);
     setMaxOffset(newMaxOffset);
     setPrevButton(false);
   }
-
 
   const handleButtonClick = (event, value) => {
     let newOffset = offset;
@@ -67,7 +72,7 @@ const ProductRow = ({products, offsetVar}) => {
       if (offset >= maxOffset) {
         return;
       }
-      newOffset += CARD_WIDTH;
+      newOffset += cardWidth;
     }
 
     if (value === 'next') {
@@ -75,7 +80,7 @@ const ProductRow = ({products, offsetVar}) => {
         return;
       }
 
-      newOffset -= CARD_WIDTH;
+      newOffset -= cardWidth;
     }
 
     setOffset(newOffset);
@@ -117,7 +122,11 @@ const ProductRow = ({products, offsetVar}) => {
         </div >
         <div className='products-list horizontal-shifter' ref={rowRef}>
           {products.map(product => (
-             <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id}
+                         product={product}
+                         buttonIcon={buttonIcon}
+                         handleButtonIconClick={handleButtonIconClick}
+            />
           ))}
         </div>
         <div className='blank-side blank-right'

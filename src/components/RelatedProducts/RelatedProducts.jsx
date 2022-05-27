@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import {MdAdd} from 'react-icons/md';
 
 import ProductRow from './ProductRow';
 
@@ -80,7 +81,10 @@ const RelatedProducts = ({product}) => {
     return (
       <>
         <h1 className='center-heading'>You may also like</h1>
-        <ProductRow products={products} offsetVar={OFFSET_VAR} />
+        <ProductRow products={products}
+                    offsetVar={OFFSET_VAR}
+                    buttonIcon={MdAdd}
+                    handleButtonIconClick={false} />
       </>
     );
   }

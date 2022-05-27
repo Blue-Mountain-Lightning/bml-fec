@@ -2,14 +2,15 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import imageNotAvailable from '../assets/image-not-available.png'
-import Price from './Price';
+import imageNotAvailable from '../../assets/image-not-available.png'
+import Price from '../Price';
+import ShowStars from '../ReviewComponents/ShowStars';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 
 const stylesCache = {}; // stores previous style API requests
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, buttonIcon, handleButtonIconClick }) => {
   const navigate = useNavigate();
   const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -71,7 +72,8 @@ const ProductCard = ({ product }) => {
 
   if (loaded) {
     const imageIsProvided = imageExists();
-    const image = imageIsProvided ? currentStyle.photos[0].thumbnail_url : imageNotAvailable;
+    const image = imageIsProvided ?
+      currentStyle.photos[0].thumbnail_url : imageNotAvailable;
 
     let styleSwitcher = (
       <div className='card-style-grid-overlay'>
@@ -99,12 +101,15 @@ const ProductCard = ({ product }) => {
 
     // style switch is pre-loaded but don't activate it unless mouse is over
     // the picture
-    let styleSwitcherElement;
+    let styleSwitcherElement, buttonIcon;
     if (styleSwitcherActive) {
       styleSwitcherElement = styleSwitcher;
     } else {
       styleSwitcherElement = <div className='card-style-grid-overlay hide'></div>;
     }
+
+    buttonIcon = buttonIcon ? <div><buttonIcon className='card-icon-button' /></div> : <></>;
+    console.log(buttonIcon);
 
     return (
       <div className='clickable product-card'
@@ -118,6 +123,7 @@ const ProductCard = ({ product }) => {
                src={image}
                alt=''
           />
+          {buttonIcon}
           {imageIsProvided ? styleSwitcherElement : <></>}
         </div>
         <div className="text-all-caps"
