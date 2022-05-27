@@ -77,6 +77,7 @@ const ProductCard = ({ product }) => {
       <div className='card-style-grid-overlay'>
           <div className='card-style-grid'>
             {styles.results.map((style, index) => {
+              {/* TODO: Implement a carousel for the pics */}
               if (index > 3) { return }; // DANGER: Remove this when implementing scroll
               let clsName = (style === currentStyle) ?
                 'card-style-circle card-style-circle-selected' : 'card-style-circle';
@@ -86,7 +87,7 @@ const ProductCard = ({ product }) => {
                 <img className={clsName}
                      key={style.style_id}
                      name={style.style_id}
-                     onClick={handleStyleClick}
+                     onMouseEnter={handleStyleClick}
                      src={style.photos[0].thumbnail_url}
                      alt=''
                 />

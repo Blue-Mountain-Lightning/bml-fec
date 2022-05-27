@@ -191,6 +191,7 @@ overwrite broser default <select> styling */
 
 .card-style-circle-selected {
   border: 2px solid black !important;
+  border: 2px solid #ce4d12 !important;
 }
 
 .card-style-grid-overlay {
@@ -243,36 +244,37 @@ overwrite broser default <select> styling */
   overflow: hidden;
 }
 
-.card-button {
-  font-size: 3rem;
-  background: white;
-  border: none;
-}
 .card-icon:hover {
-  background: rgba(0, 0, 0, 0.2);
   color: rgb(238, 128, 55);
 }
 
 .card-icon {
-  color: white;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
+  color: black;
+  border-radius: 10%;
+  background: white;
 }
 
 .card-icon-inactive {
   background: rgba(0, 0, 0, 0.1) !important;
 }
 
-.card-button.card-next {
+.card-button {
+  font-size: 3.5rem;
+  background: white;
+  border: none;
   position: absolute;
-  right: 8px;
-  top: 260px;
 }
 
 .card-button.card-prev {
-  position: absolute;
-  left: 8px;
-  top: 260px;
+  right: -90px;
+  background: none;
+  top: 220px;
+}
+
+.card-button.card-next {
+  left: -90px;
+  background: none;
+  top: 220px;
 }
 
 .product-card {

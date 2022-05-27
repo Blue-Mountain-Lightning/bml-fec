@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-import utilities from './utilities';
 import ProductCard from '../ProductCard';
+import ScrollButton from './ScrollButton';
+import utilities from './utilities';
+
 import {IMAGE_WIDTH, IMAGE_GAP} from './utilities.js';
 
-const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
-const OFFSET_VAR = '--related-products-shift-offset';
 const CARD_WIDTH = IMAGE_WIDTH + IMAGE_GAP;
+const OFFSET_VAR = '--related-products-shift-offset';
+const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
   // refs
@@ -18,15 +19,15 @@ const RelatedProducts = ({product}) => {
   // state
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
-  const [width, setWidth] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(0);
+  const [scrollLimitReached, setScrollLimitReached] = useState({});
 
   // other assignments
-  const marginWidth = utilities.getMarginWidth(width, products.length);
-  const numCards = utilities.numCardsThatFit(width, products.length);
+  const marginWidth = utilities.getMarginWidth(viewportWidth, products.length) + 4;
 
   const handleResizeWindow = (e) => {
     const {width} = utilities.getWindowDimensions();
-    setWidth(width);
+    setViewportWidth(width);
   }
 
   useEffect(() => {
@@ -93,68 +94,70 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
+  const checkScrollLimit = () => {
+    let {CSSValueInteger: currentCSSVarValue, boundary}
+      = utilities.scrollStatus(viewportWidth, OFFSET_VAR, products.length);
+
+    const boundaryMargin = 20; // Because I'm paranoid
+    let scrollLimit = scrollLimitReached;
+    if (currentCSSVarValue >= boundary - boundaryMargin) {
+      scrollLimit.previous = true;
+    } else {
+      scrollLimit.previous = false;
+    }
+
+    if (currentCSSVarValue <= -boundary + boundaryMargin) {
+      scrollLimit.next = true;
+    } else {
+      scrollLimit.next = false;
+    }
+
+    setScrollLimitReached(scrollLimit);
+  }
+
   const handleButtonClick = (event, direction) => {
-
     let {CSSValueInteger, boundary}
-      = utilities.scrollStatus(width, OFFSET_VAR, products.length);
+      = utilities.scrollStatus(viewportWidth, OFFSET_VAR, products.length);
 
-    if (CSSValueInteger >= boundary && direction === 'left') {
-      console.log('At end of scroll view on right');
+    if (CSSValueInteger >= boundary - 20 && direction === 'previous') {
       return;
     }
 
-    if (CSSValueInteger <= -boundary && direction === 'right') {
-      console.log('At end of scroll view on left');
+    if (CSSValueInteger <= -boundary + 20 && direction === 'next') {
       return;
     }
+
 
     const element = rowElementRef.current;
-    // TODO: Can the width to be shifted be found programatically?
-    const offset = (direction === 'left') ? CARD_WIDTH : -CARD_WIDTH;
-
+    const offset = (direction === 'previous') ? CARD_WIDTH : -CARD_WIDTH;
     utilities.animatedHorizontalShift(
       element,
       OFFSET_VAR,
       offset
     );
+
+    checkScrollLimit();
   }
 
-  const renderProductRow = () => {
-    let rowEntries = products.map((p, i) => {
-      let element = <ProductCard key={p.id} product={p} />;
-      return element;
-    })
-    return rowEntries;
-  }
-
-  const setInitialOffset = (marginWidth, offsetVar, numCards) => {
-    let {boundary} = utilities.scrollStatus(width, OFFSET_VAR, products.length);
-    document.documentElement.style.setProperty(offsetVar, `${boundary}px`);
-  }
 
   if (loaded) {
-    setInitialOffset(marginWidth, OFFSET_VAR, numCards);
-
+    utilities.setInitialOffset(viewportWidth, OFFSET_VAR, products.length);
     return (
       <>
         <h1 className='center-heading'>You may also like</h1>
           <div className='product-row'>
             <div className='blank-side blank-left'
                  style={{'width': `${marginWidth}px`}}
-                 onClick={(e) => handleButtonClick(e, 'left')}>
-              <button className='card-button card-next'>
-                <FaAngleLeft className='card-icon'/>
-              </button>
+                 onClick={(e) => handleButtonClick(e, 'previous')}>
+              <ScrollButton direction={'previous'} isActive={scrollLimitReached.previous} />
             </div >
           <div className='products-list horizontal-shifter' ref={rowElementRef}>
-            {renderProductRow()}
+            {products.map(product => <ProductCard key={product.id} product={product} />)}
           </div>
           <div className='blank-side blank-right'
                style={{'width': `${marginWidth}px`}}
-               onClick={(e) => handleButtonClick(e, 'right')}>
-            <button className='card-button card-prev'>
-              <FaAngleRight className='card-icon'/>
-            </button>
+               onClick={(e) => handleButtonClick(e, 'next')}>
+            <ScrollButton direction={'next'} isActive={scrollLimitReached.next} />
           </div>
         </div>
       </>

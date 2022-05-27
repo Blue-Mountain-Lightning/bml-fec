@@ -49,8 +49,8 @@ const utilities = {
    */
   getMarginWidth: (width, numProducts) => {
     let cardsWidth = utilities.getCardsWidth(width, numProducts);
-    let marginWidth = Math.ceil((width - cardsWidth) / 2) + 1;
-    return String(marginWidth);
+    let marginWidth = Math.ceil((width - cardsWidth) / 2);
+    return marginWidth;
   },
 
   /**
@@ -89,9 +89,20 @@ const utilities = {
     let CSSValueInteger = Number(currentCSSValue.slice(0, currentCSSValue.length - 2));
     let boundary = (utilities.getTotalCardsWidth(width, numProducts) -
       utilities.getCardsWidth(width, numProducts)) / 2;
-    console.log(boundary);
 
     return {CSSValueInteger: CSSValueInteger, boundary: boundary};
+  },
+
+  /**
+   * Sets the initial offset so that the carousel starts at the beginning.
+   * @function setInitialOffset
+   * @param {[int]} width The width of the screen in pixels.
+   * @param {[string]} offsetVar The css variable assigned to the transform.
+   * @param {[int]} numProducts The total number of products.
+   */
+  setInitialOffset: (width, offsetVar, numProducts) => {
+    let {boundary} = utilities.scrollStatus(width, offsetVar, numProducts);
+    document.documentElement.style.setProperty(offsetVar, `${boundary}px`);
   },
 
   /**
