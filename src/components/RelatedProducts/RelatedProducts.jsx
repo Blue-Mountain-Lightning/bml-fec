@@ -141,6 +141,7 @@ const RelatedProducts = ({product}) => {
 
 
   if (loaded) {
+    if (products.length === 0) { return <></> };
     utilities.setInitialOffset(viewportWidth, OFFSET_VAR, products.length);
     return (
       <>
