@@ -57,7 +57,7 @@ const ProductRow = ({products, offsetVar}) => {
     setOffset(newMaxOffset);
     setMargin((innerWidth - cardRowWidth) / 2);
     setMaxOffset(newMaxOffset);
-    setButtonState();
+    setPrevButton(false);
   }
 
 
