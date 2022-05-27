@@ -20,14 +20,18 @@ const ProductRow = ({products, offsetVar}) => {
   const setButtonState = (newOffset) => {
     newOffset = newOffset || offset;
     if (newOffset >= maxOffset) {
+      console.log('previous button off')
       setPrevButton(false);
     } else {
+      console.log('previous button on')
       setPrevButton(true);
     }
 
     if (newOffset <= -maxOffset) {
+      console.log('next button off')
       setNextButton(false);
     } else {
+      console.log('next button on')
       setNextButton(true);
     }
   }
@@ -54,7 +58,7 @@ const ProductRow = ({products, offsetVar}) => {
     setOffset(newMaxOffset);
     setMargin((innerWidth - cardRowWidth) / 2);
     setMaxOffset(newMaxOffset);
-    setButtonState(newMaxOffset);
+    setButtonState();
   }
 
 
