@@ -49,6 +49,7 @@ const ComparisonModal = ({handleClose, a, b}) => {
         </thead>
         {Object.keys(featuresData).map(feature =>
         <FeatureRow
+          key={feature}
           valueA={featuresData[feature]['a']}
           valueB={featuresData[feature]['b']}
           name={feature}
