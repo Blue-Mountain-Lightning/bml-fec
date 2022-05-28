@@ -13,28 +13,23 @@ const ComparisonModal = ({handleClose, a, b}) => {
       a.features: b.features;
 
   const featuresData = longest.reduce((memo, feature, i) => {
-    const aName = a.name;
-    const bName = b.name;
     const aFeatures = a.features[i];
     const bFeatures = b.features[i];
 
-    if (aFeatures && (!(aFeatures in memo))) {
-      memo[aFeatures.feature] = {
-        'a': a.features?.value,
-        'b': bFeatures?.value
-      };
+    if (aFeatures && aFeatures.feature in memo) {
+      memo[aFeatures.feature]['a'] = aFeatures.value;
+    } else if (aFeatures) {
+      memo[aFeatures.feature] = {'a': aFeatures.value};
     }
-    if (bFeatures && (!(bFeatures in memo))) {
-      memo[bFeatures.feature] = {
-        'a': aFeatures?.value,
-        'b': bFeatures?.value
-      };
+
+    if (bFeatures && bFeatures.feature in memo) {
+      memo[bFeatures.feature]['b'] = bFeatures.value;
+    } else if (bFeatures) {
+      memo[bFeatures.feature] = {'b': bFeatures.value};
     }
 
     return memo;
   }, {});
-
-  console.log(featuresData);
 
   return (
     <div className='modal' ref={wrapperRef}>
@@ -54,8 +49,8 @@ const ComparisonModal = ({handleClose, a, b}) => {
         </thead>
         {Object.keys(featuresData).map(feature =>
         <FeatureRow
-          valueA={featuresData[feature].a}
-          valueB={featuresData[feature].b}
+          valueA={featuresData[feature]['a']}
+          valueB={featuresData[feature]['b']}
           name={feature}
         />
         )}

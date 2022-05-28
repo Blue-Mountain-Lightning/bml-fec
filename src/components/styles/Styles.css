@@ -210,7 +210,7 @@ overwrite broser default <select> styling */
 }
 
 .card-button-icon:hover {
-  color: rgb(238, 128, 55);
+  color: #ce4d12;
   background: white;
 }
 
@@ -253,7 +253,7 @@ overwrite broser default <select> styling */
 }
 
 .card-icon:hover {
-  color: rgb(238, 128, 55);
+  color: #ce4d12;
 }
 
 .card-icon {
