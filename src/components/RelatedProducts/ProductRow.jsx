@@ -8,7 +8,7 @@ const CARD_WIDTH_REM = 20; // width of a Product Card in REM
 /*
 This components handles the UI/X of Related Items rows.
 */
-const ProductRow = ({products, offsetVar, buttonIcon, handleButtonIconClick}) => {
+const ProductRow = ({products, offsetVar, Icon, iconHandler, iconHandlerClose}) => {
   const rowRef = useRef();
 
   const [offset, setOffset] = useState(0);
@@ -124,14 +124,17 @@ const ProductRow = ({products, offsetVar, buttonIcon, handleButtonIconClick}) =>
           {products.map(product => (
             <ProductCard key={product.id}
                          product={product}
-                         buttonIcon={buttonIcon}
-                         handleButtonIconClick={handleButtonIconClick}
+                         Icon={Icon}
+                         iconHandler={iconHandler}
+                         iconHandlerClose={iconHandlerClose}
             />
           ))}
         </div>
-        <div className='blank-side blank-right'
-             style={{'width': `${margin}px`}}
-             onClick={(e) => handleButtonClick(e, 'next')}>
+        <div
+          className='blank-side blank-right'
+          style={{'width': `${margin}px`}}
+          onClick={(e) => handleButtonClick(e, 'next')}
+        >
           <ScrollButton direction={'next'} active={nextButton}/>
         </div>
       </div>

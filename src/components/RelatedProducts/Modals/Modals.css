@@ -1,0 +1,36 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  min-width: 360px;
+  background: white;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-radius:10px;
+  z-index: 99999999;
+  transform: translate(-50%, 0);
+  transition: all ease 1s;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.modal-header {
+  padding-left: 50px;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-titles {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  border-collapse: separate;
+  padding-bottom: 16px;
+  border-spacing: 50px 0;
+  padding-top: 16px;
+}

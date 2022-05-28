@@ -1,4 +1,4 @@
-import { MdNavigateBefore, MdNavigateNext} from 'react-icons/md';
+import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 const ScrollButton = ({direction, active}) => {
   let IconComponent;
@@ -14,7 +14,7 @@ const ScrollButton = ({direction, active}) => {
     IconComponent = MdNavigateNext;
   }
 
-  let style = active ? {} : {'opacity': '0.4'};
+  let style = active ? {} : {'opacity': '0.4', 'pointerEvents': 'none'};
 
   return (
     <button className={classes}>
