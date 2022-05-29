@@ -3,7 +3,6 @@
   left: 50%;
   max-width: 540px;
   background: white;
-  background-color: buttonface;
   -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -24,8 +23,16 @@
   font-size: 1rem;
   color: #114488;
 }
+
 .close-button {
   font-weight: normal;
+  background-color: gray2;
+  font-size: 1rem;
+  border: 1px solid black;
+}
+
+.close-button:focus {
+  background-color: red;
 }
 
 .modal-header {
@@ -38,9 +45,9 @@
 
 table {
   table-layout: fixed;
-  min-width: 360px;
+  min-width: 320px;
   border-collapse: collapse;
-  width: 100%
+  width: 100%;
 }
 
 th {
@@ -76,11 +83,15 @@ th {
 td, th {
   width: 10%;
   padding: .25rem 0;
-  overflow: auto;
-  border-bottom: 1px solid #d3d3d3;
+
 }
 
 th {
   color: #ce4d12;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+}
+table td + td { border-left:2px solid gray; }
+
+tbody {
+  overflow: scroll;
 }

@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react';
 import {MdCheck, MdClose} from 'react-icons/md';
+import {GrFormClose} from 'react-icons/gr';
 
 import './Modals.css';
 import useOutsideClickListener from './useOutsideClickListener';
@@ -60,7 +61,7 @@ const ComparisonModal = ({handleClose, a, b}) => {
         <div className='modal-title'>
           <span>Comparing</span>
         </div>
-        <div className='close-button'>(click anywhere to close)</div>
+        <button onClick={handleClose}><GrFormClose title={'Close'} className='close-button'/></button>
       </div>
       <table>
         <thead>

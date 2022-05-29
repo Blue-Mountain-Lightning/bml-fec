@@ -89,7 +89,7 @@ const RelatedProducts = ({product}) => {
   if (loaded) {
     const Modal = (
       <>
-        <div className='mask'></div>
+        {/*<div className='mask'></div>*/}
         <ComparisonModal
           a={modal}
           b={product}
@@ -100,7 +100,7 @@ const RelatedProducts = ({product}) => {
 
     if (modal !== null) {
       // stop click handlers and scrolling when modal is open
-      document.body.classList.add('scroll-lock');
+      // document.body.classList.add('scroll-lock');
     } else {
       document.body.classList.remove('scroll-lock');
     }
