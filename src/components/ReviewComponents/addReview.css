@@ -1,7 +1,8 @@
 .addReviewAll {
   font: Montserrat;
+  padding-left: 50px;
+  font-size: 20px;
 }
-
 
 
 .addReviewSummary {
@@ -15,6 +16,7 @@
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
 .addFullReview {
@@ -28,6 +30,7 @@
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
 .nickname {
@@ -41,6 +44,7 @@
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
 .email {
@@ -54,6 +58,7 @@
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
 .submitAdd {
@@ -73,4 +78,21 @@
 .submitAdd:hover {
   background-color: rgb(157, 225, 228);
   color: black;
+}
+
+.text1 {
+  font-size: 20px;
+}
+.rb1 {
+  margin-left: 450px;
+}
+.text2 {
+  font-size: 20px;
+}
+
+.rb0 {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+
 }

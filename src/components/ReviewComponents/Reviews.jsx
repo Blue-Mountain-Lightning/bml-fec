@@ -5,20 +5,13 @@ import ReviewBlock from './ReviewBlock.jsx';
 import './Review1.css';
 import ShowStars from './ShowStars.jsx';
 
-import { IoChevronDownOutline } from "react-icons/io5";
-
-
 const Reviews = (props) => {
 
   const [reviews, setReviews] = useState(undefined);
-  const [searchText, setSearch] = useState('');
-  const [page, setPage] = useState('reviews');
   const [showAdd, setShow] = useState(false);
   const [currentNum, setCurrentNum] = useState(2);
-  const [state, setState] = useState(2);
   const [more, setMore] = useState(true);
   const [selectSort, setSelectSort] = useState('');
-  const [ratingsNumber, setRatingsNumber] = useState(0);
 
   const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=20`
 
@@ -43,25 +36,10 @@ const Reviews = (props) => {
     fetchReviews();
   }, [props.id]);
 
-  const searchButton = () => {
-    let newArr = [];
-    for (let i = 0; i < reviews.length; i ++) {
-      if (reviews[i].body.includes(searchText)) {
-        newArr.push(reviews[i]);
-      } else if (reviews[i].summary.includes(searchText)) {
-        newArr.push(reviews[i]);
-      }
-    }
-    console.log(newArr);
-  }
+
 
   const handleClickAddReview = () => { //add would need a request.
     setShow(true);
-  }
-
-  const handleSearchTextChange = (event) => { //search would need a request.
-    setSearch(event.target.value);
-    //add search functions later.
   }
 
   const handleCloseAdd = (event) => {
@@ -146,14 +124,7 @@ const Reviews = (props) => {
 
         <ShowStars data={reviews}/>
 
-        <div className="searchFilter">
-          <form onSubmit={searchButton}>
-            <label>
-              <input className="searchBar" placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
-            </label>
-            <input className="searchButton" type="submit" value="Search" />
-          </form>
-        </div>
+
       </div>
 
       <div className="rightSide">
@@ -163,21 +134,22 @@ const Reviews = (props) => {
           {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}
           {showAdd === false ?
           <div>
-            <p className="showingText">showing: </p>
-              <form>
+
+              <form className="sortBy">
                 <label>
                   <select value={selectSort} onChange={getSorted} >
-                    <option value="none">Sort By</option>
+                    <option value="none">Sort by</option>
                     <option value="helpful">Helpful</option>
                     <option value="newest">Newest</option>
                     <option value="relevant">Relevant</option>
                   </select>
                 </label>
-        </form>
+              </form>
+
           </div>
           : <p></p>}
-          {showAdd === false ? <ReviewBlock className="reviewBlock" data={reviews} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd} id={props.id}/>}
-          {( more === true) ? <button className="showMore" onClick={() => { showMore();}} >show more</button> : <p></p>}
+          {showAdd === false ? <ReviewBlock className="reviewBlock" func={setReviews} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5}/> : <AddReview show={showAdd} id={props.id}/>}
+          {(more === true) ? <button className="showMore" onClick={() => { showMore()}} >show more</button> : <p></p>}
         </div>
 
       </div>
