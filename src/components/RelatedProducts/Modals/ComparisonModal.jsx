@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef} from 'react';
+import {MdCheck, MdClose} from 'react-icons/md';
 
 import './Modals.css';
 import useOutsideClickListener from './useOutsideClickListener';
@@ -16,16 +17,38 @@ const ComparisonModal = ({handleClose, a, b}) => {
     const aFeatures = a.features[i];
     const bFeatures = b.features[i];
 
+    let aValue;
+    if (aFeatures) {
+      if (aFeatures.value === null) {
+        aValue = <MdClose className='red-text' />;
+      } else if (aFeatures.value === true) {
+        aValue = <MdCheck className='green-text' />;
+      } else {
+        aValue = aFeatures.value;
+      }
+    }
+
+    let bValue;
+    if (bFeatures) {
+      if (bFeatures.value === null) {
+        bValue = <MdClose className='red-text' />;
+      } else if (bFeatures.value === true) {
+        bValue = <MdCheck className='green-text' />;
+      } else {
+        bValue = bFeatures.value;
+      }
+    }
+
     if (aFeatures && aFeatures.feature in memo) {
-      memo[aFeatures.feature]['a'] = aFeatures.value;
+      memo[aFeatures.feature]['a'] = aValue;
     } else if (aFeatures) {
-      memo[aFeatures.feature] = {'a': aFeatures.value};
+      memo[aFeatures.feature] = {'a': aValue};
     }
 
     if (bFeatures && bFeatures.feature in memo) {
-      memo[bFeatures.feature]['b'] = bFeatures.value;
+      memo[bFeatures.feature]['b'] = bValue;
     } else if (bFeatures) {
-      memo[bFeatures.feature] = {'b': bFeatures.value};
+      memo[bFeatures.feature] = {'b': bValue};
     }
 
     return memo;
@@ -35,18 +58,19 @@ const ComparisonModal = ({handleClose, a, b}) => {
     <div className='modal' ref={wrapperRef}>
       <div className='modal-header'>
         <div className='modal-title'>
-          <h3>Comparison</h3>
+          <span>Comparing</span>
         </div>
-        <div className='close-button'></div>
+        <div className='close-button'>(click anywhere to close)</div>
       </div>
       <table>
         <thead>
-          <tr style={{'textAlign': 'left'}}>
+          <tr>
             <th>{a.name}</th>
-            <th></th>
-            <th>{b.name}</th>
+            <th className='middle-col'></th>
+            <th className='right-col'>{b.name}</th>
           </tr>
         </thead>
+        <tbody>
         {Object.keys(featuresData).map(feature =>
         <FeatureRow
           key={feature}
@@ -55,6 +79,7 @@ const ComparisonModal = ({handleClose, a, b}) => {
           name={feature}
         />
         )}
+        </tbody>
       </table>
     </div>
   )

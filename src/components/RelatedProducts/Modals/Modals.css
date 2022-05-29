@@ -1,36 +1,86 @@
 .modal {
   position: absolute;
   left: 50%;
-  min-width: 360px;
+  max-width: 540px;
   background: white;
+  background-color: buttonface;
   -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(0, 0, 0, 0.8);
-  border-radius:10px;
+  border: 2px solid #1a1a1a;
+  border-radius:8px;
   z-index: 99999999;
   transform: translate(-50%, 0);
   transition: all ease 1s;
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  overflow: scroll;
+}
+
+.modal-title {
+  font-size: 1rem;
+  color: #114488;
+}
+.close-button {
+  font-weight: normal;
 }
 
 .modal-header {
-  padding-left: 50px;
-  padding-top: 16px;
   display: flex;
   justify-content: space-between;
-}
+  font-weight: bold;
+  padding-bottom: .25rem;
 
-.product-titles {
-  display: flex;
-  justify-content: space-between;
 }
 
 table {
-  border-collapse: separate;
-  padding-bottom: 16px;
-  border-spacing: 50px 0;
-  padding-top: 16px;
+  table-layout: fixed;
+  min-width: 360px;
+  border-collapse: collapse;
+  width: 100%
+}
+
+th {
+  text-align: left;
+}
+
+.left-col {
+  color: black;
+}
+
+.right-col {
+  text-align: right;
+  color: back;
+}
+
+.right-col-content {
+  color: black;
+}
+
+.middle-col {
+  text-align: center;
+  font-weight: semi-bold;
+}
+
+.green-text {
+  color: black;
+}
+
+.red-text {
+  color: red !important;
+}
+
+td, th {
+  width: 10%;
+  padding: .25rem 0;
+  overflow: auto;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+th {
+  color: #ce4d12;
+  font-size: 1.3rem;
 }
