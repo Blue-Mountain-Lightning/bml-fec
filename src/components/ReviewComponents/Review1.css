@@ -1,24 +1,29 @@
 .reviewsMain {
-  background-color: rgb(230, 230, 230);
   display: flex;
   flex-direction: row;
   margin-top: 200px;
   margin-bottom: 100px;
   height: 1500px;
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  margin-top: 200px;
 }
 
 .leftSide {
   order: 1;
   flex-direction: row;
   width: 300px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  background-color: rgb(252, 252, 252);
   height: 1300px;
   margin-top: 50px;
   margin-left: 500px;
   margin-right: 50px;
   padding-left: 20px;
   padding-right: 20px;
+  color: rgb(0, 0, 0);
+  border-top: solid;
+  border-color: rgb(65, 65, 65);
+  border-width: 10px;
 }
 
 .ratingsText {
@@ -81,9 +86,8 @@
   margin-left: 50px;
 }
 
-
 .searchButton {
-  background-color: black; /* Green */
+  background-color: #000000; /* Green */
   color: white;
   border-color: black;
   border-radius: 5px;
@@ -107,10 +111,13 @@
 .rightSide {
   order: 2;
   flex-direction: row;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(252, 252, 252);
   margin-top: 50px;
-  border-radius: 15px;
   height: 1300px;
+  color: rgb(0, 0, 0);
+  border-top: solid;
+  border-color: rgb(65, 65, 65);
+  border-width: 10px;
 }
 
 .showingText {
@@ -130,9 +137,9 @@
 }
 
 .eachReview {
-  border-color: rgb(5, 5, 5);
-  border-style: solid;
-  border-radius: 5px;
+  border-top: solid;
+  border-color: rgb(146, 144, 144);
+  border-width: 5px;
   background-color: rgb(255, 255, 255);
   margin-top: 20px;
   padding-top: 10px;
@@ -275,4 +282,9 @@
 
 .searchFunction {
   margin-top: 20px;
+}
+
+.ratingsBreakdown {
+  margin-top: 50px;
+  margin-left: 35px;
 }

@@ -13,6 +13,7 @@ const ShowStars = (props) => {
     avg = arr[i].rating + avg;
   }
   avg = avg / props.data.results.length;
+  avg = avg.toFixed(1);
 
   return (
     <div>

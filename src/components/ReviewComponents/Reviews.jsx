@@ -4,6 +4,7 @@ import Filter from './Filter.jsx';
 import ReviewBlock from './ReviewBlock.jsx';
 import './Review1.css';
 import ShowStars from './ShowStars.jsx';
+import Bars from './Bars.jsx';
 
 const Reviews = (props) => {
 
@@ -25,18 +26,14 @@ const Reviews = (props) => {
           let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
           const response = await fetch(url, headers);
           const reviews99 = await response.json();
-          console.log(reviews99);
           setReviews(reviews99);
         } catch (err) {
           console.log(err);
         }
       }
     }
-
     fetchReviews();
-  }, [props.id]);
-
-
+  }, [props.id, url]);
 
   const handleClickAddReview = () => { //add would need a request.
     setShow(true);
@@ -106,26 +103,26 @@ const Reviews = (props) => {
       }
       fetchReviews();
     }
-
    }
+
 
 
   if (reviews === undefined) {
     return;
   }
 
-  // console.log(reviews.results);
-
-
   return (
     <div className="reviewsMain">
       <div className="leftSide">
         <h1 className="reviewText">Ratings &#38; Reviews</h1>
-
         <ShowStars data={reviews}/>
 
-
+        <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
+        <Bars id={props.id}/>
       </div>
+
+
+
 
       <div className="rightSide">
         {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}

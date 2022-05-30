@@ -15,7 +15,7 @@ const ReviewBlock = (props) => {
   }
 
   let arr = props.data.results.slice();
-  console.log(arr);
+
   const searchButton = () => {
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
