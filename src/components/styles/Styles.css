@@ -1,3 +1,8 @@
+:root {
+  --related-products-shift-offset: 0px;
+  --your-outfit-shift-offset: 0px;
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -287,17 +292,17 @@ overwrite broser default <select> styling */
   z-index: 98;
 }
 
-:root {
-  --related-products-shift-offset: 0px;
-  --your-outfit-shift-offset: 0px;
-}
 
-.horizontal-shifter {
-  position: relative;
+.related-products-shifter {
   left: var(--related-products-shift-offset);
 }
 
+.your-outfit-shifter {
+  left: var(--your-outfit-shift-offset);
+}
+
 .products-list {
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 1rem;

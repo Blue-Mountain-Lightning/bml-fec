@@ -15,7 +15,6 @@ const RelatedProducts = ({product}) => {
   // state
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
-  const [productStyles, setProductStyles] = useState([]);
   const [modal, setModal] = useState(null);
 
   useEffect(() => {
@@ -87,21 +86,21 @@ const RelatedProducts = ({product}) => {
   }
 
   if (loaded) {
-    const Modal = (
-      <ComparisonModal
-        a={modal}
-        b={product}
-        handleClose={deactivateModal}
-      />
-    )
+    let Modal;
+    if (products.length === 0) { return null; };
 
     if (modal !== null) {
       document.body.classList.add('scroll-lock');
+      Modal = (
+        <ComparisonModal
+          a={modal}
+          b={product}
+          handleClose={deactivateModal}
+        />
+      )
     } else {
       document.body.classList.remove('scroll-lock');
     }
-
-    if (products.length === 0) { return <></> };
 
     return (
       <>
@@ -109,6 +108,7 @@ const RelatedProducts = ({product}) => {
         <h1 className='center-heading'>You may also like</h1>
         <ProductRow
           products={products}
+          offsetClass='related-products-shifter'
           offsetVar={OFFSET_VAR}
           Icon={MdStar}
           iconHandler={activateModal}
