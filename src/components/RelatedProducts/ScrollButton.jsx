@@ -17,9 +17,9 @@ const ScrollButton = ({direction, active}) => {
   let style = active ? {} : {'opacity': '0.4', 'pointerEvents': 'none'};
 
   return (
-    <button className={classes}>
+    <div className={classes}>
       <IconComponent className='card-icon' style={style} />
-    </button>
+    </div>
   )
 }
 

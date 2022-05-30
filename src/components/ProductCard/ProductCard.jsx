@@ -71,18 +71,19 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
     return (typeof currentStyle.photos[0].thumbnail_url === 'string')
   }
 
-
   if (loaded) {
     const isImage = imageExists();
     const image = isImage ?
       currentStyle.photos[0].thumbnail_url : imageNotAvailable;
 
     let styleSwitcher = (
-      <StyleSwitcher
-        styles={styles}
-        currentStyle={currentStyle}
-        handleStyleClick={handleStyleClick}
-      />
+      <div className='card-style-grid-overlay'>
+        <StyleSwitcher
+          styles={styles}
+          currentStyle={currentStyle}
+          handleStyleClick={handleStyleClick}
+        />
+      </div>
     )
 
     let buttonIcon = (

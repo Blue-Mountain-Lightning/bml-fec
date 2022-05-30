@@ -197,7 +197,7 @@ overwrite broser default <select> styling */
   bottom: 0px;
   left: 0rem;
   height: 5rem;
-  width: 18.75rem; /* why????? */
+  width: 18.75rem;
   background: white;
   opacity: 1;
   transition: opacity 0.5s;
