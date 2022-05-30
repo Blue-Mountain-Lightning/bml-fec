@@ -4,7 +4,7 @@ import ProductCard from '../ProductCard/ProductCard';
 // import RowNav from './RowNav';
 import ScrollButton from './ScrollButton';
 
-const CARD_WIDTH_REM = 20; // width of a Product Card in REM
+const CARD_WIDTH_REM = 19.75; // width of a Product Card in REM
 /*
 This components handles the UI/X of Related Items rows.
 */
@@ -12,11 +12,11 @@ const ProductRow = ({products, offsetVar, Icon, iconHandler, iconHandlerClose}) 
   const rowRef = useRef();
 
   const [offset, setOffset] = useState(0);
-  const [margin, setMargin] = useState(0);
   const [maxOffset, setMaxOffset] = useState(0);
   const [prevButton, setPrevButton] = useState(false);
   const [nextButton, setNextButton] = useState(false);
   const [cardWidth, setCardWidth] = useState(false);
+  const [contentWidth, setContentWidth] = useState(0);
 
   const setButtonState = (newOffset) => {
     newOffset = newOffset || offset;
@@ -55,13 +55,13 @@ const ProductRow = ({products, offsetVar, Icon, iconHandler, iconHandlerClose}) 
       numCards = 1;
     }
 
-    const cardRowWidth = (numCards * cardWidth);
+    // remove 1 rem from total card width because we only count inner gaps
+    const cardRowWidth = (numCards * cardWidth - convertRemToPixels(1));
     const newMaxOffset = (products.length - numCards) * cardWidth / 2;
-    let newMargin = (innerWidth - cardRowWidth) / 2;
 
+    setContentWidth(cardRowWidth);
     setCardWidth(cardWidth);
     setOffset(newMaxOffset);
-    setMargin(newMargin);
     setMaxOffset(newMaxOffset);
     setPrevButton(false);
   }
@@ -114,12 +114,13 @@ const ProductRow = ({products, offsetVar, Icon, iconHandler, iconHandlerClose}) 
 
   return (
     <>
-      <div className='product-row'>
-        <div className='blank-side blank-left'
-             style={{'width': `${margin}px`}}
-             onClick={(e) => handleButtonClick(e, 'previous')}>
-          <ScrollButton direction={'previous'} active={prevButton}/>
-        </div >
+      <div className='product-row' style={{'width': `${contentWidth}px`}}>
+        <div
+          className='card-button card-prev'
+          onClick={(e) => handleButtonClick(e, 'previous')}
+        >
+          <ScrollButton direction={'previous'} active={prevButton} />
+        </div>
         <div className='products-list horizontal-shifter' ref={rowRef}>
           {products.map(product => (
             <ProductCard key={product.id}
@@ -131,11 +132,10 @@ const ProductRow = ({products, offsetVar, Icon, iconHandler, iconHandlerClose}) 
           ))}
         </div>
         <div
-          className='blank-side blank-right'
-          style={{'width': `${margin}px`}}
+          className='card-button card-next'
           onClick={(e) => handleButtonClick(e, 'next')}
         >
-          <ScrollButton direction={'next'} active={nextButton}/>
+          <ScrollButton direction={'next'} active={nextButton} />
         </div>
       </div>
       {/*
