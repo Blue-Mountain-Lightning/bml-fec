@@ -283,11 +283,11 @@ overwrite broser default <select> styling */
 }
 
 .card-button.card-prev {
-  left: 0.0rem;
+  left: 0.25rem;
 }
 
 .card-button.card-next {
-  right: 0.0rem;
+  right: 0.25rem;
 }
 
 .product-card {
