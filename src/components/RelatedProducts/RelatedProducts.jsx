@@ -78,7 +78,7 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
-  const iconHandler = (relatedProduct) => {
+  const activateModal = (relatedProduct) => {
     setModal(relatedProduct);
   }
 
@@ -88,24 +88,21 @@ const RelatedProducts = ({product}) => {
 
   if (loaded) {
     const Modal = (
-      <>
-        {/*<div className='mask'></div>*/}
-        <ComparisonModal
-          a={modal}
-          b={product}
-          handleClose={deactivateModal}
-        />
-      </>
+      <ComparisonModal
+        a={modal}
+        b={product}
+        handleClose={deactivateModal}
+      />
     )
 
     if (modal !== null) {
-      // stop click handlers and scrolling when modal is open
-      // document.body.classList.add('scroll-lock');
+      document.body.classList.add('scroll-lock');
     } else {
       document.body.classList.remove('scroll-lock');
     }
 
     if (products.length === 0) { return <></> };
+
     return (
       <>
         { modal ? Modal : null }
@@ -114,7 +111,7 @@ const RelatedProducts = ({product}) => {
           products={products}
           offsetVar={OFFSET_VAR}
           Icon={MdStar}
-          iconHandler={iconHandler}
+          iconHandler={activateModal}
           iconHandlerClose={deactivateModal}
         />
       </>

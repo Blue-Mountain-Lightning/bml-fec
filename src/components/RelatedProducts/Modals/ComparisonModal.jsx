@@ -6,7 +6,7 @@ import './Modals.css';
 import useOutsideClickListener from './useOutsideClickListener';
 import FeatureRow from './FeatureRow';
 
-const ComparisonModal = ({handleClose, a, b}) => {
+const ComparisonModal = ({a, b, handleClose}) => {
   const wrapperRef = useRef(null);
   useOutsideClickListener(wrapperRef, handleClose);
 
@@ -15,10 +15,10 @@ const ComparisonModal = ({handleClose, a, b}) => {
       a.features: b.features;
 
   const featuresData = longest.reduce((memo, feature, i) => {
+    let aValue, bValue;
     const aFeatures = a.features[i];
     const bFeatures = b.features[i];
 
-    let aValue;
     if (aFeatures) {
       if (aFeatures.value === null) {
         aValue = <MdClose className='red-text' />;
@@ -29,7 +29,6 @@ const ComparisonModal = ({handleClose, a, b}) => {
       }
     }
 
-    let bValue;
     if (bFeatures) {
       if (bFeatures.value === null) {
         bValue = <MdClose className='red-text' />;
@@ -56,33 +55,38 @@ const ComparisonModal = ({handleClose, a, b}) => {
   }, {});
 
   return (
-    <div className='modal' ref={wrapperRef}>
-      <div className='modal-header'>
-        <div className='modal-title'>
-          <span>Comparing</span>
+    <>
+      <div className='mask'></div>
+      <div className='modal' ref={wrapperRef}>
+        <div className='modal-header'>
+          <div className='modal-title'>
+            <span>Comparing</span>
+          </div>
+          <button onClick={handleClose}>
+            <GrFormClose title={'Close'} className='close-button'/>
+          </button>
         </div>
-        <button onClick={handleClose}><GrFormClose title={'Close'} className='close-button'/></button>
+        <table>
+          <thead>
+            <tr>
+              <th>{a.name}</th>
+              <th className='middle-col'></th>
+              <th className='right-col'>{b.name}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(featuresData).map(feature =>
+              <FeatureRow
+                key={feature}
+                valueA={featuresData[feature]['a']}
+                valueB={featuresData[feature]['b']}
+                name={feature}
+              />
+            )}
+          </tbody>
+        </table>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{a.name}</th>
-            <th className='middle-col'></th>
-            <th className='right-col'>{b.name}</th>
-          </tr>
-        </thead>
-        <tbody>
-        {Object.keys(featuresData).map(feature =>
-        <FeatureRow
-          key={feature}
-          valueA={featuresData[feature]['a']}
-          valueB={featuresData[feature]['b']}
-          name={feature}
-        />
-        )}
-        </tbody>
-      </table>
-    </div>
+    </>
   )
 }
 

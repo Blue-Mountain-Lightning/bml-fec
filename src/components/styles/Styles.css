@@ -334,17 +334,6 @@ overwrite broser default <select> styling */
   font-size: .50rem;
 }
 
-/* MASK */
-.mask {
-  pointer-events: none;
-  position: fixed;
-  height: 100%;
-  top: 0; bottom: 0; right: 0; left: 0;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(1px);
-  z-index: 9999;
-}
-
 .scroll-lock {
   overflow: hidden;
   pointer-events: none;
