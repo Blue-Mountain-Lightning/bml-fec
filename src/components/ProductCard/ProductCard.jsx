@@ -6,6 +6,7 @@ import imageNotAvailable from '../../assets/image-not-available.png'
 import Price from '../Price';
 import ShowStars from '../ReviewComponents/ShowStars';
 import CardButton from './CardButton';
+import StyleSwitcher from './StyleSwitcher';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 
@@ -16,7 +17,7 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
-  const [styleSwitcherActive, setStyleSwitcherActive] = useState(false);
+  const [mouseHovering, setMouseHovering] = useState(false);
 
   const parseFontSize = (size) => {
     return `${size}rem`;
@@ -58,94 +59,69 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
     )))
   }
 
-  const handleImageEnter = (e) => {
-    setStyleSwitcherActive(true);
+  const handleMouseEnter = (e) => {
+    setMouseHovering(true);
   }
 
-  const handleImageLeave = (e) => {
-    setStyleSwitcherActive(false);
+  const handleMouseLeave = (e) => {
+    setMouseHovering(false);
   }
 
   const imageExists = () => {
-    const attemptedURL = currentStyle.photos[0].thumbnail_url;
-    return (typeof attemptedURL === 'string')
+    return (typeof currentStyle.photos[0].thumbnail_url === 'string')
   }
 
 
   if (loaded) {
-    const imageIsProvided = imageExists();
-    const image = imageIsProvided ?
+    const isImage = imageExists();
+    const image = isImage ?
       currentStyle.photos[0].thumbnail_url : imageNotAvailable;
 
     let styleSwitcher = (
-      <div className='card-style-grid-overlay'>
-          <div className='card-style-grid'>
-            {styles.results.map((style, index) => {
-              {/* TODO: Implement a carousel for the pics */}
-              if (index > 3) { return }; // DANGER: Remove this when implementing scroll
-              let clsName = (style === currentStyle) ?
-                'card-style-circle card-style-circle-selected' : 'card-style-circle';
-              return (
-                // TODO: if related product is clicked,
-                // detail overview should start on the selected style
-                <img className={clsName}
-                     key={style.style_id}
-                     name={style.style_id}
-                     onMouseEnter={handleStyleClick}
-                     src={style.photos[0].thumbnail_url}
-                     alt=''
-                />
-              )
-            })}
-        </div>
-      </div>
+      <StyleSwitcher
+        styles={styles}
+        currentStyle={currentStyle}
+        handleStyleClick={handleStyleClick}
+      />
     )
 
-    // style switch is pre-loaded but don't activate it unless mouse is over
-    // the picture
-    let styleSwitcherElement, buttonIcon;
-    if (styleSwitcherActive) {
-      styleSwitcherElement = styleSwitcher;
-      buttonIcon = (
+    let buttonIcon = (
+      <div className='card-button-icon'>
         <CardButton
           Icon={Icon}
           iconHandler={iconHandler}
           iconHandlerClose={iconHandlerClose}
           product={product}
         />
-      )
-    } else {
-      styleSwitcherElement = <div className='card-style-grid-overlay hide'></div>;
-      buttonIcon = <></>;
+      </div>
+    )
+
+    if (!mouseHovering) {
+      styleSwitcher = <div className='card-style-grid-overlay hide'/>;
+      buttonIcon = <div className='card-button-icon hide'/>;
     }
 
     return (
-      <>
-        <div className='clickable product-card'
-             style={{"fontSize": fontSize}}
-             onClick={handleClick}
-             onMouseEnter={handleImageEnter}
-             onMouseLeave={handleImageLeave}
-        >
-          <div className='card-styles-parent'>
-            <img className='card-styles-thumbnail'
-                 src={image}
-                 alt=''
-            />
-            {imageIsProvided ? styleSwitcherElement : <></>}
-            {buttonIcon}
-          </div>
-          <div className="text-all-caps"
-               style={{"fontSize": parseFontSize(1)}}>
-            {product.category}
-          </div>
-          <b>{product.name}</b>
-          <Price style={currentStyle} fontSize={fontSize} />
-          <div>
-            Star rating component
-          </div>
+      <div
+        className='clickable product-card'
+        style={{"fontSize": fontSize}}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className='card-styles-parent'>
+          <img className='card-styles-thumbnail'
+               src={image}
+               alt=''
+          />
+          {isImage ? styleSwitcher : null}
+          {buttonIcon}
         </div>
-      </>
+        <div className="text-all-caps">{product.category}</div>
+        <b>{product.name}</b>
+        <Price style={currentStyle} fontSize={fontSize} />
+        <div>Star rating component</div>
+      </div>
     )
   }
 }

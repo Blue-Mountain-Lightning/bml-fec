@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useRef} from 'react';
 import {MdCheck, MdClose} from 'react-icons/md';
 import {GrFormClose} from 'react-icons/gr';
 

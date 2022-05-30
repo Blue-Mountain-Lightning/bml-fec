@@ -91,7 +91,6 @@ th {
   color: #ce4d12;
   font-size: 1.1rem;
 }
-table td + td { border-left:2px solid gray; }
 
 tbody {
   height: 100px;
