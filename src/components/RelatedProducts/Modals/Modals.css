@@ -1,0 +1,111 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 540px;
+  max-width: 100%;
+  max-height: 100%;
+  background: white;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  border: 2px solid #1a1a1a;
+  border-radius:8px;
+  z-index: 99999999;
+  transform: translate(-50%, -50%);
+  transition: all ease 1s;
+  display: inline-block;
+  flex-direction: column;
+  padding: 1rem;
+  pointer-events: auto;
+}
+
+.modal-title {
+  font-size: 1rem;
+  color: #114488;
+}
+
+.close-button {
+  font-weight: normal;
+  background-color: gray2;
+  font-size: 1rem;
+  border: 1px solid black;
+}
+
+.close-button:focus {
+  background-color: red;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding-bottom: .25rem;
+
+}
+
+table {
+  table-layout: fixed;
+  min-width: 320px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+.left-col {
+  color: black;
+}
+
+.right-col {
+  text-align: right;
+  color: back;
+}
+
+.right-col-content {
+  color: black;
+}
+
+.middle-col {
+  text-align: center;
+  font-weight: semi-bold;
+}
+
+.green-text {
+  color: black;
+}
+
+.red-text {
+  color: red !important;
+}
+
+td, th {
+  width: 10%;
+  padding: .25rem 0;
+
+}
+
+th {
+  color: #ce4d12;
+  font-size: 1.1rem;
+}
+table td + td { border-left:2px solid gray; }
+
+tbody {
+  height: 100px;
+  overflow: scroll;
+}
+
+.mask {
+  pointer-events: none;
+  position: fixed;
+  height: 100%;
+  top: 0; bottom: 0; right: 0; left: 0;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+}

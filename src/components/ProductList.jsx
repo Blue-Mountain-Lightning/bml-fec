@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //import {useFetch} from '../lib/useFecth.js'
 import { Outlet } from "react-router-dom";
-import ProductCard from './ProductCard.jsx';
+import ProductCard from './ProductCard/ProductCard.jsx';
 import './styles/Styles.css'
 
 const ProductList = () => {

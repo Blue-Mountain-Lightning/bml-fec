@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import {MdStar} from 'react-icons/md';
 
 import ProductRow from './ProductRow';
+import ComparisonModal from './Modals/ComparisonModal';
 
 const OFFSET_VAR = '--related-products-shift-offset';
 const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
@@ -13,6 +15,8 @@ const RelatedProducts = ({product}) => {
   // state
   const [loaded, setLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [productStyles, setProductStyles] = useState([]);
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
@@ -74,13 +78,42 @@ const RelatedProducts = ({product}) => {
     fetchRelatedProducts();
   }, [product])
 
+  const activateModal = (relatedProduct) => {
+    setModal(relatedProduct);
+  }
+
+  const deactivateModal = () => {
+    setModal(null);
+  }
 
   if (loaded) {
+    const Modal = (
+      <ComparisonModal
+        a={modal}
+        b={product}
+        handleClose={deactivateModal}
+      />
+    )
+
+    if (modal !== null) {
+      document.body.classList.add('scroll-lock');
+    } else {
+      document.body.classList.remove('scroll-lock');
+    }
+
     if (products.length === 0) { return <></> };
+
     return (
       <>
+        { modal ? Modal : null }
         <h1 className='center-heading'>You may also like</h1>
-        <ProductRow products={products} offsetVar={OFFSET_VAR} />
+        <ProductRow
+          products={products}
+          offsetVar={OFFSET_VAR}
+          Icon={MdStar}
+          iconHandler={activateModal}
+          iconHandlerClose={deactivateModal}
+        />
       </>
     );
   }

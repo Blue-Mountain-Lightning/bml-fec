@@ -2,14 +2,16 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import imageNotAvailable from '../assets/image-not-available.png'
-import Price from './Price';
+import imageNotAvailable from '../../assets/image-not-available.png'
+import Price from '../Price';
+import ShowStars from '../ReviewComponents/ShowStars';
+import CardButton from './CardButton';
 
 const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
 
 const stylesCache = {}; // stores previous style API requests
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
   const navigate = useNavigate();
   const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -69,9 +71,11 @@ const ProductCard = ({ product }) => {
     return (typeof attemptedURL === 'string')
   }
 
+
   if (loaded) {
     const imageIsProvided = imageExists();
-    const image = imageIsProvided ? currentStyle.photos[0].thumbnail_url : imageNotAvailable;
+    const image = imageIsProvided ?
+      currentStyle.photos[0].thumbnail_url : imageNotAvailable;
 
     let styleSwitcher = (
       <div className='card-style-grid-overlay'>
@@ -99,37 +103,49 @@ const ProductCard = ({ product }) => {
 
     // style switch is pre-loaded but don't activate it unless mouse is over
     // the picture
-    let styleSwitcherElement;
+    let styleSwitcherElement, buttonIcon;
     if (styleSwitcherActive) {
       styleSwitcherElement = styleSwitcher;
+      buttonIcon = (
+        <CardButton
+          Icon={Icon}
+          iconHandler={iconHandler}
+          iconHandlerClose={iconHandlerClose}
+          product={product}
+        />
+      )
     } else {
       styleSwitcherElement = <div className='card-style-grid-overlay hide'></div>;
+      buttonIcon = <></>;
     }
 
     return (
-      <div className='clickable product-card'
-           style={{"fontSize": fontSize}}
-           onClick={handleClick}
-           onMouseEnter={handleImageEnter}
-           onMouseLeave={handleImageLeave}
-      >
-        <div className='card-styles-parent'>
-          <img className='card-styles-thumbnail'
-               src={image}
-               alt=''
-          />
-          {imageIsProvided ? styleSwitcherElement : <></>}
+      <>
+        <div className='clickable product-card'
+             style={{"fontSize": fontSize}}
+             onClick={handleClick}
+             onMouseEnter={handleImageEnter}
+             onMouseLeave={handleImageLeave}
+        >
+          <div className='card-styles-parent'>
+            <img className='card-styles-thumbnail'
+                 src={image}
+                 alt=''
+            />
+            {imageIsProvided ? styleSwitcherElement : <></>}
+            {buttonIcon}
+          </div>
+          <div className="text-all-caps"
+               style={{"fontSize": parseFontSize(1)}}>
+            {product.category}
+          </div>
+          <b>{product.name}</b>
+          <Price style={currentStyle} fontSize={fontSize} />
+          <div>
+            Star rating component
+          </div>
         </div>
-        <div className="text-all-caps"
-             style={{"fontSize": parseFontSize(1)}}>
-          {product.category}
-        </div>
-        <b>{product.name}</b>
-        <Price style={currentStyle} fontSize={fontSize} />
-        <div>
-          Star rating component
-        </div>
-      </div>
+      </>
     )
   }
 }
