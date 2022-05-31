@@ -88,10 +88,7 @@ const ProductRow = ({
 
   useEffect(() => {
     handleResizeWindow();
-    window.addEventListener('resize', () => {
-      let timeOutId = setTimeout(handleResizeWindow, 380);
-      return () => clearTimeout(timeOutId);
-    });
+    window.addEventListener('resize', handleResizeWindow);
   }, [products, handleResizeWindow]);
 
   // set the scroll buttons to be on/off based on scroll position
