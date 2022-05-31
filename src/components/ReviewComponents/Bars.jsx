@@ -15,8 +15,6 @@ const Bars = (props) => {
         let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
         const response = await fetch(asdf, headers);
         const reviews99 = await response.json();
-        console.log('le meta data', reviews99
-        );
         setmedtaData(reviews99);
       } catch (err) {
         console.log(err);
@@ -97,7 +95,7 @@ const Bars = (props) => {
 
 
   const getReviewByStar = (number) => {
-    props.func(number);
+    props.select(number);
   }
 
   //--------------------------------
