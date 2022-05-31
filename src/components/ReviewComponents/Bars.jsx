@@ -90,7 +90,7 @@ const Bars = (props) => {
         <p className="starText">{bar} star: &nbsp;</p>
         <p className="bar">{barL}</p>
         <p className="greystuff">{space}</p>
-        <p>&nbsp;&nbsp;{one}</p>
+        <p>&nbsp;&nbsp;{num}</p>
       </div>
     );
   }

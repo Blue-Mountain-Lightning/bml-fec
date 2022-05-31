@@ -85,6 +85,7 @@
   border-radius: 5px;
   margin-left: 50px;
   padding-left: 5px;
+  width: 165px;
 }
 
 .invalid {
@@ -98,6 +99,7 @@
   border-color: red;
   border-width: 2px;
   border-style: groove;
+  width: 170px;
 }
 
 .searchButton {
@@ -235,7 +237,7 @@
   padding: 16px 32px;
   text-align: center;
   font-size: 16px;
-  margin-left: 500px;
+  margin-left: 470px;
   border-radius: 5px;
   opacity: 0.6;
   transition: 0.3s;
@@ -294,8 +296,9 @@
 }
 
 .sortBy {
-  width: 200px;
+  width: 175px;
   margin-left: 50px;
+  margin-top: 40px;
 }
 
 .searchFunction {
@@ -305,4 +308,8 @@
 .ratingsBreakdown {
   margin-top: 50px;
   margin-left: 35px;
+  margin-bottom: 10px;
+
+
+
 }
