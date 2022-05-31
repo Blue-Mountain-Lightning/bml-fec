@@ -127,45 +127,39 @@ const ReviewBlock = (props) => {
   }
   return (
     <div >
-      {props.showAdd === false ?
-          <div>
-
-              <form className="sortBy">
-                <label>
-                  <select onChange={getSorted} >
-                    <option value="none">Sort by</option>
-                    <option value="helpful">Helpful</option>
-                    <option value="newest">Newest</option>
-                    <option value="relevant">Relevant</option>
-                  </select>
-                </label>
-              </form>
-
-          </div>
-          : <p></p>}
-      <div className="searchFunction">
-          <input className={class1} placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
-          <button className="searchButton" type="submit" value="Search" onClick={searchButton}>Search</button>
-      </div>
-      <p className="showingText">showing: </p>
-      <div className="reviewBlock">
-        { display === '' ?
-          newArr.map((review) => {
-            return (
-              <OneReview key={review.review_id} className="eachReview" data={review}/>
-            );
-          }) :
-          display.map((review) => {
-            return (
-              <OneReview key={review.review_id} className="eachReview" data={review}/>
-            );
-
-          })
-        }
-      </div>
+      <div>
+        <form className="sortBy">
+          <label>
+            <select onChange={getSorted} >
+            <option value="none">Sort by</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+            <option value="relevant">Relevant</option>
+          </select>
+        </label>
+      </form>
     </div>
 
-
+    <div className="searchFunction">
+      <input className={class1} placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
+      <button className="searchButton" type="submit" value="Search" onClick={searchButton}>Search</button>
+    </div>
+    <p className="showingText">showing: </p>
+    <div className="reviewBlock">
+      { display === '' ?
+      newArr.map((review) => {
+        return (
+          <OneReview key={review.review_id} className="eachReview" data={review}/>
+        );
+        }) :
+          display.map((review) => {
+            return (
+            <OneReview key={review.review_id} className="eachReview" data={review}/>
+          );
+        })
+      }
+    </div>
+  </div>
   );
 };
 

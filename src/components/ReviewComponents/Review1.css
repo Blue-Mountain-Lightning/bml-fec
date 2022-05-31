@@ -99,7 +99,8 @@
   border-color: red;
   border-width: 2px;
   border-style: groove;
-  width: 170px;
+  padding-left: 5px;
+  width: 165px;
 }
 
 .searchButton {

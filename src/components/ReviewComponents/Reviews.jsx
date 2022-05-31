@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AddReview from './AddReview.jsx';
-import Filter from './Filter.jsx';
 import ReviewBlock from './ReviewBlock.jsx';
 import './Review1.css';
 import ShowStars from './ShowStars.jsx';
@@ -57,6 +56,10 @@ const Reviews = (props) => {
     setStarSelect(num);
   }
 
+  const closeModal = () => {
+    setShow(false);
+  }
+
   return (
     <div className="reviewsMain">
       <div className="leftSide">
@@ -71,10 +74,8 @@ const Reviews = (props) => {
 
       <div className="rightSide">
         <div className="reviewShowing">
-          {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}
-
-          {showAdd === false ? <ReviewBlock className="reviewBlock" select={starSelect} func={setReviews} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id}/> : <AddReview show={showAdd} id={props.id}/>}
-          {(more === true) ? <button className="showMore" onClick={() => { showMore()}} >show more</button> : <p></p>}
+          <ReviewBlock className="reviewBlock" select={starSelect} func={setReviews} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id}/>
+          {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
         </div>
 
       </div>

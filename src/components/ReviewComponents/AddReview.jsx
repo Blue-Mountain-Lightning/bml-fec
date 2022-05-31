@@ -41,77 +41,87 @@ const AddReview = (props) => {
     //post request to api.
   }
 
-  if (props.show === true) { //testing conditional rendering, show form to add.
+  //testing conditional rendering, show form to add.
     return (
-      <div className="addReviewAll">
+        <div id="myModal" class="modal">
+          <div class="modal-content">
 
-        <label className="text1" onChange={handleYesNo}> Do you recommend this product?
+            <div className="top1">
+              <b className="title">Write Your Review</b>
+              <button onClick={props.set} className="close">X</button>
+            </div>
 
-          <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
-          <input className="rb2"type="radio" value="no" /> No
+            <div className="input">
 
-        </label><br></br><br></br>
-        <label className="text2"> Characteristics: </label><br></br>
+              <label className="text1" onChange={handleYesNo}> Do you recommend this product?
+              <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
+              <input className="rb2"type="radio" value="no" /> No
 
-        <br></br>
-        <div>
-          Size:
-          <RadioButtons setNum={setSize}/>
-          <br></br>
-          Width:
-          <RadioButtons setNum={setWidth}/>
-          <br></br>
-          Comfort:
-          <RadioButtons setNum={setComfort}/>
-          <br></br>
-          Quality:
-          <RadioButtons setNum={setQuality}/>
-          <br></br>
-          Length:
-          <RadioButtons setNum={setLength}/>
-          <br></br>
-          Fit:
-          <RadioButtons setNum={setFit}/>
-          <br></br>
+              </label><br></br><br></br>
+              <label className="text2"> Characteristics: </label><br></br>
+
+              <br></br>
+              <div>
+              Size:
+              <RadioButtons setNum={setSize}/>
+              <br></br>
+              Width:
+              <RadioButtons setNum={setWidth}/>
+              <br></br>
+              Comfort:
+              <RadioButtons setNum={setComfort}/>
+              <br></br>
+              Quality:
+              <RadioButtons setNum={setQuality}/>
+              <br></br>
+              Length:
+              <RadioButtons setNum={setLength}/>
+              <br></br>
+              Fit:
+              <RadioButtons setNum={setFit}/>
+              <br></br>
+              </div>
+
+              <br></br>
+              <label>
+              Review summary <br></br>
+              <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
+              setSummary(e.target.value);
+              }} /><br></br>
+              </label>
+              <br></br>
+
+              <label>
+              Why did you like the product or not?
+              <br></br>
+              <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
+              setFullReview(e.target.value);
+              setWordCount(fullReview.length);
+              }} />
+              <p>Minimum required characters left: {50 - wordCount} </p>
+
+              </label>
+              <br></br>
+              Nickname: <br></br>
+              <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
+              setNickname(e.target.value);
+              }} /><br></br>
+              For privacy reasons, do not use your full name or email address” will appear.
+              <br></br>
+              <br></br>
+              Email: <br></br>
+              <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
+              setEmail(e.target.value);
+              }} /><br></br>
+              For authentication reasons, you will not be emailed
+              <br></br>
+              <br></br>
+              <button className="submitAdd" onClick={submitEverything}>Submit</button>
+            </div>
+          </div>
+
         </div>
-
-      <br></br>
-      <label>
-        Review summary <br></br>
-        <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
-          setSummary(e.target.value);
-        }} /><br></br>
-      </label>
-      <br></br>
-
-      <label>
-        Why did you like the product or not?
-        <br></br>
-        <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
-          setFullReview(e.target.value);
-          setWordCount(fullReview.length);
-        }} />
-        <p>Minimum required characters left: {50 - wordCount} </p>
-
-      </label>
-      <br></br>
-      Nickname: <br></br>
-      <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
-        setNickname(e.target.value);
-      }} /><br></br>
-      For privacy reasons, do not use your full name or email address” will appear.
-      <br></br>
-      <br></br>
-      Email: <br></br>
-      <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
-        setEmail(e.target.value);
-      }} /><br></br>
-      For authentication reasons, you will not be emailed
-      <br></br>
-      <br></br>
-      <button className="submitAdd" onClick={submitEverything}>Submit</button>
-      </div>
     );
-  }
+
 }
 export default AddReview;
