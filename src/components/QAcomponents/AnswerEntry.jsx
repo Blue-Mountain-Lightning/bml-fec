@@ -9,11 +9,13 @@ const AnswerEntry = ({answer, answerId}) => {
         <span className='answer-A'>A:</span>
         <span className='answer-body'>{answer.body}&nbsp;</span>
       </div>
-      <div>
+      {answer.photos.length ?
+      <div className='photo-div'>
         {answer.photos.length ? answer.photos.map((photo, index) =>
           (<AnswerPhotos photo ={photo} key ={index}/>
         )) : null}
         </div>
+        : null}
       <div className='answer-footer'>
         <div>
           by {answer.answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : answer.answerer_name}, {`${moment.utc(answer.date).format('MMM D, YYYY')}`} &nbsp;|

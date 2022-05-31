@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionsEntry from './QuestionsEntry.jsx';
 import MoreQuestions from './MoreQuestions.jsx';
-const QuestionList = ({searchInput, questions, product}) => {
+const QuestionList = ({searchInput, questions, product, productId, handleClose, handleOpen, openAdd}) => {
   return (
     <div>
     {
@@ -14,6 +14,11 @@ const QuestionList = ({searchInput, questions, product}) => {
               ? <MoreQuestions
                 questions={questions}
                 key={question.question_id}
+                product={product}
+                handleClose={handleClose}
+                openAdd={openAdd}
+                productId={productId}
+                handleOpen={handleOpen}
               />
               : <QuestionsEntry
                 question={question}
@@ -37,8 +42,9 @@ const QuestionList = ({searchInput, questions, product}) => {
                 questionId = {question.question_id}
                 key={question.question_id}
                 product={product}
+                searchInput={searchInput}
               />
-          ))
+       ))
     }
   </div>
   )

@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
- import AddQuestion from './AddQuestion.jsx';
-
+import AddQuestion from './AddQuestion.jsx'
 const QuestionsAndAnswers = ({productId, product}) => {
   const [questions, setQuestions] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [openAdd, setOpenAdd] = useState(false);
-  let url = `${process.env.REACT_APP_API}qa/questions?product_id=${productId}&count=40`
+  let url = `${process.env.REACT_APP_API}qa/questions?product_id=${productId}&count=100`
 
   useEffect(() => {
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
@@ -28,14 +27,21 @@ const QuestionsAndAnswers = ({productId, product}) => {
     return;
   }
   return (
-    <div>
+    <div className='qa-container'>
+    <div className='qa-padding'>
+     <h2>Questions and Answers</h2>
      {questions.length > 0 && <Search handleSearch={handleSearch} searchInput={searchInput}/> }
-      {questions.length !== 0 ?
-      <QuestionList searchInput={searchInput} questions={questions} product={product}/>
-    : null}
-    <button className='add-question'onClick={handleOpen}>ADD A QUESTION +</button>
-   <AddQuestion handleClose={handleClose} openAdd={openAdd} productId={productId} product={product}/>
+    <div>
+      {(questions.length === 0 || questions.length <=4) ?
+      <>
+       <button className='add-a-question-button' onClick= {handleOpen}>ADD A QUESTION +</button>
+      <AddQuestion handleClose={handleClose} openAdd={openAdd} productId={productId} product={product}/>
+      </> :
+      <QuestionList searchInput={searchInput} questions= {questions} product= {product}  handleClose={handleClose} openAdd={openAdd} productId={productId} handleOpen ={handleOpen}/>
+     }
+     </div>
     </div>
+  </div>
   )
 }
 export default QuestionsAndAnswers;

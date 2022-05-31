@@ -105,7 +105,9 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
               placeholder='images...'
               onChange={handleAddImages}/> : null}
            </div>
-            <input className='submit-answer-button' type='submit' value='Submit answer'/>
+            <div className='align-right'>
+              <input className='submit-answer-button' type='submit' value='Submit answer'/>
+            </div>
         </form>
       </div>
     </div>
