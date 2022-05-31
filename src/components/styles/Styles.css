@@ -1,3 +1,8 @@
+:root {
+  --related-products-shift-offset: 0px;
+  --your-outfit-shift-offset: 0px;
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -151,18 +156,16 @@ overwrite broser default <select> styling */
   display: none !important;
 }
 
-
-
 /* PRODUCT CARD */
 .card-styles-parent {
   position: relative;
-  height: 25.3rem;
-  width: 19rem;
+  height: 25rem;
+  width: 18.75rem;
 }
 
 .card-styles-thumbnail {
   height: 100%;
-  aspect-ratio: 6 / 8;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -190,9 +193,9 @@ overwrite broser default <select> styling */
   position: absolute;
   display: flex;
   bottom: 0px;
-  left: -.1rem;
+  left: 0rem;
   height: 5rem;
-  width: 19.2rem; /* why????? */
+  width: 18.75rem;
   background: white;
   opacity: 1;
   transition: opacity 0.5s;
@@ -206,7 +209,14 @@ overwrite broser default <select> styling */
   border-radius: 10%;
   background: white;
   top: .5rem;
-  right: 1rem;
+  right: .25rem;
+  transition: transform(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.card-button-icon.hide {
+  opacity: 0;
 }
 
 .card-button-icon:hover {
@@ -232,7 +242,6 @@ overwrite broser default <select> styling */
   font-size: 2.4rem;
 }
 
-
 /* PRICE */
 .sale-price {
   color: red;
@@ -246,10 +255,10 @@ overwrite broser default <select> styling */
   margin: 0 auto;
   justify-content: center;
   transition: all 0.12s linear;
-  gap: 1rem;
   opacity: 1;
   z-index: 1000;
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
 .card-icon:hover {
@@ -263,64 +272,65 @@ overwrite broser default <select> styling */
 }
 
 .card-button {
-  font-size: 3rem;
-  background: white;
-  border: none;
   position: absolute;
+  top: 41.667%;
+  transform: translate(0, -50%);
+  background: white;
+  font-size: 3rem;
+  background: none;
+  z-index: 101;
 }
 
 .card-button.card-prev {
-  right: -5rem;
-  background: none;
-  top: 11.25rem;
+  left: 0.25rem;
 }
 
 .card-button.card-next {
-  left: -5rem;
-  background: none;
-  top: 11.25rem;
+  right: 0.25rem;
+}
+
+.dummy-product-card {
+  height: 30rem;
+  width: 18.75rem;
+  background-color: white;
+}
+
+.dummy-product-card-graphic {
+  height: 25rem;
+  width: 18.75rem;
+  background-color: #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.dummy-product-card-icon {
 }
 
 .product-card {
+  height: 30rem;
   display: flex;
   flex-direction: column;
-  gap: .25rem;
+  justify-content: space-around;
   z-index: 98;
 }
 
-.blank-side {
-  background: white -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 1)));
-  z-index: 100;
-}
 
-.blank-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-}
-
-.blank-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-}
-
-:root {
-  --related-products-shift-offset: 0px;
-  --your-outfit-shift-offset: 0px;
-}
-
-.horizontal-shifter {
-  position: relative;
+.related-products-shifter {
   left: var(--related-products-shift-offset);
 }
 
+.your-outfit-shifter {
+  left: var(--your-outfit-shift-offset);
+}
+
 .products-list {
+  position: relative;
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 1rem;
   transition: all 244ms;
   transition-timing-function: ease;
 }

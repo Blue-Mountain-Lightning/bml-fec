@@ -4,6 +4,7 @@ const CardButton = ({Icon, iconHandler, iconHandlerClose, product}) => {
   if (!Icon) { return };
 
   const handleIconClick = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     iconHandler(product);
   }
@@ -15,7 +16,6 @@ const CardButton = ({Icon, iconHandler, iconHandlerClose, product}) => {
       className='card-button-icon'
     />
   )
-
 
   return (
     <>
