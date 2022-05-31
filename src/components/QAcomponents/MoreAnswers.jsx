@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import AnswerEntry from './AnswerEntry';
+import {FaChevronDown, FaChevronUp} from 'react-icons/fa';
 const MoreAnswers = ({answers}) => {
   const [collapseAnswers, setCollapseAnswers] = useState(true);
-  console.log('answers', answers.slice(2));
   return (
-    <div>
+    <div className='scrollbar'>
       {collapseAnswers ?
       <>
       <span className='more-answers'
         onClick ={() =>
         setCollapseAnswers(!collapseAnswers)}>
-          MORE ANSWERS
+          <FaChevronDown /> See more answers
           </span>
           </>
         : <>
@@ -24,7 +24,7 @@ const MoreAnswers = ({answers}) => {
           onClick={() => {
             setCollapseAnswers(!collapseAnswers)
           }}>
-            Collapse Answers
+            <FaChevronUp /> Collapse Answers
           </span>
         </>
         </>

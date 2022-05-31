@@ -55,11 +55,14 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
       <div className='question-form-container'
         onClick={(event => event.stopPropagation())}>
           <div className='answer-header'>
-            <h3>Ask Your Question</h3>
-              <h4>About the {product.name} Here </h4>
-              <button className='question-modal-close-x'
+           {product?
+           <>
+           <h3>Ask Your Question</h3>
+            <h4>About the {product.name} Here </h4>
+            </> : null}
+            <button className='question-modal-close-x'
                 onClick={event => handleSelect(event)}
-                >x</button>
+            >x</button>
           </div>
         <form className='question-form'
           onSubmit={handleSubmit}>
@@ -92,7 +95,9 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
               maxLength='1000'
               onChange={handleOnChange}/>
            </label>
+           <div className='align-center'>
             <input className='submit-question-button' type='submit' value='Submit question'/>
+            </div>
         </form>
       </div>
     </div>
