@@ -49,7 +49,7 @@ const ProductRow = ({
     const { innerWidth } = window;
 
     let numProducts = products.length;
-    let numCards = Math.floor(innerWidth / (cardWidth));
+    let numCards = Math.floor((innerWidth - 48) / (cardWidth));
 
     // Set the number of cards that will fit on the screen at a given time
     if (numCards > numProducts) { numCards = numProducts; };
