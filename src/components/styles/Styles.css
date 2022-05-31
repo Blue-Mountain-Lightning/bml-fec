@@ -156,8 +156,6 @@ overwrite broser default <select> styling */
   display: none !important;
 }
 
-
-
 /* PRODUCT CARD */
 .card-styles-parent {
   position: relative;
@@ -211,7 +209,8 @@ overwrite broser default <select> styling */
   border-radius: 10%;
   background: white;
   top: .5rem;
-  right: 1rem;
+  right: .25rem;
+  transition: transform(-50%, -50%);
   opacity: 1;
   transition: opacity 0.5s;
 }
@@ -243,7 +242,6 @@ overwrite broser default <select> styling */
   font-size: 2.4rem;
 }
 
-
 /* PRICE */
 .sale-price {
   color: red;
@@ -260,6 +258,7 @@ overwrite broser default <select> styling */
   opacity: 1;
   z-index: 1000;
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
 .card-icon:hover {
@@ -288,6 +287,26 @@ overwrite broser default <select> styling */
 
 .card-button.card-next {
   right: 0.25rem;
+}
+
+.dummy-product-card {
+  height: 30rem;
+  width: 18.75rem;
+  background-color: white;
+}
+
+.dummy-product-card-graphic {
+  height: 25rem;
+  width: 18.75rem;
+  background-color: #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.dummy-product-card-icon {
 }
 
 .product-card {

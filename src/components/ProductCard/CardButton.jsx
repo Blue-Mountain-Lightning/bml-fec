@@ -16,7 +16,6 @@ const CardButton = ({Icon, iconHandler, iconHandlerClose, product}) => {
     />
   )
 
-
   return (
     <>
       { Icon }

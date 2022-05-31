@@ -6,6 +6,7 @@ import ProductRow from './ProductRow';
 import ComparisonModal from './Modals/ComparisonModal';
 
 const OFFSET_VAR = '--related-products-shift-offset';
+const OFFSET_CLASS = 'related-products-shifter';
 const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
@@ -99,16 +100,18 @@ const RelatedProducts = ({product}) => {
         />
       )
     } else {
+      Modal = <div className='hide'></div>
       document.body.classList.remove('scroll-lock');
     }
 
     return (
       <>
-        { modal ? Modal : null }
+        {/* modal ? Modal : null */}
+        { Modal }
         <h1 className='center-heading'>You may also like</h1>
         <ProductRow
           products={products}
-          offsetClass='related-products-shifter'
+          offsetClass={OFFSET_CLASS}
           offsetVar={OFFSET_VAR}
           Icon={MdStar}
           iconHandler={activateModal}

@@ -15,7 +15,14 @@ const convertRemToPixels = (rem) => {
 }
 
 
-const ProductRow = ({products, offsetClass, offsetVar, Icon, iconHandler, iconHandlerClose}) => {
+const ProductRow = ({
+  products,
+  offsetClass,
+  offsetVar,
+  Icon,
+  iconHandler,
+  iconHandlerClose
+}) => {
   const cardWidth = convertRemToPixels(CARD_WIDTH_REM);
   const rowRef = useRef();
 
@@ -93,14 +100,20 @@ const ProductRow = ({products, offsetClass, offsetVar, Icon, iconHandler, iconHa
         <ScrollButton direction={'previous'} active={prevButton} />
       </button>
       <div className={`products-list ${offsetClass}`} ref={rowRef}>
-        {products.map(product => (
-          <ProductCard key={product.id}
-                       product={product}
-                       Icon={Icon}
-                       iconHandler={iconHandler}
-                       iconHandlerClose={iconHandlerClose}
-          />
-        ))}
+        {products.map(product => {
+          if (!product?.id) { // allow components through
+            return product;
+          }
+
+          return (
+            <ProductCard key={product.id}
+                         product={product}
+                         Icon={Icon}
+                         iconHandler={iconHandler}
+                         iconHandlerClose={iconHandlerClose}
+            />
+          )
+        })}
       </div>
       <button
         onClick={(e) => handleArrowClick(e, 'next')}
