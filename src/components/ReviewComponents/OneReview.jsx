@@ -58,7 +58,7 @@ const OneReview = (props) => {
 
     <div className="eachReview">
 
-      <div className="showRatings">
+      <div className="reviewRatings">
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
@@ -71,13 +71,13 @@ const OneReview = (props) => {
         })}
       </div>
 
-      <div>
+      <div className="date">
             {`${moment.utc(props.data.date).format('MMMM D, YYYY')}`}
       </div>
 
       <div>
         <b className="summ">{props.data.summary}</b>
-        <p   className="full">{fullReview}</p>
+        <p className="full">{fullReview}</p>
       </div>
 
       <div>

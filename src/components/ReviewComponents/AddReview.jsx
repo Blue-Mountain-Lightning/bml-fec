@@ -45,37 +45,35 @@ const AddReview = (props) => {
     return (
       <div className="addReviewAll">
 
-        <label>
+        <label className="text1" onChange={handleYesNo}> Do you recommend this product?
 
-        </label>
+          <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
+          <input className="rb2"type="radio" value="no" /> No
 
-        <label onChange={handleYesNo}> Do you recommend this product?
-          <input type="radio" value="yes" /> Yes
-          <input type="radio" value="no" /> No
-        </label>
-      <br></br>
-        <label> Characteristics
-        </label>
+        </label><br></br><br></br>
+        <label className="text2"> Characteristics: </label><br></br>
 
         <br></br>
-      Size:
-      <RadioButtons setNum={setSize}/>
-      <br></br>
-      Width:
-      <RadioButtons setNum={setWidth}/>
-      <br></br>
-      Comfort:
-      <RadioButtons setNum={setComfort}/>
-      <br></br>
-      Quality:
-      <RadioButtons setNum={setQuality}/>
-      <br></br>
-      Length:
-      <RadioButtons setNum={setLength}/>
-      <br></br>
-      Fit:
-      <RadioButtons setNum={setFit}/>
-      <br></br>
+        <div>
+          Size:
+          <RadioButtons setNum={setSize}/>
+          <br></br>
+          Width:
+          <RadioButtons setNum={setWidth}/>
+          <br></br>
+          Comfort:
+          <RadioButtons setNum={setComfort}/>
+          <br></br>
+          Quality:
+          <RadioButtons setNum={setQuality}/>
+          <br></br>
+          Length:
+          <RadioButtons setNum={setLength}/>
+          <br></br>
+          Fit:
+          <RadioButtons setNum={setFit}/>
+          <br></br>
+        </div>
 
       <br></br>
       <label>
@@ -105,7 +103,7 @@ const AddReview = (props) => {
       <br></br>
       <br></br>
       Email: <br></br>
-      <textarea className="email" type="text" placeholder="Example: jackson11@email.com" cols="50" onChange={(e) => {
+      <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
         setEmail(e.target.value);
       }} /><br></br>
       For authentication reasons, you will not be emailed

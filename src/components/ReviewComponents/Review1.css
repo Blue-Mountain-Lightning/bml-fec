@@ -2,23 +2,48 @@
   display: flex;
   flex-direction: row;
   margin-top: 200px;
-  margin-left: 500px;
   margin-bottom: 100px;
-  height: 1000px;
+  height: 1500px;
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  margin-top: 200px;
 }
 
 .leftSide {
   order: 1;
   flex-direction: row;
   width: 300px;
-  background-color: rgb(242, 241, 241);
-  border-radius: 10px;
-  height: 1380px;
+  background-color: rgb(252, 252, 252);
+  height: 1300px;
+  margin-top: 50px;
+  margin-left: 500px;
+  margin-right: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: rgb(0, 0, 0);
+  border-top: solid;
+  border-color: rgb(65, 65, 65);
+  border-width: 10px;
+  border-bottom: solid;
 }
 
-.showRatings {
+.ratingsText {
+  margin-left: 85px;
+}
+
+.ratings {
+  display: flex;
   flex-direction: row;
-  margin-left: 100px;
+  margin-top: 20px;
+  margin-left: 80px;
+}
+
+.reviewRatings {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .reviewText {
@@ -43,33 +68,42 @@
   margin-bottom: 10px;
   order: 2;
   margin-right: 0px;
-  margin-left: 50px;
-  margin-top: 20px;
+  margin-left: 77px;
+  margin-top: 650px;
 }
 
 .addReviewButton:hover {
   background-color: rgb(157, 225, 228);
   color: black;
 }
-
 .searchBar {
   padding: 0;
-  height: 31px;
+  height: 30px;
   position: relative;
-  left: 0;
   outline: none;
-  border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
-  background-color: white;
   font-size: 16px;
   border-radius: 5px;
-  margin-left: 65px;
-  margin-right: 65px;
+  margin-left: 50px;
+  padding-left: 5px;
+  width: 165px;
 }
 
+.invalid {
+  padding: 0;
+  height: 30px;
+  position: relative;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 50px;
+  border-color: red;
+  border-width: 2px;
+  border-style: groove;
+  width: 170px;
+}
 
 .searchButton {
-  background-color: black; /* Green */
+  background-color: #000000; /* Green */
   color: white;
   border-color: black;
   border-radius: 5px;
@@ -80,29 +114,38 @@
   font-size: 16px;
   margin-bottom: 10px;
   margin-top: 10px;
-  margin-left: 85px;
+  margin-left: 20px;
   margin-right: 85px;
+  height:34px;
 }
 
 .searchButton:hover {
-  background-color: rgb(157, 225, 228);
+  background-color: rgb(105, 138, 139);
   color: black;
 }
 
 .rightSide {
   order: 2;
   flex-direction: row;
+  background-color: rgb(252, 252, 252);
+  margin-top: 50px;
+  height: 1300px;
+  color: rgb(0, 0, 0);
+  border-top: solid;
+  border-color: rgb(65, 65, 65);
+  border-width: 10px;
+  border-bottom: solid;
 }
 
 .showingText {
-  margin-left: 70px;
+  margin-left: 50px;
 }
 
 .reviewBlock {
   margin-left: 50px;
   margin-right: 50px;
   width: 1000px;
-  height: 1200px;
+  max-height: 1000px;
   overflow-y: auto;
 }
 
@@ -111,21 +154,20 @@
 }
 
 .eachReview {
-  border-color: rgb(245, 245, 245);
-  border-style: solid;
-  border-radius: 5px;
-  background-color: rgb(236, 234, 234);
+  border-top: solid;
+  border-color: rgb(146, 144, 144);
+  border-width: 5px;
+  border-bottom: solid;
+  border-bottom-color: #d8d8d8;
+  border-bottom-width: 3px;
+  background-color: rgb(255, 255, 255);
   margin-top: 20px;
   padding-top: 10px;
+  padding-left: 20px;
 }
 
-.summ {
-
-  margin-left: 15px;
-}
-
-.full {
-  margin-left: 15px;
+.date {
+  margin-bottom: 10px;
 }
 
 .likeButton {
@@ -189,17 +231,17 @@
 }
 
 .showMore {
-  background-color: #f0bfae;
+  background-color: #196bf0;
   border: none;
-  color: grey;
+  color: white;
   padding: 16px 32px;
   text-align: center;
   font-size: 16px;
-  margin-left: 500px;
-  margin-top: 20px;
+  margin-left: 470px;
   border-radius: 5px;
   opacity: 0.6;
   transition: 0.3s;
+  margin-top: 20px;
 }
 
 .showMore:hover {
@@ -210,26 +252,23 @@
 .goBack {
   background-color: #ec805d;
   border: none;
-  color: grey;
+  color: white;
   padding: 16px 32px;
   text-align: center;
   font-size: 16px;
-  margin-left: 500px;
   margin-top: 20px;
   border-radius: 5px;
-  opacity: 0.6;
   transition: 0.3s;
+  margin-left: 50px;
 }
 
 .goBack:hover {
-  opacity: 3;
+  background-color: #ea4e1b;
 }
+
+
 
 .dateOfReview {
-  margin-left: 30px;
-}
-
-.reviewer {
   margin-left: 30px;
 }
 
@@ -254,4 +293,23 @@
 .selectOptions {
   width: 150px;
   margin-left: 800px;
+}
+
+.sortBy {
+  width: 175px;
+  margin-left: 50px;
+  margin-top: 40px;
+}
+
+.searchFunction {
+  margin-top: 20px;
+}
+
+.ratingsBreakdown {
+  margin-top: 50px;
+  margin-left: 35px;
+  margin-bottom: 10px;
+
+
+
 }

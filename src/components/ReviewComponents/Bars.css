@@ -1,0 +1,29 @@
+.graphs {
+  display:flex;
+  flex-direction: row;
+  margin-left: 0px;
+}
+
+.graphs:hover {
+  cursor: pointer;
+}
+
+.starText {
+  width: 70px;
+  margin-left: 5px;
+}
+
+.bar {
+  color: rgb(88, 200, 88);
+  background-color: rgb(88, 200, 88);
+  border: solid;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.greystuff {
+  color: rgb(214, 214, 214);
+  background-color: rgb(214, 214, 214);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
