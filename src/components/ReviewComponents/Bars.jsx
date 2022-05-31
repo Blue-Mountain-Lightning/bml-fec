@@ -15,6 +15,8 @@ const Bars = (props) => {
         let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
         const response = await fetch(asdf, headers);
         const reviews99 = await response.json();
+        console.log('le meta data', reviews99
+        );
         setmedtaData(reviews99);
       } catch (err) {
         console.log(err);
@@ -23,11 +25,13 @@ const Bars = (props) => {
     }
     fetchReviews();
   }, [props.id]);
+
+  //bar graph.
   if (!metaData) {
     return;
   }
   let one = 0;
-  if (metaData.ratings[1] === undefined) {
+  if (!metaData.ratings.hasOwnProperty('1')) {
     one = 0;
   } else {
     one = parseInt(metaData.ratings[1]);
@@ -56,108 +60,67 @@ const Bars = (props) => {
   } else {
     five = parseInt(metaData.ratings[5]);
   }
-  const total = one + two + three + four + five;
+
+  const total = 0 + one + two + three + four + five;
+  const superTotal = 50;
 
 
-  console.log('title', one);
-  let bar1 = '';
-  for (let i = 0; i < one; i++) {
-    bar1 = bar1 + '|';
-  }
-  let bar11 = total - one;
-  let space1 = '';
-  for (let i = 0; i < bar11; i++) {
-    space1 = space1 + '|';
-  }
+  const bars = (bar) => { //seems to fill the whole div...
 
-  let bar2 = '';
-  for (let i = 0; i < two; i++) {
-    bar2 = bar2 + '|';
-  }
-  let bar21 = total - two;
-  let space2 = '';
-  for (let i = 0; i < bar21; i++) {
-    space2 = space2 + '|';
-  }
-
-
-  let bar3 = '';
-  for (let i = 0; i < three; i++) {
-    bar3 = bar3 + '|';
-  }
-  let bar31 = total - three;
-  let space3 = '';
-  for (let i = 0; i < bar31; i++) {
-    space3 = space3 + '|';
-  }
-
-
-  let bar4 = '';
-  for (let i = 0; i < four; i++) {
-    bar4 = bar4 + '|';
-  }
-  let bar41 = total - four;
-  let space4 = '';
-  for (let i = 0; i < bar41; i++) {
-    space4 = space4 + '|';
-  }
-
-  let bar5 = '';
-  for (let i = 0; i < five; i++) {
-    bar5 = bar5 + '|';
-  }
-  let bar51 = total - five;
-  let space5 = '';
-  for (let i = 0; i < bar51; i++) {
-    space5 = space5 + '|';
-  }
-
-
-  const bars = (barNum) => { //seems to fill the whole div...
-    let bar = '';
-    for (let i = 0; i < barNum; i++) {
-      bar = bar + '|';
+    let num = bar;
+    if (metaData.ratings[num] === undefined) {
+      num = 0;
+    } else {
+      num = parseInt(metaData.ratings[num]);
     }
+    let barL = '';
+    num = num / total * superTotal;
+    num = Math.round(num);
+    for (let i = 0; i < num; i++) {
+      barL = barL + '|'; //green part.
+    }
+    let spaceNum = superTotal - num;
+    let space = ''; //space, the grey part.
+    for (let i = 0; i < spaceNum; i++) {
+      space = space + '|';
+    }
+
     return (
-      <p className = "bar">{bar}</p>
+      <div className="graphs">
+        <p className="starText">{bar} star: &nbsp;</p>
+        <p className="bar">{barL}</p>
+        <p className="greystuff">{space}</p>
+        <p>&nbsp;&nbsp;{one}</p>
+      </div>
     );
+  }
+
+
+  const getReviewByStar = (number) => {
+    props.func(number);
   }
 
   //--------------------------------
   return (
     <div >
-      <div className="graphs">
-        <p>1 star: &nbsp;</p>
-        <p className="bar">{bar1}</p>
-        <p className="greystuff">{space1}</p>
-        <p>&nbsp;&nbsp;{one}</p>
+      <div onClick={() => {getReviewByStar(1)}} >
+        {bars(1)}
       </div>
-      <div className="graphs">
-        <p>2 star: &nbsp;</p>
-        <p className="bar">{bar2}</p>
-        <p className="greystuff">{space2}</p>
-        <p>&nbsp;&nbsp;{two}</p>
+      <div onClick={() => {getReviewByStar(2)}}>
+        {bars(2)}
       </div>
-      <div className="graphs">
-        <p>3 star: &nbsp;</p>
-        <p className="bar">{bar3}</p>
-        <p className="greystuff">{space3}</p>
-        <p>&nbsp;&nbsp;{three}</p>
+      <div onClick={() => {getReviewByStar(3)}}>
+        {bars(3)}
       </div>
-      <div className="graphs">
-        <p>4 star: &nbsp;</p>
-        <p className="bar">{bar4}</p>
-        <p className="greystuff">{space4}</p>
-        <p>&nbsp;&nbsp;{four}</p>
+      <div onClick={() => {getReviewByStar(4)}}>
+        {bars(4)}
       </div>
-      <div className="graphs">
-        <p>3 star: &nbsp;</p>
-        <p className="bar">{bar5}</p>
-        <p className="greystuff">{space5}</p>
-        <p>&nbsp;&nbsp;{five}</p>
+      <div onClick={() => {getReviewByStar(5)}}>
+        {bars(5)}
       </div>
-
     </div>
+
+
   );
 }
 export default Bars;

@@ -18,6 +18,8 @@
   font-size: 16px;
   border-radius: 10px;
   margin-top: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .addFullReview {
@@ -32,6 +34,8 @@
   font-size: 16px;
   border-radius: 10px;
   margin-top: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .nickname {
@@ -46,6 +50,8 @@
   font-size: 16px;
   border-radius: 10px;
   margin-top: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .email {
@@ -60,6 +66,8 @@
   font-size: 16px;
   border-radius: 10px;
   margin-top: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .submitAdd {

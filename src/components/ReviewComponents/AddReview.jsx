@@ -78,7 +78,7 @@ const AddReview = (props) => {
       <br></br>
       <label>
         Review summary <br></br>
-        <textarea className="addReviewSummary" placeholder=" Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
+        <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
           setSummary(e.target.value);
         }} /><br></br>
       </label>
@@ -87,7 +87,7 @@ const AddReview = (props) => {
       <label>
         Why did you like the product or not?
         <br></br>
-        <textarea className="addFullReview" placeholder=" review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
+        <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
           setFullReview(e.target.value);
           setWordCount(fullReview.length);
         }} />
@@ -96,7 +96,7 @@ const AddReview = (props) => {
       </label>
       <br></br>
       Nickname: <br></br>
-      <textarea className="nickname" type="text" placeholder=" Example: jackson11!" cols="30" onChange={(e) => {
+      <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
         setNickname(e.target.value);
       }} /><br></br>
       For privacy reasons, do not use your full name or email address” will appear.

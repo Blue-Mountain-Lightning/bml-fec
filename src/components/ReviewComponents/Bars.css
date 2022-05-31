@@ -1,11 +1,15 @@
 .graphs {
   display:flex;
   flex-direction: row;
-  margin-left: 25px;
+  margin-left: 0px;
 }
 
 .graphs:hover {
   cursor: pointer;
+}
+
+.starText {
+  width: 70px;
 }
 
 .bar {

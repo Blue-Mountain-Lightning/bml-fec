@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
 import './Review1.css';
+import { IconContext } from "react-icons";
+
 
 const ShowStars = (props) => {
   if (props.data === undefined) {
@@ -24,8 +26,11 @@ const ShowStars = (props) => {
           index += 1;
           return (
             <div className="showingStars" key={index}>
-
-              {avg > index ? <ImStarFull size={28}/> : avg < index && avg > index - 1 ? <ImStarHalf size={28}/> : <ImStarEmpty size={28}/>}
+              <IconContext.Provider value={{color: "#ffcd3c"}}>
+                <div>
+                  {avg >= index ? <ImStarFull size={28}/> : avg < index && avg > index - 1 ? <ImStarHalf size={28}/> : <ImStarEmpty size={28}/>}
+                </div>
+              </IconContext.Provider>
             </div>
 
 

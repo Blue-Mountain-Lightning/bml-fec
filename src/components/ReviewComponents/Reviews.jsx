@@ -58,7 +58,6 @@ const Reviews = (props) => {
             let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
             const response = await fetch(url, headers);
             const reviews99 = await response.json();
-            console.log(reviews99);
             setReviews(reviews99);
           } catch (err) {
             console.log(err);
@@ -76,7 +75,6 @@ const Reviews = (props) => {
             let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
             const response = await fetch(url, headers);
             const reviews99 = await response.json();
-            console.log(reviews99);
             setReviews(reviews99);
           } catch (err) {
             console.log(err);
@@ -94,7 +92,6 @@ const Reviews = (props) => {
             let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
             const response = await fetch(url, headers);
             const reviews99 = await response.json();
-            console.log(reviews99);
             setReviews(reviews99);
           } catch (err) {
             console.log(err);
@@ -105,6 +102,12 @@ const Reviews = (props) => {
     }
    }
 
+  const sortStar = (num) => {
+    //filter the meta data with reviews with ratings one.
+    alert('clicked!', num);
+    console.log('number', num)
+    console.log('all', reviews);
+  }
 
 
   if (reviews === undefined) {
@@ -118,14 +121,16 @@ const Reviews = (props) => {
         <ShowStars data={reviews}/>
 
         <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
-        <Bars id={props.id}/>
+        <Bars id={props.id} func={sortStar}/>
+
+        {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
       </div>
 
 
 
 
       <div className="rightSide">
-        {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
+
 
         <div className="reviewShowing">
           {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}

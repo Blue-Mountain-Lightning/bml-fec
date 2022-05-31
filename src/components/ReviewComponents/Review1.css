@@ -24,6 +24,7 @@
   border-top: solid;
   border-color: rgb(65, 65, 65);
   border-width: 10px;
+  border-bottom: solid;
 }
 
 .ratingsText {
@@ -67,15 +68,14 @@
   margin-bottom: 10px;
   order: 2;
   margin-right: 0px;
-  margin-left: 50px;
-  margin-top: 50px;
+  margin-left: 77px;
+  margin-top: 650px;
 }
 
 .addReviewButton:hover {
   background-color: rgb(157, 225, 228);
   color: black;
 }
-
 .searchBar {
   padding: 0;
   height: 30px;
@@ -84,6 +84,20 @@
   font-size: 16px;
   border-radius: 5px;
   margin-left: 50px;
+  padding-left: 5px;
+}
+
+.invalid {
+  padding: 0;
+  height: 30px;
+  position: relative;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 50px;
+  border-color: red;
+  border-width: 2px;
+  border-style: groove;
 }
 
 .searchButton {
@@ -100,11 +114,11 @@
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 85px;
-  height:30px;
+  height:34px;
 }
 
 .searchButton:hover {
-  background-color: rgb(157, 225, 228);
+  background-color: rgb(105, 138, 139);
   color: black;
 }
 
@@ -118,6 +132,7 @@
   border-top: solid;
   border-color: rgb(65, 65, 65);
   border-width: 10px;
+  border-bottom: solid;
 }
 
 .showingText {
@@ -140,6 +155,9 @@
   border-top: solid;
   border-color: rgb(146, 144, 144);
   border-width: 5px;
+  border-bottom: solid;
+  border-bottom-color: #d8d8d8;
+  border-bottom-width: 3px;
   background-color: rgb(255, 255, 255);
   margin-top: 20px;
   padding-top: 10px;
@@ -211,9 +229,9 @@
 }
 
 .showMore {
-  background-color: #f0bfae;
+  background-color: #196bf0;
   border: none;
-  color: grey;
+  color: white;
   padding: 16px 32px;
   text-align: center;
   font-size: 16px;
