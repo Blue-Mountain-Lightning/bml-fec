@@ -20,7 +20,7 @@ const ProductDetail = (props) => {
     }
 
     let updatedOutfit = outfit;
-    updatedOutfit.push(item);
+    updatedOutfit.unshift(item);
     setOutfit([...updatedOutfit]);
   }
 
