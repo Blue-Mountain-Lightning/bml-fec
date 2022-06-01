@@ -106,7 +106,6 @@ const RelatedProducts = ({product}) => {
 
     return (
       <>
-        {/* modal ? Modal : null */}
         { Modal }
         <h1 className='center-heading'>You may also like</h1>
         <ProductRow
