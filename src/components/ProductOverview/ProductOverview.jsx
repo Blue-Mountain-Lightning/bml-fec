@@ -12,8 +12,6 @@ const ProductOverview = ({ product }) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
-  console.log(product)
-
   useEffect(() => {
     const fetchProductStyles = async () => {
       if (product.id) {
@@ -65,7 +63,6 @@ const ProductOverview = ({ product }) => {
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
     const skus = currentStyle.skus;
-    console.log(styles)
 
     return (
       <div className="section">

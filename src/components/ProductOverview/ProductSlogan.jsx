@@ -13,8 +13,8 @@ const ProductSlogan = ({ product }) => {
             </div>
             <div>
               <ul>
-                {product.features && product.features.map((feature) => {
-                  return <li>{feature.feature} : {feature.value}</li>
+                {product.features && product.features.map((feature, i) => {
+                  return <li key={feature.feature + i}>{feature.feature} : {feature.value}</li>
                 })}
               </ul>
             </div>

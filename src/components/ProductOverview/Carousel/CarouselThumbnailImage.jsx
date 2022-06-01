@@ -11,17 +11,20 @@ const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, isExpanded, handle
   }
 
   useEffect(() => {
-    if (!thumbnailRef.current.classList.contains('current')) return
-    const thumbDiv = document.querySelector('.carousel-thumbnail-grid');
-    if (!thumbDiv) return;
-    thumbnailRef.current.scrollIntoView({ behavior: `smooth`, block: `nearest` });
-  })
+    // const thumbDiv = document.querySelector('.carousel-thumbnail-grid.current');
+    // thumbDiv.scrollIntoView({ behavior: `smooth`, block: `nearest` });
+
+    // if (!thumbnailRef.current.classList.contains('current')) return
+    // const thumbDiv = document.querySelector('.carousel-thumbnail-grid');
+    // if (!thumbDiv) return;
+    // thumbnailRef.current.scrollIntoView({ behavior: `smooth`, block: `nearest` });
+  }, [className])
 
   const displayThumbnail = () => {
     if (!isExpanded) {
-      return <img ref={thumbnailRef} className={className} src={photoUrl} alt={alt} onClick={() => handleClick(index)} />
+      return <img className={className} src={photoUrl} alt={alt} onClick={() => handleClick(index)} />
     } else {
-      return <div ref={thumbnailRef} className={className} onClick={() => handleClick(index)}><FaDotCircle /></div>
+      return <div className={className} onClick={() => handleClick(index)}><FaDotCircle /></div>
     }
   }
 
