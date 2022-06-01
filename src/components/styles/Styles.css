@@ -338,7 +338,6 @@ overwrite broser default <select> styling */
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  transition: all 300ms;
 }
 
 /* RowNav */
@@ -355,4 +354,6 @@ overwrite broser default <select> styling */
   overflow: hidden;
   pointer-events: none;
 }
+
+/* PRODUCT CARD STARTS */
 

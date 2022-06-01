@@ -75,7 +75,6 @@ const ProductRow = ({
       document.documentElement.style.setProperty(offsetVar, `${offset}px`);
       const last = elem.getBoundingClientRect();
       const invert = first.x - last.x;
-      elem.style.transform = `translateX(${invert}px)`;
       elem.animate([
         { transform: `translateX(${invert}px)` },
         { transform: `translateX(0)` },
@@ -93,7 +92,7 @@ const ProductRow = ({
     handleResizeWindow();
     window.addEventListener('resize', () => {
       clearTimeout(debouncer.current);
-      debouncer.current = setTimeout(handleResizeWindow, 40);
+      debouncer.current = setTimeout(handleResizeWindow, 100);
     });
   }, [products, handleResizeWindow]);
 
