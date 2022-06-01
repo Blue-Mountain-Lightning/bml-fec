@@ -7,14 +7,13 @@ const AddToOutfitCard = ({product, handleAddToOutfit}) => {
   }
 
   return (
-    <div className='dummy-product-card'>
-      <button
-        className='dummy-product-card-graphic'
-        onClick={handleClick}
-      >
-        <span>click to add</span>
+    <div className='dummy-product-card' onClick={handleClick}>
+      <button className='dummy-product-card-graphic'>
         <MdAdd className='dummy-product-card-icon' size='6rem'/>
       </button>
+      <div className='dummy-product-card-bottom'>
+        <span className='click-to-add'>click to add {product.name}</span>
+      </div>
     </div>
   )
 }

@@ -306,15 +306,24 @@ overwrite broser default <select> styling */
   font-size: 2rem;
 }
 
-.dummy-product-card-icon {
-}
-
 .product-card {
   height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   z-index: 98;
+}
+
+.dummy-product-card-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.click-to-add {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 
@@ -349,3 +358,4 @@ overwrite broser default <select> styling */
   overflow: hidden;
   pointer-events: none;
 }
+
