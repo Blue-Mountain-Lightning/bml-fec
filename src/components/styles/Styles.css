@@ -254,9 +254,7 @@ overwrite broser default <select> styling */
   position: relative;
   margin: 0 auto;
   justify-content: center;
-  transition: all 0.12s linear;
   opacity: 1;
-  z-index: 1000;
   overflow: hidden;
   padding-bottom: 2rem;
 }
@@ -306,15 +304,24 @@ overwrite broser default <select> styling */
   font-size: 2rem;
 }
 
-.dummy-product-card-icon {
-}
-
 .product-card {
   height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   z-index: 98;
+}
+
+.dummy-product-card-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.click-to-add {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 
@@ -331,20 +338,21 @@ overwrite broser default <select> styling */
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  transition: all 244ms;
-  transition-timing-function: ease;
+  transition: all 300ms;
 }
 
 /* RowNav */
 .row-dots {
-  margin-top: 1rem;
   display: flex;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
   justify-content: center;
+  align-items: center;
   gap: .5rem;
-  font-size: .50rem;
 }
 
 .scroll-lock {
   overflow: hidden;
   pointer-events: none;
 }
+
