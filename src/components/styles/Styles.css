@@ -255,7 +255,6 @@ overwrite broser default <select> styling */
   margin: 0 auto;
   justify-content: center;
   opacity: 1;
-  z-index: 1000;
   overflow: hidden;
   padding-bottom: 2rem;
 }
