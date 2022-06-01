@@ -97,8 +97,6 @@ const ProductRow = ({
   let prevButton = (offset >= maxOffset) ? false : true;
   let nextButton = (offset <= -maxOffset) ? false : true;
 
-  console.log(numCards);
-
   return (
     <>
     <div className='product-row' style={{'width': `${contentWidth}px`}}>
