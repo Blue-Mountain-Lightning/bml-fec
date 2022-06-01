@@ -337,11 +337,12 @@ overwrite broser default <select> styling */
 
 /* RowNav */
 .row-dots {
-  margin-top: 1rem;
   display: flex;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
   justify-content: center;
+  align-items: center;
   gap: .5rem;
-  font-size: .50rem;
 }
 
 .scroll-lock {
