@@ -7,10 +7,6 @@ const CarouselImage = ({ photoUrl, isExpanded, toggleExpandedMode, activeSlideIn
     className += " current";
   }
 
-  // const mouseEnter = (event) => {
-  //   event.target.classList.add('is-zoomed');
-  // }
-
   const mouseLeave = (event) => {
     event.target.style.transform = 'scale(1)';
     event.target.style.transformOrigin = `50% 50%`
