@@ -93,7 +93,7 @@ const ProductRow = ({
     handleResizeWindow();
     window.addEventListener('resize', () => {
       clearTimeout(debouncer.current);
-      debouncer.current = setTimeout(handleResizeWindow, 40);
+      debouncer.current = setTimeout(handleResizeWindow, 100);
     });
   }, [products, handleResizeWindow]);
 
