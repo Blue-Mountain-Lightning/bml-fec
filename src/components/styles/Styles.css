@@ -254,7 +254,6 @@ overwrite broser default <select> styling */
   position: relative;
   margin: 0 auto;
   justify-content: center;
-  transition: all 0.12s linear;
   opacity: 1;
   z-index: 1000;
   overflow: hidden;
@@ -340,8 +339,7 @@ overwrite broser default <select> styling */
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  transition: all 244ms;
-  transition-timing-function: ease;
+  transition: all 300ms;
 }
 
 /* RowNav */

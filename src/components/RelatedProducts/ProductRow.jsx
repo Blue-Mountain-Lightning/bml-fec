@@ -25,6 +25,7 @@ const ProductRow = ({
 }) => {
   const cardWidth = convertRemToPixels(CARD_WIDTH_REM);
   const rowRef = useRef();
+  const debouncer = useRef();
 
   const [contentWidth, setContentWidth] = useState(false);
   const [maxOffset, setMaxOffset] = useState(0);
@@ -90,7 +91,10 @@ const ProductRow = ({
 
   useEffect(() => {
     handleResizeWindow();
-    window.addEventListener('resize', handleResizeWindow);
+    window.addEventListener('resize', () => {
+      clearTimeout(debouncer.current);
+      debouncer.current = setTimeout(handleResizeWindow, 40);
+    });
   }, [products, handleResizeWindow]);
 
   // set the scroll buttons to be on/off based on scroll position
@@ -99,36 +103,36 @@ const ProductRow = ({
 
   return (
     <>
-    <div className='product-row' style={{'width': `${contentWidth}px`}}>
-      <button
-        onClick={(e) => handleArrowClick(e, 'previous')}
-        className='card-button card-prev'
-      >
-        <ScrollButton direction={'previous'} active={prevButton} />
-      </button>
-      <div className={`products-list ${offsetClass}`} ref={rowRef}>
-        {products.map(product => {
-          if (!product?.id) { // allow components through
-            return product;
-          }
+      <div className='product-row' style={{'width': `${contentWidth}px`}}>
+        <button
+          onClick={(e) => handleArrowClick(e, 'previous')}
+          className='card-button card-prev'
+        >
+          <ScrollButton direction={'previous'} active={prevButton} />
+        </button>
+        <div className={`products-list ${offsetClass}`} ref={rowRef}>
+          {products.map(product => {
+            if (!product?.id) { // allow components through
+              return product;
+            }
 
-          return (
-            <ProductCard key={product.id}
-                         product={product}
-                         Icon={Icon}
-                         iconHandler={iconHandler}
-                         iconHandlerClose={iconHandlerClose}
-            />
-          )
-        })}
+            return (
+              <ProductCard key={product.id}
+                           product={product}
+                           Icon={Icon}
+                           iconHandler={iconHandler}
+                           iconHandlerClose={iconHandlerClose}
+              />
+            )
+          })}
+        </div>
+        <button
+          onClick={(e) => handleArrowClick(e, 'next')}
+          className='card-button card-next'
+        >
+          <ScrollButton direction={'next'} active={nextButton} />
+        </button>
       </div>
-      <button
-        onClick={(e) => handleArrowClick(e, 'next')}
-        className='card-button card-next'
-      >
-        <ScrollButton direction={'next'} active={nextButton} />
-      </button>
-    </div>
       { products.length > 1 ?
         <RowNav
           numProducts={products.length}
