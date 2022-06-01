@@ -3,12 +3,17 @@ import { FaDotCircle } from 'react-icons/fa';
 
 const CarouselThumbnailImage = ({ photoUrl, activeSlideIndex, isExpanded, handleClick, index, alt }) => {
 
-  const thumbnailRef = useRef();
-
   let className = !isExpanded ? "carousel-thumbnail-image" : "thumbnail-dot"
   if (activeSlideIndex === index) {
     className += " current";
   }
+
+  useEffect(() => {
+    const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image')
+    if (thumbs.length > 0) {
+      thumbs[activeSlideIndex].scrollIntoView({ block: `center` })
+    }
+  }, [isExpanded])
 
   const displayThumbnail = () => {
     if (!isExpanded) {

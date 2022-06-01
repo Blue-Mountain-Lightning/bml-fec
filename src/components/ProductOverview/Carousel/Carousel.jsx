@@ -8,6 +8,7 @@ const Carousel = ({ photoUrls, productId }) => {
   let [activeSlideIndex, setActiveSlideIndex] = useState(0);
   let [isExpanded, setIsExpanded] = useState(false);
   let numPhotos = photoUrls.length;
+  //const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image')
 
   if (numPhotos <= activeSlideIndex) {
     setActiveSlideIndex(0);
@@ -27,12 +28,9 @@ const Carousel = ({ photoUrls, productId }) => {
     setActiveSlideIndex(index);
 
     const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image');
-    if (!thumbs) return;
-    thumbs[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
-    const dots = document.querySelectorAll('.carousel-thumbnail-grid > .thumbnail-dot');
-    if (!dots) return;
-    dots[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
-
+    if (thumbs.length > 0) {
+      thumbs[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
+    }
   }
 
   const toggleExpandedMode = (event) => {
