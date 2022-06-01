@@ -18,9 +18,6 @@ const Carousel = ({ photoUrls, productId }) => {
   }, [productId])
 
   const handleClick = (index) => {
-    const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image');
-    thumbs[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
-
     if (index === numPhotos) {
       index = 0;
     }
@@ -28,6 +25,13 @@ const Carousel = ({ photoUrls, productId }) => {
       index = numPhotos - 1;
     }
     setActiveSlideIndex(index);
+
+    const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image');
+    if (!thumbs) return;
+    thumbs[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
+    const dots = document.querySelectorAll('.carousel-thumbnail-grid > .thumbnail-dot');
+    if (!dots) return;
+    dots[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
 
   }
 
