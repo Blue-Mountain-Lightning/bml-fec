@@ -1,9 +1,12 @@
 .reviewsMain {
   display: flex;
   flex-direction: row;
+  margin-top: 200px;
+  margin-bottom: 100px;
   height: 1500px;
   background-color: rgb(255, 255, 255);
   margin: auto;
+  margin-top: 200px;
 }
 
 .leftSide {
@@ -13,6 +16,7 @@
   background-color: rgb(252, 252, 252);
   height: 1300px;
   margin-top: 50px;
+  margin-left: 500px;
   margin-right: 50px;
   padding-left: 20px;
   padding-right: 20px;
@@ -72,7 +76,6 @@
   background-color: rgb(157, 225, 228);
   color: black;
 }
-
 .searchBar {
   padding: 0;
   height: 30px;
@@ -81,6 +84,21 @@
   font-size: 16px;
   border-radius: 5px;
   margin-left: 50px;
+  padding-left: 5px;
+  width: 165px;
+}
+
+.invalid {
+  padding: 0;
+  height: 30px;
+  position: relative;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 50px;
+  border-color: red;
+  border-width: 2px;
+  border-style: groove;
   padding-left: 5px;
   width: 165px;
 }
@@ -121,7 +139,6 @@
 }
 
 .showingText {
-  margin-left: 50px;
 }
 
 .reviewBlock {
