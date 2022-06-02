@@ -19,7 +19,7 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
      });
   }
   const validatedEmail = (emailAddress) => {
-    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (emailAddress.match(regexEmail)) {
       return true;
     } else {
@@ -66,17 +66,17 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
           </div>
         <form className='question-form'
           onSubmit={handleSubmit}>
-          <label className='modal-label'>Your email*
+          <label className='modal-label'>Your email *
               <input className='question-email'
                 name ='email'
-                type='text'
+                type='email'
                 value={add.email}
                 maxLength='60'
                 placeholder='Why did you like the product or not?'
                 onChange={handleOnChange}/>
             </label>
-            <p>For authentication reasons, you will not be emailed</p>
-            <label className='modal-label'>What is your nickname*
+            <span className='qa-fyi'>For authentication reasons, you will not be emailed</span>
+            <label className='modal-label'>What is your nickname *
             <input className='question-name'
               name ='nickname'
               placeholder='Examples: jackson11!'
@@ -85,9 +85,10 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
               maxLength='60'
               onChange={handleOnChange}/>
             </label>
-            <p>For privacy reasons, do not use your full name or email address</p>
-           <label className='modal-label'>Your Question*
-             <input className='question-textarea'
+            <span className='qa-fyi'>For privacy reasons, do not use your full name or email address</span>
+           <label className='modal-label'>Your Question *
+           <br/>
+             <textarea className='question-textarea'
               name ='questionAsk'
               placeholder='Ask your question here...'
               type='text'
@@ -95,7 +96,7 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
               maxLength='1000'
               onChange={handleOnChange}/>
            </label>
-           <div className='align-center'>
+           <div className='button-container'>
             <input className='submit-question-button' type='submit' value='Submit question'/>
             </div>
         </form>

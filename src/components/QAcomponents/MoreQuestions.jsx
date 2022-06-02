@@ -16,7 +16,7 @@ const MoreQuestions = ({questions, product, productId, handleClose, handleOpen, 
       <AddQuestion handleClose={handleClose} openAdd={openAdd} productId={productId} product={product}/>
           </>
         : <>
-        {(questions && questions.length > 4 ) && questions.slice(4).map(question => {
+        {(questions && questions.length > 2 ) && questions.slice(2).map(question => {
           return (
             <QuestionsEntry question={question} key ={question.question_id}  questionId = {question.question_id} product={product}/>
           )

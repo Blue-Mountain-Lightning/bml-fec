@@ -10,7 +10,7 @@ const AnswerPhotos = ({photo}) => {
       src={photo.url}
       onClick={handlePhotoClick}
       alt='photos'/>
-        <button className='enlarged-photo-close'
+      <button className='enlarged-photo-close'
       onClick={handlePhotoClick}>
       X
       </button>
