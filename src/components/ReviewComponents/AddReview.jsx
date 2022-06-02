@@ -1,14 +1,15 @@
 import './addReview.css';
 import React, { useState, useEffect } from 'react';
-import Stars from './Stars.jsx';
 import RadioButtons from './RadioButtons.jsx';
-const axios = require('axios').default;
+import { IconContext } from "react-icons";
+import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
 //NEED TO WORK ON STARS
 //maybe tune wordcount...
 //upload photo function?
 const AddReview = (props) => {
 
-  const [numStars, setNumStars] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
   const [recommend, setRecommend] = useState('');
   const [summary, setSummary] = useState('');
   const [fullReview, setFullReview] = useState('');
@@ -21,26 +22,59 @@ const AddReview = (props) => {
   const [quality, setQuality] = useState(6);
   const [length, setLength] = useState(6);
   const [fit, setFit] = useState(6);
+  const id1 = parseInt(props.id);
+
 
   const handleYesNo = (event) => {
     setRecommend(event.target.value);
   }
 
   const submitEverything = () => { //fetch post request using state as data.
+    //need to check for validity, then executes the rests.
+    if (fullReview.length < 50) {
+      alert('not enough length');
+      return;
+    }
+
+    //convert characteristics to the codes.
+
+
+
+
+
+
+
+
+    //---------------------------------------------
     const allData = { //states.
-      product_id: props.id,
-      rating: numStars,
+      product_id: id1,
+      rating: rating,
       summary: summary,
       body: fullReview,
-      recommend: recommend,
+      recommend: true,
       name: nickname,
       email: email,
-      characteristics: {"3": 2}
+      characteristics: {"135221": 3, "135219": 2, "135220": 5, "135222": 1}
     }
     let url = `${process.env.REACT_APP_API}reviews`;
     //post request to api.
+    console.log('test', JSON.stringify(allData));
+    fetch (url, {
+      method: 'POST',
+      headers: {'Authorization': process.env.REACT_APP_TOKEN,
+      'Content-Type': 'application/json'},
+      body: JSON.stringify(allData)
+      })
+      .then(() => console.log('Success!'))
+      .catch((err) => {alert(err)})
+  }
+  const showText = () => {
+
   }
 
+  const calculate = () => {
+    return 50 - wordCount;
+  }
   //testing conditional rendering, show form to add.
     return (
         <div id="myModal" class="modal">
@@ -48,9 +82,27 @@ const AddReview = (props) => {
 
             <div className="top1">
               <b className="title">Write Your Review</b>
-              <button onClick={props.set} className="close">X</button>
+              <button onClick={props.set} className="close">close</button>
             </div>
+              <div className="star-rating">
 
+                {[...Array(5)].map((star, index) => {
+                  index += 1;
+                  return (
+                    <button type="button" key={index}
+
+                    className={index <= (hover || rating) ? "on" : "off"}
+                      onClick={() => {setRating(index); }}
+                      onMouseEnter={() => setHover(index)}
+                      onMouseLeave={() => setHover(rating)}>
+
+                      <span className="star">&#9733;</span>
+
+                    </button>
+                  );
+                })}
+                {rating === 1 ? <p className="oneStarSelected">Poor</p> : rating === 2 ? <p className="twoStarSelected">Fair</p> : rating === 3 ? <p className="threeStarSelected">Average</p> : rating === 4 ? <p className="fourStarSelected">Good</p> : rating === 5 ? <p className="fiveStarSelected">Great</p> : <i className="none">none</i> }
+              </div>
             <div className="input">
 
               <label className="text1" onChange={handleYesNo}> Do you recommend this product?
@@ -98,7 +150,7 @@ const AddReview = (props) => {
               setFullReview(e.target.value);
               setWordCount(fullReview.length);
               }} />
-              <p>Minimum required characters left: {50 - wordCount} </p>
+              <p>Minimum required characters left: {50 - wordCount >= 0 ? 50 - wordCount : 0} </p>
 
               </label>
               <br></br>

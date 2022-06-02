@@ -12,31 +12,32 @@
   background-color: white;
   opacity: 1;
   width: 1200px;
-  height: 1150px;
+  height: 1180px;
   margin-left: 650px;
-  margin-top: 50px;
+  margin-top: 10px;
+  overflow-y: auto;
 }
 
 .top1 {
-  width: 1200px;
-  height: 55px;
-  border-bottom: solid;
-  border-color: #d8d8d8;
-  border-width: 2px;
-  background-color: #cdcdcd;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(172, 172, 172);
+  height: 70px;
 }
 
 .title {
   font-size: 25px;
   margin-left: 30px;
-  color: white;
-
+  color: rgb(255, 255, 255);
+  margin-right: 870px;
+  margin-top: 20px;
 }
 
 .close {
-  height: 50px;
-  width: 50px;
-
+  height: 70px;
+  width: 75px;
+  background-color: #949494;
+  color: white;
 }
 
 .input {
@@ -143,3 +144,48 @@
   margin-right: 0;
 
 }
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: rgb(228, 204, 27)
+}
+.off {
+  color: #ccc;
+}
+
+.star-rating {
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+.oneStarSelected {
+  margin-left: 30px;
+}
+.twoStarSelected {
+  margin-left: 20px;
+}
+.threeStarSelected {
+  margin-left: 20px;
+}
+.fourStarSelected {
+  margin-left: 20px;
+}
+.fiveStarSelected {
+  margin-left: 20px;
+}
+
+.none {
+  color: white;
+}
+
+

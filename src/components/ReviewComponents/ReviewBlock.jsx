@@ -8,7 +8,7 @@ const ReviewBlock = (props) => {
   const [class1, setClass1] = useState('searchBar');
   const [reviews, setReviews] = useState(undefined);
 
-  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=20`
+  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=50`
 
   useEffect(() => {
     if (reviews === undefined) {
@@ -30,19 +30,14 @@ const ReviewBlock = (props) => {
 
   const handleSearchTextChange = (event) => {
     event.preventDefault();
-
     setSearch(event.target.value);
+
+
   }
 
   let arr = props.data.results.slice();
 
   const searchButton = () => {
-    if (searchText === '') {
-      setClass1('invalid');
-      return;
-    } else {
-      setClass1('searchBar');
-    }
 
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
@@ -58,7 +53,7 @@ const ReviewBlock = (props) => {
   const getSorted = (event) => {
 
     if (event.target.value === 'newest') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=newest&count=20`
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=newest&count=500`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -75,7 +70,7 @@ const ReviewBlock = (props) => {
     }
 
     if(event.target.value === 'helpful') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=helpful&count=20`
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=helpful&count=50`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -92,7 +87,7 @@ const ReviewBlock = (props) => {
     }
 
     if(event.target.value === 'relevant') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=relevant&count=20`
+      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=relevant&count=50`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -141,10 +136,11 @@ const ReviewBlock = (props) => {
     </div>
 
     <div className="searchFunction">
-      <input className={class1} placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
-      <button className="searchButton" type="submit" value="Search" onClick={searchButton}>Search</button>
+      <input className={class1} placeholder="   search" type="text" value={searchText} onChange={(e) => {
+        handleSearchTextChange(e); searchButton();}} />
     </div>
-    <p className="showingText">showing: </p>
+
+    <p className="showingText">showing: {newArr.length}</p>
     <div className="reviewBlock">
       { display === '' ?
       newArr.map((review) => {
