@@ -8,9 +8,10 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  font-size: 30px;
 }
 .on {
-  color: yellow
+  color: rgb(254, 222, 13)
 }
 .off {
   color: #ccc;

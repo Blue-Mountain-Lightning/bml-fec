@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AddReview from './AddReview.jsx';
-import Filter from './Filter.jsx';
 import ReviewBlock from './ReviewBlock.jsx';
 import './Review1.css';
 import ShowStars from './ShowStars.jsx';
@@ -14,7 +13,7 @@ const Reviews = (props) => {
   const [more, setMore] = useState(true);
   const [starSelect, setStarSelect] = useState(0);
 
-  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=20`
+  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=900`
 
   useEffect(() => {
     if (reviews === undefined) {
@@ -24,6 +23,7 @@ const Reviews = (props) => {
             let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
             const response = await fetch(url, headers);
             const reviews99 = await response.json();
+            console.log('TETSETSETSET', reviews99);
             setReviews(reviews99);
           } catch (err) {
             console.log(err);
@@ -55,30 +55,37 @@ const Reviews = (props) => {
 
   const numberChosen = (num) => {
     setStarSelect(num);
+
+  }
+
+  const closeModal = () => {
+    setShow(false);
   }
 
   return (
-    <div className="reviewsMain">
-      <div className="leftSide">
-        <h1 className="reviewText">Ratings &#38; Reviews</h1>
-        <ShowStars data={reviews}/>
+    <div className="container">
 
-        <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
-        <Bars id={props.id} select={numberChosen}/>
+      <div className="reviewsMain">
+        <div className="leftSide">
+          <h1 className="reviewText">Ratings &#38; Reviews</h1>
+          <ShowStars data={reviews}/>
 
-        {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
-      </div>
+          <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
+          <Bars id={props.id} select={numberChosen}/>
 
-      <div className="rightSide">
-        <div className="reviewShowing">
-          {showAdd !== false ? <button className="goBack" onClick={handleCloseAdd}>Go back</button> : <p></p>}
+          {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
+        </div>
 
-          {showAdd === false ? <ReviewBlock className="reviewBlock" select={starSelect} func={setReviews} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id}/> : <AddReview show={showAdd} id={props.id}/>}
-          {(more === true) ? <button className="showMore" onClick={() => { showMore()}} >show more</button> : <p></p>}
+        <div className="rightSide">
+          <div className="reviewShowing">
+            <ReviewBlock className="reviewBlock" select={starSelect} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id}/>
+            {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
+            {(more === true) ? <button className="showMore" onClick={() => { showMore()}} >show more</button> : <p></p>}
+          </div>
+
         </div>
 
       </div>
-
     </div>
   );
 }
