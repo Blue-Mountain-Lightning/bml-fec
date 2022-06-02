@@ -6,7 +6,7 @@ const MessageBar = () => {
       <div className="container-large">
         <div className="page-padding">
           <div className="message-wrapper">
-            <p className="message-text">🚨 !!!! SALE SALE SALE SALE SALE SALE !!!! 🚨</p>
+            <p className="message-text">🚨 Amazing Sale on /// Camo Onsies /// going on RIGHT NOW !!! 🚨</p>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ select {
 }
 
 .button:hover {
-  background-color: #ce4d12;
+  background-color: rgb(180, 56, 77);
 }
 
 /* select-wrapper and select-arrow are used to
@@ -181,7 +181,7 @@ overwrite broser default <select> styling */
 
 .card-style-circle-selected {
   border: 2px solid black !important;
-  border: 2px solid #ce4d12 !important;
+  border: 2px solid rgb(180, 56, 77) !important;
 }
 
 .card-style-grid-overlay {
@@ -215,7 +215,7 @@ overwrite broser default <select> styling */
 }
 
 .card-button-icon:hover {
-  color: #ce4d12;
+  color: rgb(180, 56, 77);
   background: white;
 }
 
@@ -239,7 +239,7 @@ overwrite broser default <select> styling */
 
 /* PRICE */
 .sale-price {
-  color: red;
+  color: rgb(180, 56, 77);
 }
 
 /* RELATED PRODOCUTS and YOUR OUTFIT */
@@ -255,7 +255,7 @@ overwrite broser default <select> styling */
 }
 
 .card-icon:hover {
-  color: #ce4d12;
+  color: rgb(180, 56, 77);
 }
 
 .card-icon {
@@ -342,4 +342,3 @@ overwrite broser default <select> styling */
 }
 
 /* PRODUCT CARD STARTS */
-

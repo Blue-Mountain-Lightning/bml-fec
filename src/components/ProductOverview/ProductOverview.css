@@ -46,7 +46,7 @@
 
 .card-style-circle.current {
   border: 2px solid;
-  border-color: #ce4d12;
+  border-color: rgb(180, 56, 77);
 }
 
 .product-overview-form {
@@ -61,7 +61,7 @@
   justify-content: start;
   font-size: 2.5rem;
   margin-left: 1rem;
-  color: #ce4d12;
+  color: rgb(180, 56, 77);
   cursor: pointer;
 }
 

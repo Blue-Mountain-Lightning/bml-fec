@@ -1,9 +1,11 @@
 .reviewsMain {
   display: flex;
   flex-direction: row;
-  height: 1500px;
+  /* height: 1500px; */
   background-color: rgb(255, 255, 255);
   margin: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .leftSide {
@@ -11,7 +13,7 @@
   flex-direction: row;
   width: 300px;
   background-color: rgb(252, 252, 252);
-  height: 1300px;
+  /* height: 1300px; */
   margin-top: 50px;
   margin-right: 50px;
   padding-left: 20px;
@@ -43,7 +45,7 @@
 }
 
 .reviewText {
-  order:1;
+  order: 1;
   margin-right: 80px;
   margin-top: 35px;
   margin-bottom: 70px;
@@ -52,7 +54,8 @@
 }
 
 .addReviewButton {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   border: none;
   color: white;
   border-radius: 10px;
@@ -65,11 +68,11 @@
   order: 2;
   margin-right: 0px;
   margin-left: 77px;
-  margin-top: 650px;
+  margin-top: 32px;
 }
 
 .addReviewButton:hover {
-  background-color: rgb(157, 225, 228);
+  background-color: rgb(180, 56, 77);
   color: black;
 }
 
@@ -86,7 +89,8 @@
 }
 
 .searchButton {
-  background-color: #000000; /* Green */
+  background-color: #000000;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 5px;
@@ -99,7 +103,7 @@
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 85px;
-  height:34px;
+  height: 34px;
 }
 
 .searchButton:hover {
@@ -112,7 +116,7 @@
   flex-direction: row;
   background-color: rgb(252, 252, 252);
   margin-top: 50px;
-  height: 1300px;
+  /* height: 1300px; */
   color: rgb(0, 0, 0);
   border-top: solid;
   border-color: rgb(65, 65, 65);
@@ -127,7 +131,7 @@
 .reviewBlock {
   margin-left: 50px;
   margin-right: 50px;
-  width: 1000px;
+  /* width: 1000px; */
   max-height: 1000px;
   overflow-y: auto;
 }
@@ -176,7 +180,8 @@
 }
 
 .button-yes {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 15px;
@@ -189,7 +194,8 @@
 }
 
 .button-no {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 15px;
@@ -214,7 +220,7 @@
 }
 
 .showMore {
-  background-color: #196bf0;
+  background-color: rgb(180, 56, 77);
   border: none;
   color: white;
   padding: 16px 32px;
@@ -225,6 +231,7 @@
   opacity: 0.6;
   transition: 0.3s;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .showMore:hover {
@@ -233,7 +240,7 @@
 
 
 .goBack {
-  background-color: #ec805d;
+  background-color: rgb(180, 56, 77);
   border: none;
   color: white;
   padding: 16px 32px;
@@ -246,7 +253,7 @@
 }
 
 .goBack:hover {
-  background-color: #ea4e1b;
+  background-color: rgb(180, 56, 77);
 }
 
 
@@ -261,7 +268,7 @@
 }
 
 .fa-solid {
-  color: #f42731;
+  color: rgb(180, 56, 77);
 }
 
 .fa-heart {
@@ -270,7 +277,7 @@
 }
 
 .fa-heart:hover {
-  color: #f42731
+  color: rgb(180, 56, 77)
 }
 
 .selectOptions {

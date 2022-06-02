@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+.carousel-thumbnail-grid::-webkit-scrollbar {
   width: 0px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .carousel-thumbnail-image.current {
-  border-color: rgb(238, 128, 55);
+  border-color: rgb(180, 56, 77);
 }
 
 .thumbnail-dot {
@@ -61,7 +61,7 @@
 }
 
 .thumbnail-dot.current {
-  color: rgb(238, 128, 55)
+  color: rgb(180, 56, 77)
 }
 
 .carousel-image-wrapper {
@@ -151,5 +151,5 @@
 
 .carousel-button:hover {
   background: rgba(0, 0, 0, 0.2);
-  color: rgb(238, 128, 55);
+  color: rgb(180, 56, 77);
 }
