@@ -111,9 +111,6 @@ const RelatedProducts = ({product}) => {
         <h1 className='center-heading'>You may also like</h1>
         <ProductRow
           products={products}
-          offsetClass={OFFSET_CLASS}
-          offsetVar={OFFSET_VAR}
-          widthVar={WIDTH_VAR}
           Icon={MdStar}
           iconHandler={activateModal}
           iconHandlerClose={deactivateModal}
