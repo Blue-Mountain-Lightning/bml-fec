@@ -5,16 +5,21 @@ const AnswerPhotos = ({photo}) => {
     setShowPhoto(!showPhoto);
   }
   const answerPhotoModal = (
-    <div onClick={handlePhotoClick}>
-      <img src={photo.url}
-      onClick={(event) => event.stopProgagation()}
+    <div className='answer-photo-modal'>
+      <img className='enlarged-answer-photo'
+      src={photo.url}
+      onClick={handlePhotoClick}
       alt='photos'/>
+      <button className='enlarged-photo-close'
+      onClick={handlePhotoClick}>
+      X
+      </button>
     </div>
   );
   return (
     <div>
-      <div>
-        <img src={photo.url} className='a-photo' alt='photos'/>
+      <div className='photo-div'>
+        <img src={photo.url} className='answer-photo' alt='photos' onClick={handlePhotoClick}/>
         {showPhoto ? answerPhotoModal : null}
       </div>
     </div>

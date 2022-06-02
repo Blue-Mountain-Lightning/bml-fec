@@ -2,13 +2,15 @@ import React from 'react';
 import AnswerList from './AnswerList.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
 import AddAnswer from './AddAnswer.jsx';
-const QuestionsEntry = ({question, questionId, product}) => {
+import SearchHighlight from './SearchHighlight.jsx';
+const QuestionsEntry = ({question, questionId, product, searchInput}) => {
   return(
     <div className='question'>
       <div className='question-container'>
         <div>
           <span className='question-Q'>Q:</span>
-          <span className='question-body'>{question.question_body}</span>
+          {searchInput ? <SearchHighlight questionBody={question.question_body} searchInput={searchInput}/> :
+          <span className='question-body'>{question.question_body}</span>}
         </div>
         <div className='question-footer'>
           <div>

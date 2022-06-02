@@ -63,28 +63,30 @@ const Reviews = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className='page-padding'>
+      <div className="container">
 
-      <div className="reviewsMain">
-        <div className="leftSide">
-          <h1 className="reviewText">Ratings &#38; Reviews</h1>
-          <ShowStars data={reviews}/>
+        <div className="reviewsMain">
+          <div className="leftSide">
+            <h1 className="reviewText">Ratings &#38; Reviews</h1>
+            <ShowStars data={reviews} />
 
-          <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
-          <Bars id={props.id} select={numberChosen}/>
+            <h2 className="ratingsBreakdown">Ratings Breakdown:</h2>
+            <Bars id={props.id} select={numberChosen} />
 
-          {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
-        </div>
+            {showAdd === false ? <button className="addReviewButton" onClick={handleClickAddReview}>Add Review</button> : <p></p>}
+          </div>
 
-        <div className="rightSide">
-          <div className="reviewShowing">
-            <ReviewBlock className="reviewBlock" select={starSelect} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id}/>
-            {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
-            {(more === true) ? <button className="showMore" onClick={() => { showMore()}} >show more</button> : <p></p>}
+          <div className="rightSide">
+            <div className="reviewShowing">
+              <ReviewBlock className="reviewBlock" select={starSelect} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id} />
+              {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
+              {(more === true) ? <button className="showMore" onClick={() => { showMore() }} >show more</button> : <p></p>}
+            </div>
+
           </div>
 
         </div>
-
       </div>
     </div>
   );

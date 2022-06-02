@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 const AddAnswer = ({productId, product, questionId, questionBody}) => {
   const [addAnswerModal, setAddAnswerModal] = useState(false);
   const [images, setImages] = useState([]);
@@ -21,9 +22,8 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
      });
   }
   const handleAddImages = (event) => {
-    const photos =[];
-    photos.push(event.target.value);
-    setImages(photos);
+    uploadImage(event.target.files);
+    setImages([]);
   }
   const validatedEmail = (emailAddress) => {
     let regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
@@ -56,29 +56,45 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
     }
     setAddAnswerModal(false);
   }
+  const uploadImage = (files) => {
+      for (let i = 0; i < files.length; i++) {
+        const currentPhoto = files[i];
+        const formData = new FormData();
+        formData.append('file', currentPhoto);
+        formData.append('upload_preset', 'jcpzcsuy');
+        axios.post('https://api.cloudinary.com/v1_1/dvfhaf9bb/image/upload', formData)
+          .then((response) => {
+            setImages([...images, response.data.url]);
+          })
+     }
+
+  }
   const AnswerForm = (
     <div className ='answer-form-popup' onClick={(event => handleClose(event))}>
       <div className='answer-form-container ' onClick={(event => event.stopPropagation())}>
         <div className='answer-header'>
-        <h3 >Submit your Answer</h3>
-        <h4 >{product && product.name} : {questionBody}</h4>
+        <h2 >Submit your Answer</h2>
+        <br/>
+        <h3 >{product && product.name} : {questionBody}</h3>
         <button className='answer-modal-close-x'
-          onClick={event => handleClose(event)}
+          onClick={event => {handleClose(event); setImages([])}  }
         >X</button>
         </div>
         <form className='answer-form'
           onSubmit={handleAddAnswer} >
-           <label className='modal-label'>Your eamil*
+           <label className='modal-label'>Your eamil *
+           <br/>
               <input className='answer-email'
                 name ='email'
-                type='text'
+                type='email'
                 value={addAnswer.email}
                 maxLength='60'
                 placeholder='Example: jack@email.com'
                 onChange={handleOnChange}/>
             </label>
-            <p>For authentication reasons, you will not be emailed</p>
-            <label className='modal-label'>What is your nickname*
+            <span className='qa-fyi'>For authentication reasons, you will not be emailed</span>
+            <label className='modal-label'>What is your nickname *
+            <br/>
               <input className='answer-name'
                 name ='nickname'
                 placeholder='Example: jack543!'
@@ -87,25 +103,33 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
                 maxLength='60'
                 onChange={handleOnChange}/>
             </label>
-            <p>For privacy reasons, do not use your full name or email address</p>
-           <label className='modal-label'>Your Answer*
-            <input className='answer-body'
+            <span className='qa-fyi'>For privacy reasons, do not use your full name or email address</span>
+           <label className='modal-label'>Your Answer *
+           <br/>
+            <textarea className='add-answer-body '
               name ='answerAdd'
               placeholder='Add your answer here...'
               type='text'
               maxLength='1000'
               value={addAnswer.answerAdd}
-              onChange={handleOnChange}/>
+              onChange={handleOnChange} required/>
           </label>
-          <div className='modal-label'>
-            {images.length < 5 ? <input name ='images'
+          <label className='upload-photo-modal-label'> Upload Your Photos:
+          <br/>
+          {images.length < 5 &&
+          <input className='add-answer-choose-file'
+              name ='images'
               type='file'
               accept='image/*'
-              value={images}
               placeholder='images...'
-              onChange={handleAddImages}/> : null}
-           </div>
-            <input className='submit-answer-button' type='submit' value='Submit answer'/>
+              onChange={handleAddImages}/>}
+           </label>
+           {images.length !== 0 && (<div>
+           {images.map((image, index) => (<img className='upload-image' src={image} alt='preview' key={index}/>))}
+           </div>)}
+            <div className='add-answer-footer'>
+              <input className='submit-answer-button' type='submit' value='Submit answer'/>
+            </div>
         </form>
       </div>
     </div>

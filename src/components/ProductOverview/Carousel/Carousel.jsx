@@ -25,6 +25,11 @@ const Carousel = ({ photoUrls, productId }) => {
       index = numPhotos - 1;
     }
     setActiveSlideIndex(index);
+
+    const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image');
+    if (thumbs.length > 0) {
+      thumbs[index].scrollIntoView({ behavior: `smooth`, block: `nearest` })
+    }
   }
 
   const toggleExpandedMode = (event) => {

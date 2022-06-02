@@ -188,7 +188,7 @@ const Bars = (props) => {
       <div onClick={() => {getReviewByStar(5)}}>
         {bars(5)}
       </div>
-
+      <br></br><br></br>
       <div>
         <div>
           {breakDown('Size')}

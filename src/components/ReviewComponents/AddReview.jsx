@@ -68,13 +68,6 @@ const AddReview = (props) => {
       .then(() => console.log('Success!'))
       .catch((err) => {alert(err)})
   }
-  const showText = () => {
-
-  }
-
-  const calculate = () => {
-    return 50 - wordCount;
-  }
   //testing conditional rendering, show form to add.
     return (
         <div id="myModal" class="modal">
@@ -104,49 +97,51 @@ const AddReview = (props) => {
                 {rating === 1 ? <p className="oneStarSelected">Poor</p> : rating === 2 ? <p className="twoStarSelected">Fair</p> : rating === 3 ? <p className="threeStarSelected">Average</p> : rating === 4 ? <p className="fourStarSelected">Good</p> : rating === 5 ? <p className="fiveStarSelected">Great</p> : <i className="none">none</i> }
               </div>
             <div className="input">
+                <br></br>
+              <div className="text1" onChange={handleYesNo}> Do you recommend this product?
+                  <br></br>
+                <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
+                <input className="rb2"type="radio" value="no" /> No
+              </div>
 
-              <label className="text1" onChange={handleYesNo}> Do you recommend this product?
-              <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
-              <input className="rb2"type="radio" value="no" /> No
-
-              </label><br></br><br></br>
-              <label className="text2"> Characteristics: </label><br></br>
+              <div className="text2"> Characteristics: </div><br></br>
 
               <br></br>
-              <div>
-              Size:
+              <div className='buttons00'>
+              Size:<br></br>
               <RadioButtons setNum={setSize}/>
               <br></br>
-              Width:
+              Width:<br></br>
               <RadioButtons setNum={setWidth}/>
               <br></br>
-              Comfort:
+              Comfort:<br></br>
               <RadioButtons setNum={setComfort}/>
               <br></br>
-              Quality:
+              Quality:<br></br>
               <RadioButtons setNum={setQuality}/>
               <br></br>
-              Length:
+              Length:<br></br>
               <RadioButtons setNum={setLength}/>
               <br></br>
-              Fit:
+              Fit:<br></br>
               <RadioButtons setNum={setFit}/>
               <br></br>
               </div>
 
               <br></br>
               <label>
-              Review summary <br></br>
-              <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
+              <b className="reviewSumm">Review summary</b><br></br><br></br>
+              <textarea className="addReviewSummary" placeholder=" Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
               setSummary(e.target.value);
               }} /><br></br>
               </label>
               <br></br>
 
               <label>
-              Why did you like the product or not?
+              <b>Why did you like the product or not?</b>
               <br></br>
-              <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
+              <br></br>
+              <textarea className="addFullReview" placeholder=" full review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
               setFullReview(e.target.value);
               setWordCount(fullReview.length);
               }} />
@@ -154,14 +149,14 @@ const AddReview = (props) => {
 
               </label>
               <br></br>
-              Nickname: <br></br>
-              <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
+              <b>Nickname: </b><br></br>
+              <textarea className="nickname" type="text" placeholder=" Example: jackson11!" cols="30" onChange={(e) => {
               setNickname(e.target.value);
               }} /><br></br>
               For privacy reasons, do not use your full name or email address” will appear.
               <br></br>
               <br></br>
-              Email: <br></br>
+              <b>Email: </b><br></br>
               <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
               setEmail(e.target.value);
               }} /><br></br>

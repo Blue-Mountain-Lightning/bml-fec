@@ -54,7 +54,7 @@ select {
 }
 
 .button:hover {
-  background-color: #ce4d12;
+  background-color: rgb(180, 56, 77);
 }
 
 /* select-wrapper and select-arrow are used to
@@ -151,18 +151,16 @@ overwrite broser default <select> styling */
   display: none !important;
 }
 
-
-
 /* PRODUCT CARD */
 .card-styles-parent {
   position: relative;
-  height: 25.3rem;
-  width: 19rem;
+  height: 25rem;
+  width: 18.75rem;
 }
 
 .card-styles-thumbnail {
   height: 100%;
-  aspect-ratio: 6 / 8;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -183,16 +181,16 @@ overwrite broser default <select> styling */
 
 .card-style-circle-selected {
   border: 2px solid black !important;
-  border: 2px solid #ce4d12 !important;
+  border: 2px solid rgb(180, 56, 77) !important;
 }
 
 .card-style-grid-overlay {
   position: absolute;
   display: flex;
   bottom: 0px;
-  left: -.1rem;
+  left: 0rem;
   height: 5rem;
-  width: 19.2rem; /* why????? */
+  width: 18.75rem;
   background: white;
   opacity: 1;
   transition: opacity 0.5s;
@@ -206,11 +204,18 @@ overwrite broser default <select> styling */
   border-radius: 10%;
   background: white;
   top: .5rem;
-  right: 1rem;
+  right: .25rem;
+  transition: transform(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.card-button-icon.hide {
+  opacity: 0;
 }
 
 .card-button-icon:hover {
-  color: #ce4d12;
+  color: rgb(180, 56, 77);
   background: white;
 }
 
@@ -232,10 +237,9 @@ overwrite broser default <select> styling */
   font-size: 2.4rem;
 }
 
-
 /* PRICE */
 .sale-price {
-  color: red;
+  color: rgb(180, 56, 77);
 }
 
 /* RELATED PRODOCUTS and YOUR OUTFIT */
@@ -245,15 +249,13 @@ overwrite broser default <select> styling */
   position: relative;
   margin: 0 auto;
   justify-content: center;
-  transition: all 0.12s linear;
-  gap: 1rem;
   opacity: 1;
-  z-index: 1000;
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
 .card-icon:hover {
-  color: #ce4d12;
+  color: rgb(180, 56, 77);
 }
 
 .card-icon {
@@ -263,78 +265,80 @@ overwrite broser default <select> styling */
 }
 
 .card-button {
-  font-size: 3rem;
-  background: white;
-  border: none;
   position: absolute;
+  top: 41.667%;
+  transform: translate(0, -50%);
+  background: white;
+  font-size: 3rem;
+  background: none;
+  z-index: 101;
 }
 
 .card-button.card-prev {
-  right: -5rem;
-  background: none;
-  top: 11.25rem;
+  left: 0.25rem;
 }
 
 .card-button.card-next {
-  left: -5rem;
-  background: none;
-  top: 11.25rem;
+  right: 0.25rem;
+}
+
+.dummy-product-card {
+  height: 30rem;
+  width: 18.75rem;
+  background-color: white;
+}
+
+.dummy-product-card-graphic {
+  height: 25rem;
+  width: 18.75rem;
+  background-color: #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 
 .product-card {
+  height: 30rem;
   display: flex;
   flex-direction: column;
-  gap: .25rem;
+  justify-content: space-around;
   z-index: 98;
 }
 
-.blank-side {
-  background: white -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 1)));
-  z-index: 100;
+.dummy-product-card-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.blank-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-}
-
-.blank-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-}
-
-:root {
-  --related-products-shift-offset: 0px;
-  --your-outfit-shift-offset: 0px;
-}
-
-.horizontal-shifter {
-  position: relative;
-  left: var(--related-products-shift-offset);
+.click-to-add {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .products-list {
+  position: relative;
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  transition: all 244ms;
-  transition-timing-function: ease;
+  gap: 1rem;
 }
 
 /* RowNav */
 .row-dots {
-  margin-top: 1rem;
   display: flex;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
   justify-content: center;
+  align-items: center;
   gap: .5rem;
-  font-size: .50rem;
 }
 
 .scroll-lock {
   overflow: hidden;
   pointer-events: none;
 }
+
+/* PRODUCT CARD STARTS */

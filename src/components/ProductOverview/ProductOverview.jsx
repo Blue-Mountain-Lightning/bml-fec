@@ -3,6 +3,7 @@ import Carousel from './Carousel/Carousel.jsx';
 import StyleCircle from './StyleCircle.jsx';
 import SizeAndQtySelector from "./SizeAndQtySelector";
 import Price from '../Price';
+import ShowStarsDupe from './ShowStarsDupe.jsx';
 import './ProductOverview.css';
 
 
@@ -11,8 +12,8 @@ const ProductOverview = ({ product }) => {
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
+  const [reviews, setReviews] = useState(undefined);
 
-  console.log(product)
 
   useEffect(() => {
     const fetchProductStyles = async () => {
@@ -31,9 +32,23 @@ const ProductOverview = ({ product }) => {
         }
       }
     }
+    const fetchReviews = async () => {
+      if (product.id) {
+        try {
+          let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
+          const response = await fetch(`${process.env.REACT_APP_API}reviews/?product_id=${product.id}&count=20`, headers);
+          const reviews99 = await response.json();
+          setReviews(reviews99);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
 
     fetchProductStyles();
+    fetchReviews();
   }, [product]);
+
 
   const getStylesPhotos = () => {
     let photos = []
@@ -65,7 +80,6 @@ const ProductOverview = ({ product }) => {
     const stylesPhotosThumbnailUrls = getStylesPhotos();
     const selectedStylePhotoUrls = getPhotoUrlsForCurrentStyle()
     const skus = currentStyle.skus;
-    console.log(styles)
 
     return (
       <div className="section">
@@ -78,7 +92,7 @@ const ProductOverview = ({ product }) => {
                 </div>
               </div>
               <div className="overview-wrapper">
-                <span>Star Component here</span>
+                <ShowStarsDupe data={reviews} />
                 <p className="text-all-caps">{product.category}</p>
                 <h1 className="product-title">{product.name}</h1>
                 <div className="product-price">
