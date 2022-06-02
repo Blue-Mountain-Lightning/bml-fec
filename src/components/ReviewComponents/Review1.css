@@ -4,6 +4,8 @@
   /* height: 1500px; */
   background-color: rgb(255, 255, 255);
   margin: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .leftSide {
@@ -66,7 +68,7 @@
   order: 2;
   margin-right: 0px;
   margin-left: 77px;
-  margin-top: 650px;
+  margin-top: 32px;
 }
 
 .addReviewButton:hover {
@@ -114,7 +116,7 @@
   flex-direction: row;
   background-color: rgb(252, 252, 252);
   margin-top: 50px;
-  height: 1300px;
+  /* height: 1300px; */
   color: rgb(0, 0, 0);
   border-top: solid;
   border-color: rgb(65, 65, 65);
@@ -229,6 +231,7 @@
   opacity: 0.6;
   transition: 0.3s;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .showMore:hover {
