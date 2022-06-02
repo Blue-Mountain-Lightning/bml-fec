@@ -6,7 +6,7 @@ import './styles/Styles.css'
 
 const ProductList = () => {
   const [products, setProducts] = useState([])
-  let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products'
+  let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?count=20'
   useEffect(() => {
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })
       .then(response => response.json())

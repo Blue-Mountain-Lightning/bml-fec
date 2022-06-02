@@ -85,6 +85,7 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
   }
 
   const imageExists = () => {
+    if (!currentStyle) { return false };
     return (typeof currentStyle.photos[0].thumbnail_url === 'string')
   }
 
@@ -122,20 +123,16 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
     return (
       <div
         className='clickable product-card'
-        style={{"fontSize": fontSize}}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <div className='card-styles-parent'>
-          <img className='card-styles-thumbnail'
-               src={image}
-               alt=''
-          />
+          <img className='card-styles-thumbnail' src={image} alt='' />
           {isImage ? styleSwitcher : null}
           {buttonIcon}
         </div>
-        <div className="text-all-caps">{product.category}</div>
+        <span className="text-all-caps">{product.category}</span>
         <b>{product.name}</b>
         <Price style={currentStyle} fontSize={fontSize} />
         <ShowStarsDupe data={reviewsMeta} />
