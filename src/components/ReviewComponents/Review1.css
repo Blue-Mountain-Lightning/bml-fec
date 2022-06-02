@@ -1,7 +1,7 @@
 .reviewsMain {
   display: flex;
   flex-direction: row;
-  height: 1500px;
+  /* height: 1500px; */
   background-color: rgb(255, 255, 255);
   margin: auto;
 }
@@ -11,7 +11,7 @@
   flex-direction: row;
   width: 300px;
   background-color: rgb(252, 252, 252);
-  height: 1300px;
+  /* height: 1300px; */
   margin-top: 50px;
   margin-right: 50px;
   padding-left: 20px;
@@ -43,7 +43,7 @@
 }
 
 .reviewText {
-  order:1;
+  order: 1;
   margin-right: 80px;
   margin-top: 35px;
   margin-bottom: 70px;
@@ -52,7 +52,8 @@
 }
 
 .addReviewButton {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   border: none;
   color: white;
   border-radius: 10px;
@@ -86,7 +87,8 @@
 }
 
 .searchButton {
-  background-color: #000000; /* Green */
+  background-color: #000000;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 5px;
@@ -99,7 +101,7 @@
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 85px;
-  height:34px;
+  height: 34px;
 }
 
 .searchButton:hover {
@@ -127,7 +129,7 @@
 .reviewBlock {
   margin-left: 50px;
   margin-right: 50px;
-  width: 1000px;
+  /* width: 1000px; */
   max-height: 1000px;
   overflow-y: auto;
 }
@@ -176,7 +178,8 @@
 }
 
 .button-yes {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 15px;
@@ -189,7 +192,8 @@
 }
 
 .button-no {
-  background-color: black; /* Green */
+  background-color: black;
+  /* Green */
   color: white;
   border-color: black;
   border-radius: 15px;

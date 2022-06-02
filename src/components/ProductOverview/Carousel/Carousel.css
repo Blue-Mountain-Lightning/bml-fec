@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+.carousel-thumbnail-grid::-webkit-scrollbar {
   width: 0px;
 }
 

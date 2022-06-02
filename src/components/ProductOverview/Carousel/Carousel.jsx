@@ -8,7 +8,6 @@ const Carousel = ({ photoUrls, productId }) => {
   let [activeSlideIndex, setActiveSlideIndex] = useState(0);
   let [isExpanded, setIsExpanded] = useState(false);
   let numPhotos = photoUrls.length;
-  //const thumbs = document.querySelectorAll('.carousel-thumbnail-grid > .carousel-thumbnail-image')
 
   if (numPhotos <= activeSlideIndex) {
     setActiveSlideIndex(0);
