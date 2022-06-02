@@ -8,9 +8,9 @@ const QuestionList = ({searchInput, questions, product, productId, handleClose, 
     searchInput === ''
         ?
         questions
-          .slice(0, 5)
+          .slice(0, 3)
           .map((question, index) => (
-            index > 3
+            index > 1
               ? <MoreQuestions
                 questions={questions}
                 key={question.question_id}
@@ -30,9 +30,9 @@ const QuestionList = ({searchInput, questions, product, productId, handleClose, 
           question.question_body.toLowerCase()
             .includes(searchInput.toLowerCase())
          )
-          .slice(0, 5)
+          .slice(0, 3)
           .map((question, index) => (
-            index > 3
+            index > 1
               ? <MoreQuestions
                 questions={questions}
                 key={question.question_id}
