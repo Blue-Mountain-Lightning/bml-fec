@@ -1,5 +1,5 @@
 .graphs {
-  display:flex;
+  display: flex;
   flex-direction: row;
   margin-left: 0px;
 }
@@ -14,8 +14,8 @@
 }
 
 .bar {
-  color: rgb(88, 200, 88);
-  background-color: rgb(88, 200, 88);
+  color: rgb(180, 56, 77);
+  background-color: rgb(180, 56, 77);
   border: solid;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;

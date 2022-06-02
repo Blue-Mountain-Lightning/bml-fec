@@ -52,7 +52,7 @@
   left: 0;
   outline: none;
   border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
+  border-color: rgba(0, 0, 0, .15);
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
@@ -68,7 +68,7 @@
   left: 0;
   outline: none;
   border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
+  border-color: rgba(0, 0, 0, .15);
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
@@ -84,7 +84,7 @@
   left: 0;
   outline: none;
   border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
+  border-color: rgba(0, 0, 0, .15);
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
@@ -100,7 +100,7 @@
   left: 0;
   outline: none;
   border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
+  border-color: rgba(0, 0, 0, .15);
   background-color: white;
   font-size: 16px;
   border-radius: 10px;
@@ -110,30 +110,33 @@
 }
 
 .submitAdd {
-  background-color: black; /* Green */
-    border: none;
-    color: white;
-    border-radius: 10px;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-bottom: 10px;
-    order: 2;
+  background-color: black;
+  /* Green */
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  order: 2;
 }
 
 .submitAdd:hover {
-  background-color: rgb(157, 225, 228);
+  background-color: rgb(180, 56, 77);
   color: black;
 }
 
 .text1 {
   font-size: 20px;
 }
+
 .rb1 {
   margin-left: 450px;
 }
+
 .text2 {
   font-size: 20px;
 }
@@ -156,9 +159,11 @@ button {
   outline: none;
   cursor: pointer;
 }
+
 .on {
   color: rgb(228, 204, 27)
 }
+
 .off {
   color: #ccc;
 }
@@ -171,15 +176,19 @@ button {
 .oneStarSelected {
   margin-left: 30px;
 }
+
 .twoStarSelected {
   margin-left: 20px;
 }
+
 .threeStarSelected {
   margin-left: 20px;
 }
+
 .fourStarSelected {
   margin-left: 20px;
 }
+
 .fiveStarSelected {
   margin-left: 20px;
 }
@@ -187,5 +196,3 @@ button {
 .none {
   color: white;
 }
-
-

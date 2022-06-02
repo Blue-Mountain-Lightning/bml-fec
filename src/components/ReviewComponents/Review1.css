@@ -72,7 +72,7 @@
 }
 
 .addReviewButton:hover {
-  background-color: rgb(157, 225, 228);
+  background-color: rgb(180, 56, 77);
   color: black;
 }
 
@@ -220,7 +220,7 @@
 }
 
 .showMore {
-  background-color: #196bf0;
+  background-color: rgb(180, 56, 77);
   border: none;
   color: white;
   padding: 16px 32px;
@@ -240,7 +240,7 @@
 
 
 .goBack {
-  background-color: #ec805d;
+  background-color: rgb(180, 56, 77);
   border: none;
   color: white;
   padding: 16px 32px;
@@ -253,7 +253,7 @@
 }
 
 .goBack:hover {
-  background-color: #ea4e1b;
+  background-color: rgb(180, 56, 77);
 }
 
 
@@ -268,7 +268,7 @@
 }
 
 .fa-solid {
-  color: #f42731;
+  color: rgb(180, 56, 77);
 }
 
 .fa-heart {
@@ -277,7 +277,7 @@
 }
 
 .fa-heart:hover {
-  color: #f42731
+  color: rgb(180, 56, 77)
 }
 
 .selectOptions {

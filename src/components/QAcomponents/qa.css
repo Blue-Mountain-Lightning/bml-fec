@@ -11,39 +11,47 @@
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
+
 .qa-container {
   width: 100%;
   max-width: 1120px;
   margin: auto;
 }
+
 .qa-padding {
   padding: 50px 32px 0 32px;
   position: relative;
 }
+
 .qa-underline {
   text-decoration: underline;
   cursor: pointer
-  }
+}
+
 .question-container {
-  margin-bottom: 12px!important;
+  margin-bottom: 12px !important;
   display: flex;
   justify-content: space-between;
 }
+
 .question {
   margin-bottom: auto;
 }
+
 .question-Q {
   padding-top: 10px;
   font-weight: bold;
   font-size: 17px;
   overflow-wrap: normal;
 }
+
 .question-body {
   margin-left: 8px;
   font-weight: bold;
   font-size: 17px;
   overflow-wrap: normal;
 }
+
 .question-footer {
   display: flex;
   justify-content: flex-end;
@@ -51,18 +59,22 @@
   font-weight: 300;
   font-size: 14px;
 }
+
 .question-helpful-continer {
   display: flex;
   justify-content: flex-end;
 }
+
 .question-helpful {
   display: inline-block;
   justify-content: space-between;
 }
+
 .question-form-popup {
   top: 0;
   left: 0;
-  z-index: 2000; /* only applies to positioned elements*/
+  z-index: 2000;
+  /* only applies to positioned elements*/
   margin: 10px;
   width: 100%;
   height: 100%;
@@ -71,6 +83,7 @@
   padding-top: 250px;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .question-form-container {
   height: 650px;
   margin: auto;
@@ -81,6 +94,7 @@
   border: 1px solid black;
   position: relative;
 }
+
 .question-modal-close-x {
   float: right;
   right: 5px;
@@ -97,47 +111,55 @@
   top: 5px;
   right: 0;
 }
+
 .question-textarea {
   width: 100%;
   height: 120%;
   margin: 15px 0 5px;
   border-radius: 8px;
 }
+
 .submit-answer-button,
 .submit-question-button {
   font-weight: bolder;
   text-transform: uppercase;
   cursor: pointer;
-  color:white;
-  height:40px;
+  color: white;
+  height: 40px;
   width: 200px;
   border-radius: 8px;
   border: none;
   background-color: rgb(180, 56, 77);
 }
+
 .button-container {
   text-align: center;
   padding: 10px;
   margin: 80px 10px;
 }
+
 .answer {
-line-height: 10px;
+  line-height: 10px;
 }
+
 .answer-container {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .answer-A {
   font-weight: bold;
   font-size: 17px;
   overflow-wrap: normal;
 }
+
 .answer-body {
   margin-left: 7px;
   font-weight: 420;
   font-size: 17px;
   overflow-wrap: normal;
 }
+
 .answer-footer {
   display: flex;
   justify-content: flex-start;
@@ -147,16 +169,18 @@ line-height: 10px;
   font-weight: 300;
   font-size: 14px;
 }
+
 .answer-helpfulness {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 10px;
   margin-bottom: 10;
   font-size: 16px;
   justify-content: space-around;
 }
+
 .more-answers {
   color: purple;
   font-size: 15px;
@@ -164,20 +188,23 @@ line-height: 10px;
   margin-left: 23px;
   cursor: pointer;
 }
+
 .add-question-button {
   font-size: large;
   height: 50px;
   width: 190px;
   padding: 10px;
-  margin-top: 25px;;
+  margin-top: 25px;
+  ;
   margin-left: 40px;
   cursor: pointer;
   transition: all ease 0.3s;
   float: left;
   background-color: black;
-  color:white;
+  color: white;
   border-radius: 10px;
 }
+
 .add-a-question-button {
   font-size: large;
   height: 50px;
@@ -188,10 +215,11 @@ line-height: 10px;
   transition: all ease 0.3s;
   float: left;
   background-color: black;
-  color:white;
+  color: white;
   border-radius: 10px;
   border-radius: 10px;
 }
+
 .collapse-questions-button,
 .more-questions-button {
   font-size: large;
@@ -203,16 +231,18 @@ line-height: 10px;
   transition: all ease 0.3s;
   float: left;
   background-color: black;
-  color:white;
+  color: white;
   border-radius: 10px;
   border-radius: 10px;
 }
+
 .collapse-questions-button:hover,
 .add-a-question-button:hover,
 .add-question-button:hover,
 .more-questions-button:hover {
   background-color: rgb(180, 56, 77);
 }
+
 .answer-form-popup {
   top: 0;
   left: 0;
@@ -220,11 +250,13 @@ line-height: 10px;
   margin: 10px;
   width: 100%;
   height: 100%;
-  overflow: auto; /*Enable scroll if needed */
+  overflow: auto;
+  /*Enable scroll if needed */
   position: fixed;
   padding-top: 120px;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .answer-form-container {
   max-height: 800px;
   margin: auto;
@@ -235,11 +267,13 @@ line-height: 10px;
   border: 1px solid black;
   position: relative;
 }
+
 .modal-label {
   font-size: 16px;
   font-weight: bold;
   margin: 15px 10px 5px;
 }
+
 .answer-modal-close-x {
   float: right;
   right: 5px;
@@ -256,6 +290,7 @@ line-height: 10px;
   top: 5px;
   right: 0;
 }
+
 .question-email,
 .question-name,
 .answer-email,
@@ -265,49 +300,59 @@ line-height: 10px;
   margin: 15px 0 5px;
   border-radius: 8px;
 }
-.question-form ,
+
+.question-form,
 .answer-form {
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
+
 .qa-fyi {
   margin: 0px auto 10px 10px;
   font-size: 15px;
 }
+
 .add-answer-choose-file {
   margin-top: 10px;
 }
-.upload-photo-modal-label{
+
+.upload-photo-modal-label {
   font-size: 16px;
   font-weight: bold;
   margin: 20px 10px 10px;
 }
+
 .upload-image {
   height: 100px;
   width: 120px;
   margin: 5px 10px;
 }
+
 .add-answer-body {
   width: 100%;
   height: 100px;
   margin: 15px 0 5px;
   border-radius: 8px;
 }
+
 .question-header,
 .answer-header {
   background-color: #F0F2F2;
   border-radius: 16px 16px 0 0;
   padding: 15px 15px;
 }
+
 .add-answer-footer {
   text-align: center;
   margin: 10px
 }
+
 .scrollbar {
   max-height: 1000px;
   overflow: scroll;
 }
+
 .answer-photo-box {
   display: flex;
   height: 100px;
@@ -316,7 +361,8 @@ line-height: 10px;
   margin-left: 20px;
   cursor: pointer;
 }
-.enlarged-answer-photo{
+
+.enlarged-answer-photo {
   display: flex;
   position: relative;
   width: auto;
@@ -326,6 +372,7 @@ line-height: 10px;
   border: 1px solid black;
   background-color: grey;
 }
+
 .answer-photo-modal {
   position: fixed;
   overflow: auto;
@@ -336,8 +383,9 @@ line-height: 10px;
   top: 0;
   left: 0;
   z-index: 1500;
-  background-color:rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
+
 .enlarged-photo-close {
   font-size: 40px;
   font-weight: normal;
@@ -346,7 +394,7 @@ line-height: 10px;
   border-radius: 5px;
   border: 1px solid;
   color: rgba(255, 255, 255, 1);
-  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+  box-shadow: 0 5px 15px rgb(180, 56, 77);
   cursor: pointer;
   opacity: 1;
   position: absolute;
@@ -355,12 +403,14 @@ line-height: 10px;
   top: 10px;
   line-height: 28px;
 }
+
 .photo-div {
   display: flex;
   flex-direction: row;
   margin-top: 5px;
   margin-left: 12px;
 }
+
 .answer-photo {
   display: flex;
   margin: 5px;
@@ -368,6 +418,7 @@ line-height: 10px;
   width: 100px;
   object-fit: cover;
 }
+
 .qa-footer {
   display: inline-block;
 }
