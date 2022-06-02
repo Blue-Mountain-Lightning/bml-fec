@@ -5,6 +5,7 @@ import {MdStar} from 'react-icons/md';
 import ProductRow from './ProductRow';
 import ComparisonModal from './Modals/ComparisonModal';
 
+const WIDTH_VAR = '--related-products-width-offset';
 const OFFSET_VAR = '--related-products-shift-offset';
 const OFFSET_CLASS = 'related-products-shifter';
 const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
@@ -112,6 +113,7 @@ const RelatedProducts = ({product}) => {
           products={products}
           offsetClass={OFFSET_CLASS}
           offsetVar={OFFSET_VAR}
+          widthVar={WIDTH_VAR}
           Icon={MdStar}
           iconHandler={activateModal}
           iconHandlerClose={deactivateModal}

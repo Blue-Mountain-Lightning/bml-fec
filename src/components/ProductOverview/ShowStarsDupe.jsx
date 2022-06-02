@@ -5,6 +5,7 @@ const ShowStarsDupe = (props) => {
   if (props.data === undefined) {
     return;
   }
+  console.log(props);
 
   let arr = props.data.results;
   let avg = 0;
