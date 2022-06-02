@@ -1,8 +1,3 @@
-:root {
-  --related-products-shift-offset: 0px;
-  --your-outfit-shift-offset: 0px;
-}
-
 body {
   margin: 0;
   box-sizing: border-box;
@@ -322,15 +317,6 @@ overwrite broser default <select> styling */
 .click-to-add {
   font-size: 1.5rem;
   text-align: center;
-}
-
-
-.related-products-shifter {
-  left: var(--related-products-shift-offset);
-}
-
-.your-outfit-shifter {
-  left: var(--your-outfit-shift-offset);
 }
 
 .products-list {

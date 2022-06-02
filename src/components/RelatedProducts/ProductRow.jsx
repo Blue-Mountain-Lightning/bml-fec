@@ -17,20 +17,20 @@ const convertRemToPixels = (rem) => {
 
 const ProductRow = ({
   products,
-  offsetClass,
-  offsetVar,
   Icon,
   iconHandler,
   iconHandlerClose
 }) => {
   const cardWidth = convertRemToPixels(CARD_WIDTH_REM);
   const rowRef = useRef();
+  const productRowRef = useRef();
   const debouncer = useRef();
 
   const [contentWidth, setContentWidth] = useState(false);
   const [maxOffset, setMaxOffset] = useState(0);
   const [offset, setOffset] = useState(0);
   const [numCards, setNumCards] = useState(0);
+
 
   const handleArrowClick = (event, value) => {
     let newOffset = offset;
@@ -68,11 +68,12 @@ const ProductRow = ({
     setNumCards(numCardsThatFit);
   }, [cardWidth, products.length])
 
+
   useLayoutEffect(() => {
     try {
       let elem = rowRef.current;
       const first = elem.getBoundingClientRect();
-      document.documentElement.style.setProperty(offsetVar, `${offset}px`);
+      elem.style.left = `${offset}px`;
       const last = elem.getBoundingClientRect();
       const invert = first.x - last.x;
       elem.animate([
@@ -85,14 +86,18 @@ const ProductRow = ({
     } catch (error) {
       // this fails during some tests
     }
+  }, [offset]);
 
-  }, [offset, offsetVar]);
+  useLayoutEffect(() => {
+      let elem = productRowRef.current;
+      elem.style.width = `${contentWidth}px`;
+    }, [contentWidth]);
 
   useEffect(() => {
     handleResizeWindow();
     window.addEventListener('resize', () => {
       clearTimeout(debouncer.current);
-      debouncer.current = setTimeout(handleResizeWindow, 100);
+      debouncer.current = setTimeout(handleResizeWindow, 20);
     });
   }, [products, handleResizeWindow]);
 
@@ -102,14 +107,14 @@ const ProductRow = ({
 
   return (
     <>
-      <div className='product-row' style={{'width': `${contentWidth}px`}}>
+      <div className='product-row' ref={productRowRef}>
         <button
           onClick={(e) => handleArrowClick(e, 'previous')}
           className='card-button card-prev'
         >
           <ScrollButton direction={'previous'} active={prevButton} />
         </button>
-        <div className={`products-list ${offsetClass}`} ref={rowRef}>
+        <div className='products-list' ref={rowRef}>
           {products.map(product => {
             if (!product?.id) { // allow components through
               return product;

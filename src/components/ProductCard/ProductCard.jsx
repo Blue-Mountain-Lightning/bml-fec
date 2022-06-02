@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import imageNotAvailable from '../../assets/image-not-available.png'
 import Price from '../Price';
-import ShowStars from '../ReviewComponents/ShowStars';
+import ShowStarsDupe from '../ProductOverview/ShowStarsDupe';
 import CardButton from './CardButton';
 import StyleSwitcher from './StyleSwitcher';
 
@@ -17,6 +17,7 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
   const [currentStyle, setCurrentStyle] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [styles, setStyles] = useState([]);
+  const [reviewsMeta, setReviewsMeta] = useState([]);
   const [mouseHovering, setMouseHovering] = useState(false);
 
   const parseFontSize = (size) => {
@@ -37,6 +38,22 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
           stylesArray = await response.json();
           stylesCache[stylesURL] = stylesArray;
         }
+
+        let reviewsArray;
+        const reviewsURL = `${process.env.REACT_APP_API}reviews/?product_id=${product.id}&count=20`;
+        try {
+          if (stylesCache[reviewsURL]) {
+            reviewsArray = stylesCache[reviewsURL];
+          } else {
+          const response = await fetch(reviewsURL, HEADERS);
+          reviewsArray = await response.json();
+          stylesCache[reviewsURL] = reviewsArray;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+
+        setReviewsMeta(reviewsArray);
         setStyles(stylesArray);
         setCurrentStyle(stylesArray.results[0]);
         setLoaded(true);
@@ -121,7 +138,7 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
         <div className="text-all-caps">{product.category}</div>
         <b>{product.name}</b>
         <Price style={currentStyle} fontSize={fontSize} />
-        <div>Star rating component</div>
+        <ShowStarsDupe data={reviewsMeta} />
       </div>
     )
   }
