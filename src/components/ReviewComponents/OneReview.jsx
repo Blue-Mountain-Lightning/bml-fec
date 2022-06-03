@@ -108,6 +108,3 @@ const OneReview = (props) => {
   );
 }
 export default OneReview;
-
-//like button
-// {liked ? <FcLike className="unlikeButton" onClick={likeIt} /> : <FcLikePlaceholder className="likeButton" onClick={likeIt}/>} &nbsp;
