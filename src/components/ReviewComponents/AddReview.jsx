@@ -170,9 +170,6 @@ const AddReview = (props) => {
       </div>
 
     </div>
-      </div >
-
-    </div >
   );
 
 }
