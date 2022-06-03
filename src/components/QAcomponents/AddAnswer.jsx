@@ -140,7 +140,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
       className='qa-underline'>
         Add Answer
       </div>
-      <div> {addAnswerModal ? AnswerForm : null}</div>
+      <> {addAnswerModal ? AnswerForm : null}</>
     </div>
   )
 

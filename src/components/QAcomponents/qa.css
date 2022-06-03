@@ -1,4 +1,5 @@
-.qa-search {
+/* question and answer */
+.search-bar {
   width: 100%;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -26,8 +27,39 @@
 .qa-underline {
   text-decoration: underline;
   cursor: pointer
-}
+  }
+  .modal-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 10px 5px;
+  }
+  .question-email,
+  .question-name,
+  .answer-email,
+  .answer-name {
+    padding: 10px;
+    width: 97%;
+    margin: 15px 0 5px;
+    border-radius: 8px;
+  }
+  .question-form ,
+  .answer-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .qa-fyi {
+    margin: 0px auto 10px 10px;
+    font-size: 15px;
+  }
+  .question-header,
+  .answer-header {
+    background-color: #F0F2F2;
+    border-radius: 16px 16px 0 0;
+    padding: 15px 15px;
+  }
 
+/* question */
 .question-container {
   margin-bottom: 12px !important;
   display: flex;
@@ -70,6 +102,7 @@
   justify-content: space-between;
 }
 
+/* add question */
 .question-form-popup {
   top: 0;
   left: 0;
@@ -118,26 +151,13 @@
   margin: 15px 0 5px;
   border-radius: 8px;
 }
-
-.submit-answer-button,
-.submit-question-button {
-  font-weight: bolder;
-  text-transform: uppercase;
-  cursor: pointer;
-  color: white;
-  height: 40px;
-  width: 200px;
-  border-radius: 8px;
-  border: none;
-  background-color: rgb(180, 56, 77);
-}
-
-.button-container {
+.add-questin-button-wrapper {
   text-align: center;
   padding: 10px;
   margin: 80px 10px;
 }
 
+/* answer */
 .answer {
   line-height: 10px;
 }
@@ -181,6 +201,7 @@
   justify-content: space-around;
 }
 
+/*more answers*/
 .more-answers {
   color: purple;
   font-size: 15px;
@@ -188,7 +209,13 @@
   margin-left: 23px;
   cursor: pointer;
 }
+.scrollbar {
+  max-height: 1000px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
+/* buttons */
 .add-question-button {
   font-size: large;
   height: 50px;
@@ -217,7 +244,23 @@
   background-color: black;
   color: white;
   border-radius: 10px;
-  border-radius: 10px;
+  margin-top: 20px;
+}
+.submit-answer-button,
+.submit-question-button {
+  font-weight: bolder;
+  text-transform: uppercase;
+  cursor: pointer;
+  color:white;
+  height:40px;
+  width: 200px;
+  border-radius: 8px;
+  border: none;
+  background-color: black
+}
+.submit-answer-button:hover,
+.submit-question-button:hover {
+  background-color:rgb(180, 56, 77) ;
 }
 
 .collapse-questions-button,
@@ -243,6 +286,7 @@
   background-color: rgb(180, 56, 77);
 }
 
+/* add answer */
 .answer-form-popup {
   top: 0;
   left: 0;
@@ -267,52 +311,6 @@
   border: 1px solid black;
   position: relative;
 }
-
-.modal-label {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 15px 10px 5px;
-}
-
-.answer-modal-close-x {
-  float: right;
-  right: 5px;
-  height: 20px;
-  width: 40px;
-  display: block;
-  background-color: transparent;
-  border-color: transparent;
-  font-size: 18px;
-  font-weight: normal;
-  cursor: pointer;
-  position: absolute;
-  line-height: 0;
-  top: 5px;
-  right: 0;
-}
-
-.question-email,
-.question-name,
-.answer-email,
-.answer-name {
-  padding: 10px;
-  width: 97%;
-  margin: 15px 0 5px;
-  border-radius: 8px;
-}
-
-.question-form,
-.answer-form {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.qa-fyi {
-  margin: 0px auto 10px 10px;
-  font-size: 15px;
-}
-
 .add-answer-choose-file {
   margin-top: 10px;
 }
@@ -335,34 +333,29 @@
   margin: 15px 0 5px;
   border-radius: 8px;
 }
-
-.question-header,
-.answer-header {
-  background-color: #F0F2F2;
-  border-radius: 16px 16px 0 0;
-  padding: 15px 15px;
-}
-
 .add-answer-footer {
   text-align: center;
   margin: 10px
 }
-
-.scrollbar {
-  max-height: 1000px;
-  overflow: scroll;
-}
-
-.answer-photo-box {
-  display: flex;
-  height: 100px;
-  width: 100px;
-  align-items: center;
-  margin-left: 20px;
+.answer-modal-close-x {
+  float: right;
+  right: 5px;
+  height: 20px;
+  width: 40px;
+  display: block;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 18px;
+  font-weight: normal;
   cursor: pointer;
+  position: absolute;
+  line-height: 0;
+  top: 5px;
+  right: 0;
 }
 
-.enlarged-answer-photo {
+/* photos */
+.enlarged-answer-photo{
   display: flex;
   position: relative;
   width: auto;
@@ -417,8 +410,4 @@
   height: 100px;
   width: 100px;
   object-fit: cover;
-}
-
-.qa-footer {
-  display: inline-block;
 }

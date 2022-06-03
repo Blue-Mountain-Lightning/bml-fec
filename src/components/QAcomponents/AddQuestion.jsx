@@ -96,7 +96,7 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
               maxLength='1000'
               onChange={handleOnChange}/>
            </label>
-           <div className='button-container'>
+           <div className='add-questin-button-wrapper'>
             <input className='submit-question-button' type='submit' value='Submit question'/>
             </div>
         </form>
@@ -104,9 +104,9 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
     </div>
   )
   return (
-    <div>
+    <>
       {openAdd? QuestionForm : null}
-    </div>
+    </>
   )
 }
 export default AddQuestion;

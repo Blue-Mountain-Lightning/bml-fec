@@ -6,7 +6,7 @@ const Search = ({handleSearch}) => {
   return (
     <div >
       <form>
-        <input className='qa-search' type='search' placeholder='Have a question? Search for answers...'
+        <input className='search-bar' type='search' placeholder='Have a question? Search for answers...'
         onChange={handleOnChange}
         />
       </form>
