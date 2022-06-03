@@ -1,6 +1,8 @@
 import { MdCircle } from 'react-icons/md';
 
 const RowNav = ({numProducts, offset, maxOffset, cardWidth, numCards}) => {
+  if (numProducts === 1) { return null };
+
   const dotArray = Array(numProducts).fill(0);
 
   const getCurrentIndex = (num = maxOffset, min = 0) => {

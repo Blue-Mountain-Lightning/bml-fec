@@ -5,9 +5,6 @@ import {MdStar} from 'react-icons/md';
 import ProductRow from './ProductRow';
 import ComparisonModal from './Modals/ComparisonModal';
 
-const WIDTH_VAR = '--related-products-width-offset';
-const OFFSET_VAR = '--related-products-shift-offset';
-const OFFSET_CLASS = 'related-products-shifter';
 const REQUEST_HEADERS = {headers: {'Authorization': process.env.REACT_APP_TOKEN}};
 
 const RelatedProducts = ({product}) => {
@@ -27,7 +24,7 @@ const RelatedProducts = ({product}) => {
         let relatedProductIDs;
         // Fetch related product IDs or load from cache
         const relatedIDsEndpoint =
-          `${process.env.REACT_APP_API}products/${product.id}/related`;
+          `${process.env.REACT_APP_ENDPOINT}products/${product.id}/related`;
 
         if (cache.current[relatedIDsEndpoint]) {
           relatedProductIDs = cache.current[relatedIDsEndpoint];
@@ -48,7 +45,7 @@ const RelatedProducts = ({product}) => {
 
         // Fetch information about related products or load from cache
         const productRequests = relatedProductIDs.map(id => {
-          const url = `${process.env.REACT_APP_API}products/${id}`;
+          const url = `${process.env.REACT_APP_ENDPOINT}products/${id}`;
           return (cache.current[id]) ? cache.current[id] : fetch(url, REQUEST_HEADERS);
         })
 
@@ -111,9 +108,6 @@ const RelatedProducts = ({product}) => {
         <h1 className='center-heading'>You may also like</h1>
         <ProductRow
           products={products}
-          offsetClass={OFFSET_CLASS}
-          offsetVar={OFFSET_VAR}
-          widthVar={WIDTH_VAR}
           Icon={MdStar}
           iconHandler={activateModal}
           iconHandlerClose={deactivateModal}

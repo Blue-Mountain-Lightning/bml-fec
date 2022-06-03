@@ -8,8 +8,6 @@ import ShowStarsDupe from '../ProductOverview/ShowStarsDupe';
 import CardButton from './CardButton';
 import StyleSwitcher from './StyleSwitcher';
 
-const HEADERS = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } };
-
 const stylesCache = {}; // stores previous style API requests
 
 const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
@@ -30,22 +28,22 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
     const fetchProductStyles = async () => {
       try {
         let stylesArray;
-        const stylesURL = `${process.env.REACT_APP_API}products/${product.id}/styles`;
+        const stylesURL = `${process.env.REACT_APP_ENDPOINT}products/${product.id}/styles`;
         if (stylesCache[stylesURL]) {
           stylesArray = stylesCache[stylesURL];
         } else {
-          const response = await fetch(stylesURL, HEADERS);
+          const response = await fetch(stylesURL);
           stylesArray = await response.json();
           stylesCache[stylesURL] = stylesArray;
         }
 
         let reviewsArray;
-        const reviewsURL = `${process.env.REACT_APP_API}reviews/?product_id=${product.id}&count=20`;
+        const reviewsURL = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${product.id}&count=20`;
         try {
           if (stylesCache[reviewsURL]) {
             reviewsArray = stylesCache[reviewsURL];
           } else {
-          const response = await fetch(reviewsURL, HEADERS);
+          const response = await fetch(reviewsURL);
           reviewsArray = await response.json();
           stylesCache[reviewsURL] = reviewsArray;
           }
@@ -85,6 +83,7 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
   }
 
   const imageExists = () => {
+    if (!currentStyle) { return false };
     return (typeof currentStyle.photos[0].thumbnail_url === 'string')
   }
 
@@ -122,20 +121,16 @@ const ProductCard = ({ product, Icon, iconHandler, iconHandlerClose}) => {
     return (
       <div
         className='clickable product-card'
-        style={{"fontSize": fontSize}}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <div className='card-styles-parent'>
-          <img className='card-styles-thumbnail'
-               src={image}
-               alt=''
-          />
+          <img className='card-styles-thumbnail' src={image} alt='' />
           {isImage ? styleSwitcher : null}
           {buttonIcon}
         </div>
-        <div className="text-all-caps">{product.category}</div>
+        <span className="text-all-caps">{product.category}</span>
         <b>{product.name}</b>
         <Price style={currentStyle} fontSize={fontSize} />
         <ShowStarsDupe data={reviewsMeta} />

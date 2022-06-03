@@ -13,7 +13,7 @@ const Reviews = (props) => {
   const [more, setMore] = useState(true);
   const [starSelect, setStarSelect] = useState(0);
 
-  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=900`
+  const url = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${props.id}&count=900`
 
   useEffect(() => {
     if (reviews === undefined) {

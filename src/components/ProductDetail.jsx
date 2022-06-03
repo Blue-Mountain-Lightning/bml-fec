@@ -31,8 +31,7 @@ const ProductDetail = (props) => {
   }
 
   useEffect(() => {
-    let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
-    fetch(`${process.env.REACT_APP_API}products/${params.productId}`, headers)
+    fetch(`${process.env.REACT_APP_ENDPOINT}products/${params.productId}`)
       .then(response => response.json())
       .then(data => {
         setProduct(data);
