@@ -26,7 +26,7 @@ const AddQuestion = ({handleClose, productId, product, openAdd }) => {
       return false;
     }
   }
-  let url = `${process.env.REACT_APP_API}qa/questions`;
+  let url = `${process.env.REACT_APP_ENDPOINT}qa/questions`;
   let data = {
     body: add.questionAsk,
     name: add.nickname,

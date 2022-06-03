@@ -3,7 +3,7 @@ const QuestionHelpful = ({helpfulness, questionId}) => {
   const [helpfulQuestion, setHelpfulQuestion] = useState(false);
   const [reportToggle, setReportToggle] = useState(false);
 
-  let urlHelpful = `${process.env.REACT_APP_API}qa/questions/${questionId}/helpful`;
+  let urlHelpful = `qa/questions/${questionId}/helpful`;
   const handleHelpfulQuestion = () => {
     if (!questionId) {
       return;
@@ -16,7 +16,7 @@ const QuestionHelpful = ({helpfulness, questionId}) => {
       .catch(err => alert('Cannot change the helpfulness for this answer'))
   }
 
-  let urlReport = `${process.env.REACT_APP_API}qa/questions/${questionId}/report`;
+  let urlReport = `qa/questions/${questionId}/report`;
   const handleReport = () => {
     if (!questionId) {
       return;

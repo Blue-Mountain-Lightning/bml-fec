@@ -6,7 +6,7 @@ import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
 import moment from 'moment';
 import { MdThumbDown, MdThumbUp, MdOutlineThumbDownAlt, MdOutlineThumbUpAlt} from "react-icons/md";
 import { IconContext } from "react-icons";
-
+import Photos from './Photos.jsx';
 
 const OneReview = (props) => {
   const [fullReview, setFullReview] = useState('');
@@ -32,7 +32,7 @@ const OneReview = (props) => {
       setDisliked(false);
     }
 
-    let url = `${process.env.REACT_APP_API}reviews/${props.data.review_id}/helpful`;
+    let url = `${process.env.REACT_APP_ENDPOINT}reviews/${props.data.review_id}/helpful`;
 
     if (!props.data.review_id) {
       return;
@@ -54,6 +54,9 @@ const OneReview = (props) => {
     }
     //setNotHelpfulNum(notHelpfulNum + 1);
   }
+
+
+  console.log('props.data', props.data);
   return (
 
     <div className="eachReview">
@@ -79,6 +82,8 @@ const OneReview = (props) => {
         <b className="summ">{props.data.summary}</b>
         <p className="full">{fullReview}</p>
       </div>
+
+      <Photos arr={props.data.photos}/>
 
       <div>
         {props.data.recommend === true ? <div>I recommend this product &nbsp;<AiOutlineCheck /></div>: <p></p>}

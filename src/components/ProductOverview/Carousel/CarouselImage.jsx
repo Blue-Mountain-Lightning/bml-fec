@@ -24,7 +24,7 @@ const CarouselImage = ({ photoUrl, isExpanded, toggleExpandedMode, activeSlideIn
   }
 
   return (
-    <img onClick={toggleExpandedMode} onMouseMove={mouseMoveZoom} onMouseLeave={mouseLeave} className={className} src={photoUrl} alt={alt} />
+    <img fetchpriority="high" onClick={toggleExpandedMode} onMouseMove={mouseMoveZoom} onMouseLeave={mouseLeave} className={className} src={photoUrl} alt={alt} />
   )
 }
 

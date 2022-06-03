@@ -33,7 +33,7 @@ const AddAnswer = ({productId, product, questionId, questionBody}) => {
       return false;
     }
   }
-  let url = `${process.env.REACT_APP_API}qa/questions/${questionId}/answers`;
+  let url = `${process.env.REACT_APP_ENDPOINT}qa/questions/${questionId}/answers`;
   let data = {
     body: addAnswer.answerAdd,
     name: addAnswer.nickname,

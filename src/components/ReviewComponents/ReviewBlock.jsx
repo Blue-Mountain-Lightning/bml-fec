@@ -8,7 +8,7 @@ const ReviewBlock = (props) => {
   const [class1, setClass1] = useState('searchBar');
   const [reviews, setReviews] = useState(undefined);
 
-  const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&count=20`
+  const url = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${props.id}&count=50`
 
   useEffect(() => {
     if (reviews === undefined) {
@@ -30,19 +30,14 @@ const ReviewBlock = (props) => {
 
   const handleSearchTextChange = (event) => {
     event.preventDefault();
-
     setSearch(event.target.value);
+
+
   }
 
   let arr = props.data.results.slice();
 
   const searchButton = () => {
-    if (searchText === '') {
-      setClass1('invalid');
-      return;
-    } else {
-      setClass1('searchBar');
-    }
 
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
@@ -58,7 +53,7 @@ const ReviewBlock = (props) => {
   const getSorted = (event) => {
 
     if (event.target.value === 'newest') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=newest&count=20`
+      const url = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${props.id}&sort=newest&count=500`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -75,7 +70,7 @@ const ReviewBlock = (props) => {
     }
 
     if(event.target.value === 'helpful') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=helpful&count=20`
+      const url = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${props.id}&sort=helpful&count=50`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -92,7 +87,7 @@ const ReviewBlock = (props) => {
     }
 
     if(event.target.value === 'relevant') {
-      const url = `${process.env.REACT_APP_API}reviews/?product_id=${props.id}&sort=relevant&count=20`
+      const url = `${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${props.id}&sort=relevant&count=50`
       const fetchReviews = async () => {
         if (props.id) {
           try {
@@ -127,45 +122,40 @@ const ReviewBlock = (props) => {
   }
   return (
     <div >
-      {props.showAdd === false ?
-          <div>
-
-              <form className="sortBy">
-                <label>
-                  <select onChange={getSorted} >
-                    <option value="none">Sort by</option>
-                    <option value="helpful">Helpful</option>
-                    <option value="newest">Newest</option>
-                    <option value="relevant">Relevant</option>
-                  </select>
-                </label>
-              </form>
-
-          </div>
-          : <p></p>}
-      <div className="searchFunction">
-          <input className={class1} placeholder="   search" type="text" value={searchText} onChange={handleSearchTextChange} />
-          <button className="searchButton" type="submit" value="Search" onClick={searchButton}>Search</button>
-      </div>
-      <p className="showingText">showing: </p>
-      <div className="reviewBlock">
-        { display === '' ?
-          newArr.map((review) => {
-            return (
-              <OneReview key={review.review_id} className="eachReview" data={review}/>
-            );
-          }) :
-          display.map((review) => {
-            return (
-              <OneReview key={review.review_id} className="eachReview" data={review}/>
-            );
-
-          })
-        }
-      </div>
+      <div>
+        <form className="sortBy">
+          <label>
+            <select onChange={getSorted} >
+            <option value="none">Sort by</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+            <option value="relevant">Relevant</option>
+          </select>
+        </label>
+      </form>
     </div>
 
+    <div className="searchFunction">
+      <input className={class1} placeholder="   search" type="text" value={searchText} onChange={(e) => {
+        handleSearchTextChange(e); searchButton();}} />
+    </div>
 
+    <p className="showingText">showing: {newArr.length}</p>
+    <div className="reviewBlock">
+      { display === '' ?
+      newArr.map((review) => {
+        return (
+          <OneReview key={review.review_id} className="eachReview" data={review}/>
+        );
+        }) :
+          display.map((review) => {
+            return (
+            <OneReview key={review.review_id} className="eachReview" data={review}/>
+          );
+        })
+      }
+    </div>
+  </div>
   );
 };
 
