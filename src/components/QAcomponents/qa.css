@@ -211,7 +211,8 @@
 }
 .scrollbar {
   max-height: 1000px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* buttons */
