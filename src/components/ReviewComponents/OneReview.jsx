@@ -32,7 +32,7 @@ const OneReview = (props) => {
       setDisliked(false);
     }
 
-    let url = `${process.env.REACT_APP_API}reviews/${props.data.review_id}/helpful`;
+    let url = `${process.env.REACT_APP_ENDPOINT}reviews/${props.data.review_id}/helpful`;
 
     if (!props.data.review_id) {
       return;

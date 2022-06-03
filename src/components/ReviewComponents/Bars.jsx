@@ -8,12 +8,11 @@ const Bars = (props) => {
     if (props.id === undefined) {
       return;
     }
-    const asdf = `${process.env.REACT_APP_API}reviews/meta/?product_id=${props.id}`
+    const asdf = `${process.env.REACT_APP_ENDPOINT}reviews/meta/?product_id=${props.id}`
     const fetchReviews = async () => {
     if (props.id) {
       try {
-        let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
-        const response = await fetch(asdf, headers);
+        const response = await fetch(asdf);
         const reviews99 = await response.json();
         setmedtaData(reviews99);
       } catch (err) {

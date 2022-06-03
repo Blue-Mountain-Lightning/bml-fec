@@ -3,6 +3,7 @@
 // style: the inner result object of the selected style
 // fontSize: the font size to render
 const Price = ({ style, fontSize }) => {
+  if (!style) { return null };
   let price = style["original_price"];
   let fontStyle = fontSize ? { "fontSize": fontSize } : {};
 

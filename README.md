@@ -1,18 +1,19 @@
-README for Blue Mountain Lightning Frontend Capstone
+# Blue Mountain Lightning Frontend Capstone
 
+The following installation will make the site available at https://localhost:3000.
+
+## Running Locally
+Install the dependencies:
 ```
 npm install
 ```
 
-Run the client on localhost:3000 with
+Build the client:
 ```
-npm start
-```
-
-NOTE THE PORT # CHANGE
-Run the Express server on localhost:3001 with... is an Express server even necessary for this sprint?
-```
-nodemon server/index.js
+npm run build
 ```
 
-adding this for demo purpose
+Run the server:
+```
+npm run server
+```
