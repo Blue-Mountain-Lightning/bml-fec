@@ -62,6 +62,7 @@
 /* question */
 .question-container {
   margin-bottom: 12px !important;
+  margin-top: 16px;
   display: flex;
   justify-content: space-between;
 }
