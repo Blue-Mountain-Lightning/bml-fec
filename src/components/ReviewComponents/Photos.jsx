@@ -10,7 +10,7 @@ const Photos = (props) => {
 
       {props.arr.map((obj) => {
         return (
-          <img src={obj.url} alt={obj.id}  height={150} width={150} />
+          <img src={obj.url} alt={obj.id}  height={150} width={200} />
         );
       })}
     </div>

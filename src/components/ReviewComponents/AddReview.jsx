@@ -72,8 +72,8 @@ const AddReview = (props) => {
   }
   //testing conditional rendering, show form to add.
   return (
-    <div id="myModal" class="modal">
-      <div class="modal-content">
+    <div className="page99">
+      <div className="modal-content">
 
         <div className="top1">
           <b className="title">Write Your Review</b>
@@ -100,15 +100,13 @@ const AddReview = (props) => {
         </div>
         <div className="input">
           <br></br>
-          <div className="text1" onChange={handleYesNo}> Do you recommend this product?
+          <b className="text1" onChange={handleYesNo}> Do you recommend this product?
             <br></br>
             <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
             <input className="rb2" type="radio" value="no" /> No
-          </div>
+          </b>
 
-          <div className="text2"> Characteristics: </div><br></br>
-
-          <br></br>
+          <b className="charText"> Characteristics: </b><br></br>
           <div className='buttons00'>
             Size:<br></br>
             <RadioButtons setNum={setSize} />

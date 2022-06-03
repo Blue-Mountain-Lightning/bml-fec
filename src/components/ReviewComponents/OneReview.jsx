@@ -55,8 +55,6 @@ const OneReview = (props) => {
     //setNotHelpfulNum(notHelpfulNum + 1);
   }
 
-
-  console.log('props.data', props.data);
   return (
 
     <div className="eachReview">
@@ -87,7 +85,7 @@ const OneReview = (props) => {
 
       <div>
         {props.data.recommend === true ? <div>I recommend this product &nbsp;<AiOutlineCheck /></div>: <p></p>}
-        <p className="reviewer">Reviewed by: {props.data.reviewer_name} </p>
+        <p className="reviewer">Reviewed 111by: {props.data.reviewer_name} </p>
       </div>
 
       <div>
@@ -110,6 +108,3 @@ const OneReview = (props) => {
   );
 }
 export default OneReview;
-
-//like button
-// {liked ? <FcLike className="unlikeButton" onClick={likeIt} /> : <FcLikePlaceholder className="likeButton" onClick={likeIt}/>} &nbsp;
