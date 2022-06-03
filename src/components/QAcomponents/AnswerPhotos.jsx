@@ -17,12 +17,12 @@ const AnswerPhotos = ({photo}) => {
     </div>
   );
   return (
-    <div>
+    <>
       <div className='photo-div'>
         <img src={photo.url} className='answer-photo' alt='photos' onClick={handlePhotoClick}/>
         {showPhoto ? answerPhotoModal : null}
       </div>
-    </div>
+    </>
   )
 }
 export default AnswerPhotos;
