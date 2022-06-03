@@ -19,9 +19,8 @@ const ProductOverview = ({ product }) => {
     const fetchProductStyles = async () => {
       if (product.id) {
         try {
-          let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
-          const stylesURL = `${process.env.REACT_APP_API}products/${product.id}/styles`;
-          const response = await fetch(stylesURL, headers);
+          const stylesURL = `${process.env.REACT_APP_ENDPOINT}products/${product.id}/styles`;
+          const response = await fetch(stylesURL);
           const stylesArray = await response.json();
           setStyles(stylesArray);
           setCurrentStyle(stylesArray.results[0]);
@@ -35,8 +34,7 @@ const ProductOverview = ({ product }) => {
     const fetchReviews = async () => {
       if (product.id) {
         try {
-          let headers = { headers: { 'Authorization': process.env.REACT_APP_TOKEN } }
-          const response = await fetch(`${process.env.REACT_APP_API}reviews/?product_id=${product.id}&count=20`, headers);
+          const response = await fetch(`${process.env.REACT_APP_ENDPOINT}reviews/?product_id=${product.id}&count=20`);
           const reviews99 = await response.json();
           setReviews(reviews99);
         } catch (err) {

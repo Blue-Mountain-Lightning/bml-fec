@@ -6,7 +6,7 @@ const QuestionsAndAnswers = ({productId, product}) => {
   const [questions, setQuestions] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [openAdd, setOpenAdd] = useState(false);
-  let url = `${process.env.REACT_APP_API}qa/questions?product_id=${productId}&count=100`
+  let url = `${process.env.REACT_APP_ENDPOINT}qa/questions?product_id=${productId}&count=100`
 
   useEffect(() => {
     fetch(url, { headers: { 'Authorization': process.env.REACT_APP_TOKEN } })

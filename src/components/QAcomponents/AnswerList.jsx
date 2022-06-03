@@ -3,7 +3,7 @@ import AnswerEntry from './AnswerEntry.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
 const AnswerList = ({questionId, product}) => {
   const [answers, setAnswers] = useState([])
-  let url = `${process.env.REACT_APP_API}qa/questions/${questionId}/answers?count=100`;
+  let url = `${process.env.REACT_APP_ENDPOINT}qa/questions/${questionId}/answers?count=100`;
   useEffect(() => {
     if (!questionId) {
       return;

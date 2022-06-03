@@ -56,7 +56,7 @@ const AddReview = (props) => {
       email: email,
       characteristics: {"135221": 3, "135219": 2, "135220": 5, "135222": 1}
     }
-    let url = `${process.env.REACT_APP_API}reviews`;
+    let url = `${process.env.REACT_APP_ENDPOINT}reviews`;
     //post request to api.
     console.log('test', JSON.stringify(allData));
     fetch (url, {
