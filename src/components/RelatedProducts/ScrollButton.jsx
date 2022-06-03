@@ -16,9 +16,9 @@ const ScrollButton = ({direction, active, onClick}) => {
   }
 
   return (
-    <div className={classes} onClick={onClick}>
+    <button className={classes} onClick={onClick}>
       <IconComponent className='card-icon' style={style} />
-    </div>
+    </button>
   )
 }
 
