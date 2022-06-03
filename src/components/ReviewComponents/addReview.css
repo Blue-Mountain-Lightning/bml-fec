@@ -1,22 +1,23 @@
-.modal-reviews {
+.page99 {
   margin: 10px;
   z-index: 9999;
-  position: fixed;
   padding-top: 50px;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+  color: black;
+  position:absolute;
 }
 
 .modal-content {
   background-color: white;
   opacity: 1;
-  height: 1180px;
+  height: 80%;
   margin-left: 650px;
   margin-top: 10px;
   overflow-y: auto;
-  width: 30%;
-  margin-left: 1000px;
+  width: 40%;
+  margin-left: 500px;
 }
 
 .top1 {
@@ -149,4 +150,8 @@ button {
 .submitAdd:hover {
   background-color: rgb(180, 56, 77);
   color: black;
+}
+
+.charText {
+  margin-top: 10px;
 }

@@ -87,12 +87,11 @@ const Bars = (props) => {
         <p className="starText">{bar} star: &nbsp;</p>
         <p className="bar">{barL}</p>
         <p className="greystuff">{space}</p>
-        <p>&nbsp;&nbsp;{num}</p>
+        <p className="ratingsNum">&nbsp;&nbsp;{num}</p>
       </div>
     );
   }
 
-  console.log('mETA DATA', metaData);
   const getReviewByStar = (number) => {
     props.select(number);
   }
@@ -101,38 +100,38 @@ const Bars = (props) => {
   const breakDown = (word) => {
 
     let total = '';
-    for (let i = 0 ; i < 75; i++ ) {
+    for (let i = 0 ; i < 70; i++ ) {
       total = total + '|';
     }
     let progress = '';
     if (word === 'Size' && metaData.characteristics.Size) {
-      for (let i = 0; i < metaData.characteristics.Size.value / 5 * 75; i++) {
+      for (let i = 0; i < metaData.characteristics.Size.value / 5 * 70; i++) {
         progress = progress + '|';
       }
     }
 
     if (word === 'Width' && metaData.characteristics.Width) {
 
-      for (let i = 0; i < metaData.characteristics.Width.value / 5 * 75; i++) {
+      for (let i = 0; i < metaData.characteristics.Width.value / 5 * 70; i++) {
         progress = progress + '|';
       }
     }
 
     if (word === 'Quality' && metaData.characteristics.Quality) {
 
-      for (let i = 0; i < metaData.characteristics.Quality.value / 5 * 75; i++) {
+      for (let i = 0; i < metaData.characteristics.Quality.value / 5 * 70; i++) {
         progress = progress + '|';
       }
     }
 
     if (word === 'Comfort' && metaData.characteristics.Comfort) {
-      for (let i = 0; i < metaData.characteristics.Comfort.value / 5 * 75; i++) {
+      for (let i = 0; i < metaData.characteristics.Comfort.value / 5 * 70; i++) {
         progress = progress + '|';
       }
     }
 
     if (word === 'Length' && metaData.characteristics.Length) {
-      for (let i = 0; i < metaData.characteristics.Length.value / 5 * 75; i++) {
+      for (let i = 0; i < metaData.characteristics.Length.value / 5 * 70; i++) {
         progress = progress + '|';
       }
     }
@@ -141,8 +140,10 @@ const Bars = (props) => {
       <div>
 
         <div >{word}
-          <p className="progress1">{progress}</p>
-          <p className="greybar">{total}</p>
+          <div className="totalbar">
+            <p className="progress1">{progress}</p>
+            <p className="greybar">{total}</p>
+          </div>
         </div>
 
       </div>
@@ -193,39 +194,38 @@ const Bars = (props) => {
           {breakDown('Size')}
         </div>
         <br></br><br></br>
-        <div className="text1">1</div>
-        <div className="text2">5</div>
+        <div className="text1">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
         <br></br>
 
         <div>
           {breakDown('Width')}
         </div>
         <br></br><br></br>
-        <div className="text1">1</div>
-        <div className="text2">5</div>
+
+        <div className="text1">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
+
         <br></br>
 
         <div>
           {breakDown('Comfort')}
         </div>
         <br></br><br></br>
-        <div className="text1">1</div>
-        <div className="text2">5</div>
+
+        <div className="text1">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
+
         <br></br>
 
         <div>
           {breakDown('Quality')}
         </div>
         <br></br><br></br>
-        <div className="text1">1</div>
-        <div className="text2">5</div>
+        <div className="text1">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
         <br></br>
         <div>
           {breakDown('Length')}
         </div>
         <br></br><br></br>
-        <div className="text1">1</div>
-        <div className="text2">5</div>
+        <div className="text1">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
 
       </div>
 

@@ -64,6 +64,7 @@ const Reviews = (props) => {
 
   return (
     <div className='page-padding'>
+      {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
       <div className="container">
 
         <div className="reviewsMain">
@@ -80,7 +81,7 @@ const Reviews = (props) => {
           <div className="rightSide">
             <div className="reviewShowing">
               <ReviewBlock className="reviewBlock" select={starSelect} showAdd={showAdd} data={reviews} num={currentNum} setNum={setCurrentNum} caps={5} id={props.id} />
-              {showAdd === true ? <AddReview id={props.id} set={closeModal} /> : <i></i>}
+
               {(more === true) ? <button className="showMore" onClick={() => { showMore() }} >show more</button> : <p></p>}
             </div>
 
