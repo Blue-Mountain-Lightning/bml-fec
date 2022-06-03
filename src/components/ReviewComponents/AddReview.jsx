@@ -54,19 +54,21 @@ const AddReview = (props) => {
       recommend: true,
       name: nickname,
       email: email,
-      characteristics: {"135221": 3, "135219": 2, "135220": 5, "135222": 1}
+      characteristics: { "135221": 3, "135219": 2, "135220": 5, "135222": 1 }
     }
     let url = `${process.env.REACT_APP_API}reviews`;
     //post request to api.
     console.log('test', JSON.stringify(allData));
-    fetch (url, {
+    fetch(url, {
       method: 'POST',
-      headers: {'Authorization': process.env.REACT_APP_TOKEN,
-      'Content-Type': 'application/json'},
+      headers: {
+        'Authorization': process.env.REACT_APP_TOKEN,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(allData)
-      })
+    })
       .then(() => console.log('Success!'))
-      .catch((err) => {alert(err)})
+      .catch((err) => { alert(err) })
   }
   const showText = () => {
 
@@ -76,104 +78,104 @@ const AddReview = (props) => {
     return 50 - wordCount;
   }
   //testing conditional rendering, show form to add.
-    return (
-        <div id="myModal" class="modal">
-          <div class="modal-content">
+  return (
+    <div id="myModal" className="modal-reviews">
+      <div className="modal-content">
 
-            <div className="top1">
-              <b className="title">Write Your Review</b>
-              <button onClick={props.set} className="close">close</button>
-            </div>
-              <div className="star-rating">
+        <div className="top1">
+          <b className="title">Write Your Review</b>
+          <button onClick={props.set} className="close">close</button>
+        </div>
+        <div className="star-rating">
 
-                {[...Array(5)].map((star, index) => {
-                  index += 1;
-                  return (
-                    <button type="button" key={index}
+          {[...Array(5)].map((star, index) => {
+            index += 1;
+            return (
+              <button type="button" key={index}
 
-                    className={index <= (hover || rating) ? "on" : "off"}
-                      onClick={() => {setRating(index); }}
-                      onMouseEnter={() => setHover(index)}
-                      onMouseLeave={() => setHover(rating)}>
+                className={index <= (hover || rating) ? "on" : "off"}
+                onClick={() => { setRating(index); }}
+                onMouseEnter={() => setHover(index)}
+                onMouseLeave={() => setHover(rating)}>
 
-                      <span className="star">&#9733;</span>
+                <span className="star">&#9733;</span>
 
-                    </button>
-                  );
-                })}
-                {rating === 1 ? <p className="oneStarSelected">Poor</p> : rating === 2 ? <p className="twoStarSelected">Fair</p> : rating === 3 ? <p className="threeStarSelected">Average</p> : rating === 4 ? <p className="fourStarSelected">Good</p> : rating === 5 ? <p className="fiveStarSelected">Great</p> : <i className="none">none</i> }
-              </div>
-            <div className="input">
+              </button>
+            );
+          })}
+          {rating === 1 ? <p className="oneStarSelected">Poor</p> : rating === 2 ? <p className="twoStarSelected">Fair</p> : rating === 3 ? <p className="threeStarSelected">Average</p> : rating === 4 ? <p className="fourStarSelected">Good</p> : rating === 5 ? <p className="fiveStarSelected">Great</p> : <i className="none">none</i>}
+        </div>
+        <div className="input">
 
-              <label className="text1" onChange={handleYesNo}> Do you recommend this product?
-              <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
-              <input className="rb2"type="radio" value="no" /> No
+          <label className="text1" onChange={handleYesNo}> Do you recommend this product?
+            <input className="rb1" type="radio" value="yes" /> Yes  &nbsp;
+            <input className="rb2" type="radio" value="no" /> No
 
-              </label><br></br><br></br>
-              <label className="text2"> Characteristics: </label><br></br>
+          </label><br></br><br></br>
+          <label className="text2"> Characteristics: </label><br></br>
 
-              <br></br>
-              <div>
-              Size:
-              <RadioButtons setNum={setSize}/>
-              <br></br>
-              Width:
-              <RadioButtons setNum={setWidth}/>
-              <br></br>
-              Comfort:
-              <RadioButtons setNum={setComfort}/>
-              <br></br>
-              Quality:
-              <RadioButtons setNum={setQuality}/>
-              <br></br>
-              Length:
-              <RadioButtons setNum={setLength}/>
-              <br></br>
-              Fit:
-              <RadioButtons setNum={setFit}/>
-              <br></br>
-              </div>
-
-              <br></br>
-              <label>
-              Review summary <br></br>
-              <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
-              setSummary(e.target.value);
-              }} /><br></br>
-              </label>
-              <br></br>
-
-              <label>
-              Why did you like the product or not?
-              <br></br>
-              <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
-              setFullReview(e.target.value);
-              setWordCount(fullReview.length);
-              }} />
-              <p>Minimum required characters left: {50 - wordCount >= 0 ? 50 - wordCount : 0} </p>
-
-              </label>
-              <br></br>
-              Nickname: <br></br>
-              <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
-              setNickname(e.target.value);
-              }} /><br></br>
-              For privacy reasons, do not use your full name or email address” will appear.
-              <br></br>
-              <br></br>
-              Email: <br></br>
-              <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
-              setEmail(e.target.value);
-              }} /><br></br>
-              For authentication reasons, you will not be emailed
-              <br></br>
-              <br></br>
-              <button className="submitAdd" onClick={submitEverything}>Submit</button>
-            </div>
+          <br></br>
+          <div>
+            Size:
+            <RadioButtons setNum={setSize} />
+            <br></br>
+            Width:
+            <RadioButtons setNum={setWidth} />
+            <br></br>
+            Comfort:
+            <RadioButtons setNum={setComfort} />
+            <br></br>
+            Quality:
+            <RadioButtons setNum={setQuality} />
+            <br></br>
+            Length:
+            <RadioButtons setNum={setLength} />
+            <br></br>
+            Fit:
+            <RadioButtons setNum={setFit} />
+            <br></br>
           </div>
 
+          <br></br>
+          <label>
+            Review summary <br></br>
+            <textarea className="addReviewSummary" placeholder="Example: Best purchase ever!" rows="3" cols="70" name="summary" type="text" value={summary} onChange={(e) => {
+              setSummary(e.target.value);
+            }} /><br></br>
+          </label>
+          <br></br>
+
+          <label>
+            Why did you like the product or not?
+            <br></br>
+            <textarea className="addFullReview" placeholder="review" rows="15" cols="100" name="review" type="text" value={fullReview} onChange={(e) => {
+              setFullReview(e.target.value);
+              setWordCount(fullReview.length);
+            }} />
+            <p>Minimum required characters left: {50 - wordCount >= 0 ? 50 - wordCount : 0} </p>
+
+          </label>
+          <br></br>
+          Nickname: <br></br>
+          <textarea className="nickname" type="text" placeholder="Example: jackson11!" cols="30" onChange={(e) => {
+            setNickname(e.target.value);
+          }} /><br></br>
+          For privacy reasons, do not use your full name or email address” will appear.
+          <br></br>
+          <br></br>
+          Email: <br></br>
+          <textarea className="email" type="text" placeholder=" Example: jackson11@email.com" cols="50" onChange={(e) => {
+            setEmail(e.target.value);
+          }} /><br></br>
+          For authentication reasons, you will not be emailed
+          <br></br>
+          <br></br>
+          <button className="submitAdd" onClick={submitEverything}>Submit</button>
         </div>
-    );
+      </div>
+
+    </div>
+  );
 
 }
 export default AddReview;

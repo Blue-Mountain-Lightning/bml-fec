@@ -1,4 +1,4 @@
-.modal {
+.modal-reviews {
   margin: 10px;
   z-index: 9999;
   position: fixed;
@@ -11,8 +11,8 @@
 .modal-content {
   background-color: white;
   opacity: 1;
-  width: 1200px;
-  height: 1180px;
+  /* width: 1200px;
+  height: 1180px; */
   margin-left: 650px;
   margin-top: 10px;
   overflow-y: auto;
